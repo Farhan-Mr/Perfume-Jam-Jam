@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Perfume~e~Farhat | Elite Men's Collection</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght=700;900&family=Poppins:wght=300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- 1. AOS Animation CSS (Bina aapka code chede premium scroll effect ke liye) -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+       
+    <link rel="stylesheet" href="menn.css">
+</head>
+<!-- this is body -->
+<body>
+
+  <nav class="navbar sticky-top navbar-expand-xl bg-body-tertiary">
+    <div class="container-md">
+
+      <a class="navbar-brand" href="#">
+        <span class="logo-perfume">Perfume</span>
+        <span class="logo-brand">~e~ Farhat</span>
+      </a>
+
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav mx-auto">
+          <li class="nav-item"><a class="nav-link" href="../index.html">Home</a></li>
+          <li class="nav-item"><a class="nav-link active" href="Men.html">Men</a></li>
+          <li class="nav-item"><a class="nav-link" href="womenn.html">Women</a></li>
+          <li class="nav-item"><a class="nav-link" href="unisex.html">Unisex</a></li>
+          <li class="nav-item"><a class="nav-link" href="../HtmlPages/dashboard.html">Dashboard</a></li>
+          <li class="nav-item"><a class="nav-link" href="../HtmlPages/admin.html">Admin</a></li>
+        </ul>
+
+        <div class="navbar-icons">
+          <a href="../HtmlPages/product-detail.html" class="icon-link">🔍<span style="font-size:smaller;">Search</span></a>
+          <a href="../HtmlPages/dashboard.html" class="icon-link">❤️<span style="font-size:smaller;">Favourite</span></a>
+          <a href="../HtmlPages/cart.html" class="icon-link">🛒<span style="font-size:smaller;">Shop</span></a>
+          <a href="../HtmlPages/login.html" class="btn btn-dark btn-sm login-btn">Login</a>
+        </div>
+      </div>
+
+    </div>
+  </nav>
+
+  <section id="home" class="hero-section">
+    <div class="hero-bg"></div>
+    
+    <div class="container h-100">
+      <div class="row h-100 align-items-center">
+
+        <!-- Fade Right Animation for Hero Content -->
+        <div class="col-md-6 hero-content" data-aos="fade-right" data-aos-duration="1000">
+          <div class="fragrance-tag"> MEN'S FRAGRANCES </div>
+
+          <h1 id="BigText">
+            Discover Luxury <br>
+            <span style="font-family: cursive;">Fragrances</span> 
+            <br> That Define You
+          </h1>
+
+          <p class="hero-subtitle">
+            Premium perfumes crafted for <span style="color: #d4af37; font-size: larger; font-weight: 600;">MEN</span>.
+            Each fragrance tells a story of elegance and sophistication.
+          </p>
+
+          <div class="hero-buttons">
+            <button class="btn btn-gold btn-lg">Shop Men</button>
+          </div>
+        </div>
+
+        <!-- Fade Left Animation for Hero Luxury Card -->
+        <div class="col-md-6 hero-image" data-aos="fade-left" data-aos-duration="1000">
+          <div class="luxury-card">
+            <div class="card-logo-area">
+              <div class="gold-emblem">✦</div>
+            </div>
+
+            <div class="luxury-divider">
+              <div class="line"></div>
+              <div class="diamond"></div>
+              <div class="line"></div>
+            </div>
+
+            <div class="card-info">
+              <span class="collection-tag">EXQUISITE JOURNEYS</span>
+              <h3 class="card-title">THE ALCHEMIST'S PATH</h3>
+              <p class="card-description">Curation of Rare Teas</p>
+            </div>
+
+            <div class="card-glow-effect"></div>
+          </div>
+        </div>
+
+      </div>
+    </div>    
+  </section>
+
+
+  <!-- Filter Section with Upward Fade -->
+  <section class="filter-section" data-aos="fade-up" data-aos-duration="800">
+        <div class="container filter-container">
+            <div class="filter-dropdown">
+                <select>
+                    <option value="">Price Range</option>
+                    <option value="1">₹3,000 - ₹4,000</option>
+                    <option value="2">₹4,000 - ₹5,000</option>
+                    <option value="3">₹5,000+</option>
+                </select>
+                <i class="fa-solid fa-chevron-down custom-arrow"></i>
+            </div>
+            <div class="filter-dropdown">
+                <select>
+                    <option value="">Concentration</option>
+                    <option value="edp">Eau De Parfum</option>
+                    <option value="edt">Eau De Toilette</option>
+                    <option value="pure">Pure Parfum</option>
+                </select>
+                <i class="fa-solid fa-chevron-down custom-arrow"></i>
+            </div>
+            <div class="search-box">
+                <input type="text" placeholder="Search Perfume...">
+            </div>
+        </div>
+    </section>
+
+    <section class="products-section">
+        <div class="container">
+            <!-- Section Header Animation -->
+            <div class="section-header" data-aos="fade-up" data-aos-duration="800">
+                <p class="subtitle" style="font-size: large;">CURATED EXCLUSIVES</p>
+                <h2 class="main-title">The Men's Anthology</h2>
+                <div class="title-underline"></div>
+            </div>
+
+            <!-- Grid 1: Cards stagger one after another using data-aos-delay -->
+            <div class="products-grid">
+                <div class="product-card" data-aos="fade-up" data-aos-delay="100">
+                    <span class="badge badge-best">BEST SELLER</span>
+                    <div class="product-image-placeholder">
+                        <span class="image-text">Oud Supreme</span>
+                    </div>
+                    <div class="product-info">
+                        <p class="category">EAU DE PARFUM</p>
+                        <h3 class="product-name">Oud Supreme Intense</h3>
+                        <p class="price">₹4,499</p>
+                        <button class="add-to-cart-btn">Add To Cart</button>
+                    </div>
+                </div>
+
+                <div class="product-card" data-aos="fade-up" data-aos-delay="200">
+                    <span class="badge badge-new">NEW</span>
+                    <div class="product-image-placeholder">
+                        <span class="image-text">Noir Horizon</span>
+                    </div>
+                    <div class="product-info">
+                        <p class="category">PURE PARFUM</p>
+                        <h3 class="product-name">Noir Horizon</h3>
+                        <p class="price">₹5,200</p>
+                        <button class="add-to-cart-btn">Add To Cart</button>
+                    </div>
+                </div>
+
+                <div class="product-card" data-aos="fade-up" data-aos-delay="300">
+                    <div class="product-image-placeholder">
+                        <span class="image-text">Royal Amber</span>
+                    </div>
+                    <div class="product-info">
+                        <p class="category">EAU DE TOILETTE</p>
+                        <h3 class="product-name">Royal Amber Gold</h3>
+                        <p class="price">₹3,850</p>
+                        <button class="add-to-cart-btn">Add To Cart</button>
+                    </div>
+                </div>
+
+                <div class="product-card" data-aos="fade-up" data-aos-delay="400">
+                    <span class="badge badge-limited">LIMITED</span>
+                    <div class="product-image-placeholder">
+                        <span class="image-text">Velvet Musk</span>
+                    </div>
+                    <div class="product-info">
+                        <p class="category">EAU DE PARFUM</p>
+                        <h3 class="product-name">Velvet Musk Signature</h3>
+                        <p class="price">₹6,100</p>
+                        <button class="add-to-cart-btn">Add To Cart</button>
+                    </div>
+                </div>
+            </div>
+
+            <br><br>
+
+            <!-- Grid 2 -->
+            <div class="products-grid">
+                <div class="product-card" data-aos="fade-up" data-aos-delay="100">
+                    <span class="badge badge-best">BEST SELLER</span>
+                    <div class="product-image-placeholder">
+                        <span class="image-text">Oud Supreme</span>
+                    </div>
+                    <div class="product-info">
+                        <p class="category">EAU DE PARFUM</p>
+                        <h3 class="product-name">Oud Supreme Intense</h3>
+                        <p class="price">₹4,499</p>
+                        <button class="add-to-cart-btn">Add To Cart</button>
+                    </div>
+                </div>
+
+                <div class="product-card" data-aos="fade-up" data-aos-delay="200">
+                    <span class="badge badge-new">NEW</span>
+                    <div class="product-image-placeholder">
+                        <span class="image-text">Noir Horizon</span>
+                    </div>
+                    <div class="product-info">
+                        <p class="category">PURE PARFUM</p>
+                        <h3 class="product-name">Noir Horizon</h3>
+                        <p class="price">₹5,200</p>
+                        <button class="add-to-cart-btn">Add To Cart</button>
+                    </div>
+                </div>
+
+                <div class="product-card" data-aos="fade-up" data-aos-delay="300">
+                    <div class="product-image-placeholder">
+                        <span class="image-text">Royal Amber</span>
+                    </div>
+                    <div class="product-info">
+                        <p class="category">EAU DE TOILETTE</p>
+                        <h3 class="product-name">Royal Amber Gold</h3>
+                        <p class="price">₹3,850</p>
+                        <button class="add-to-cart-btn">Add To Cart</button>
+                    </div>
+                </div>
+
+                <div class="product-card" data-aos="fade-up" data-aos-delay="400">
+                    <span class="badge badge-limited">LIMITED</span>
+                    <div class="product-image-placeholder">
+                        <span class="image-text">Velvet Musk</span>
+                    </div>
+                    <div class="product-info">
+                        <p class="category">EAU DE PARFUM</p>
+                        <h3 class="product-name">Velvet Musk Signature</h3>
+                        <p class="price">₹6,100</p>
+                        <button class="add-to-cart-btn">Add To Cart</button>
+                    </div>
+                </div>
+            </div>
+            
+            <br><br>
+
+            <!-- Grid 3 -->
+            <div class="products-grid">
+                <div class="product-card" data-aos="fade-up" data-aos-delay="100">
+                    <span class="badge badge-best">BEST SELLER</span>
+                    <div class="product-image-placeholder">
+                        <span class="image-text">Oud Supreme</span>
+                    </div>
+                    <div class="product-info">
+                        <p class="category">EAU DE PARFUM</p>
+                        <h3 class="product-name">Oud Supreme Intense</h3>
+                        <p class="price">₹4,499</p>
+                        <button class="add-to-cart-btn">Add To Cart</button>
+                    </div>
+                </div>
+
+                <div class="product-card" data-aos="fade-up" data-aos-delay="200">
+                    <span class="badge badge-new">NEW</span>
+                    <div class="product-image-placeholder">
+                        <span class="image-text">Noir Horizon</span>
+                    </div>
+                    <div class="product-info">
+                        <p class="category">PURE PARFUM</p>
+                        <h3 class="product-name">Noir Horizon</h3>
+                        <p class="price">₹5,200</p>
+                        <button class="add-to-cart-btn">Add To Cart</button>
+                    </div>
+                </div>
+
+                <div class="product-card" data-aos="fade-up" data-aos-delay="300">
+                    <div class="product-image-placeholder">
+                        <span class="image-text">Royal Amber</span>
+                    </div>
+                    <div class="product-info">
+                        <p class="category">EAU DE TOILETTE</p>
+                        <h3 class="product-name">Royal Amber Gold</h3>
+                        <p class="price">₹3,850</p>
+                        <button class="add-to-cart-btn">Add To Cart</button>
+                    </div>
+                </div>
+
+                <div class="product-card" data-aos="fade-up" data-aos-delay="400">
+                    <span class="badge badge-limited">LIMITED</span>
+                    <div class="product-image-placeholder">
+                        <span class="image-text">Velvet Musk</span>
+                    </div>
+                    <div class="product-info">
+                        <p class="category">EAU DE PARFUM</p>
+                        <h3 class="product-name">Velvet Musk Signature</h3>
+                        <p class="price">₹6,100</p>
+                        <button class="add-to-cart-btn">Add To Cart</button>
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+    </section>
+
+    <!-- Features Items Zoom-in Effect on scroll -->
+    <section class="features-section">
+        <div class="container features-grid">
+            <div class="feature-item" data-aos="zoom-in" data-aos-delay="100">
+                <div class="feature-icon">⚜️</div>
+                <h4 class="feature-title"  style="font-size: larger;">Premium Ingredients</h4>
+                <p class="feature-desc" style="font-size: smaller;">Sourced from the finest global gardens & distilleries.</p>
+            </div>
+            <div class="feature-item" data-aos="zoom-in" data-aos-delay="200">
+                <div class="feature-icon">⏳</div>
+                <h4 class="feature-title" style="font-size: larger;">24 Hour Lasting</h4>
+                <p class="feature-desc" style="font-size: smaller;">High concentration formulas that stay with you all day.</p>
+            </div>
+            <div class="feature-item" data-aos="zoom-in" data-aos-delay="300">
+                <div class="feature-icon">📦</div>
+                <h4 class="feature-title"  style="font-size: larger;">Free Pan-India Delivery</h4>
+                <p class="feature-desc" style="font-size: smaller;">Safely packed, insured and delivered directly to your doorstep.</p>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container">
+            <h2 class="footer-logo"><span style="font-family: cursive;">Perfume</span><span style="color: black;"> ~e~ Farhat</span></h2>
+            <p class="footer-copyright">&copy; 2026 All Rights Reserved. Crafted for Men of Ultimate Elegance.</p>
+        </div>
+    </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  
+  <!-- 2. AOS Animation Scripts & Initialization -->
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <script>
+    AOS.init({
+      once: false, // true karne par animation sirf ek baar hogi, false par har baar scroll karne par hogi
+      mirror: true
+    });
+  </script>
+</body>
+</html>

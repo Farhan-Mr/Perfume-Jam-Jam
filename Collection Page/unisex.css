@@ -1,0 +1,737 @@
+/* ==========================================================================
+   1. UNISEX THEME CONFIGURATION & CORE VARIABLES
+   ========================================================================== */
+:root {
+    --bg-unisex-cream: #F4F4F0;   
+    --card-white: #FFFFFF;
+    --text-charcoal: #2A2A2A;
+    --text-neutral: #656560;
+    --unisex-gold: #C29F68;       
+    --border-light: #E5E5DE;
+    
+    /* Luxury Timing Curve: Super smooth acceleration and deceleration */
+    --cubic-premium: cubic-bezier(0.25, 1, 0.22, 1); 
+    --transition-smooth: all 0.5s var(--cubic-premium);
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: #F9F9F6;
+    color: var(--text-charcoal);
+    overflow-x: hidden;
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+}
+
+/* ==========================================================================
+   2. ORIGINAL NAVBAR & MICRO-MAGNETIC INTERACTIONS
+   ========================================================================== */
+.navbar {
+    background-color: #FFFFFF !important;
+    border-bottom: 1px solid var(--border-light);
+    padding: 15px 20px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.02);
+    transition: var(--transition-smooth);
+}
+
+/* Brand Logo Typography & Glow */
+.luxury-brand-glow {
+    text-decoration: none;
+    transition: var(--transition-smooth);
+}
+
+.luxury-brand-glow:hover {
+    text-shadow: 0 0 20px rgba(194, 159, 104, 0.3);
+}
+
+.logo-perfume {
+    color: var(--text-charcoal);
+    font-family: cursive;    
+    font-size: 1.4rem;
+}
+
+.logo-brand {
+    color: var(--unisex-gold);
+    font-weight: 400;
+    font-size: 1.4rem;
+    letter-spacing: 1px;
+}
+
+/* Navigation Menu Links */
+.navbar-nav .nav-link {
+    font-family: 'Poppins', sans-serif;
+    color: var(--text-neutral) !important;
+    font-weight: 500;
+    font-size: 1rem;
+    padding: 5px 15px !important;
+    position: relative;
+    transition: color 0.3s ease;
+}
+
+/* Elegant Underline Slider Accent */
+.navbar-nav .nav-link::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: -2px;
+    left: 15px;
+    background-color: var(--unisex-gold);
+    transition: width 0.4s var(--cubic-premium);
+}
+
+.navbar-nav .nav-link:hover::after,
+.navbar-nav .nav-link.active::after {
+    width: calc(100% - 30px);
+}
+
+.navbar-nav .nav-link:hover,
+.navbar-nav .nav-link.active {
+    color: var(--unisex-gold) !important;
+}
+
+/* Utility Icons & Buttons */
+.navbar-icons {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.micro-magnetic {
+    display: inline-block;
+    color: var(--text-charcoal);
+    text-decoration: none;
+    font-size: 0.95rem;
+    font-weight: 400;
+    transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1), color 0.3s ease;
+}
+
+.micro-magnetic:hover {
+    transform: scale(1.15) translateY(-2px);
+    color: var(--unisex-gold);
+}
+
+.login-btn {
+    background-color: #2D2722;
+    color: #FFFFFF !important;
+    border-radius: 25px;
+    padding: 7px 22px !important;
+    font-size: 0.85rem;
+    font-weight: 500;
+    border: none;
+    transition: var(--transition-smooth);
+}
+
+.login-btn:hover {
+    background-color: var(--unisex-gold);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(194, 159, 104, 0.35);
+}
+
+/* ==========================================================================
+   3. HERO SECTION WITH CINEMATIC MOTION EASE
+   ========================================================================== */
+.hero-section {
+    position: relative;
+    height: 600px;
+    background-color: #F3F3EF;
+    display: flex;
+    align-items: center;
+    z-index: 1;
+}
+
+/* Zoom out effect on page load */
+.hero-bg-overlay {
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background-image: radial-gradient(circle at 70% 40%, #EFEFEA 0%, #F4F4F0 70%);
+    z-index: -1;
+    animation: luxuryZoomOut 10s var(--cubic-premium) forwards;
+}
+
+@keyframes luxuryZoomOut {
+    0% { transform: scale(1.1); }
+    100% { transform: scale(1); }
+}
+
+/* Initial CSS States for Keyframe triggers */
+.cinematic-fade-up {
+    opacity: 0;
+    transform: translateY(50px);
+    animation: luxuryFadeUp 1.4s var(--cubic-premium) 0.1s forwards;
+}
+
+.cinematic-fade-left {
+    opacity: 0;
+    transform: translateX(70px);
+    animation: luxuryFadeLeft 1.5s var(--cubic-premium) 0.25s forwards;
+}
+
+@keyframes luxuryFadeUp {
+    100% { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes luxuryFadeLeft {
+    100% { opacity: 1; transform: translateX(0); }
+}
+
+/* Typography Inside Hero */
+.shared-tag {
+    font-size: 0.85rem;
+    font-weight: 600;
+    letter-spacing: 2px;
+    color: var(--unisex-gold);
+    margin-bottom: 15px;
+    display: inline-block;
+}
+
+/* Shimmer Lighting Sweep Effect */
+.shimmer-effect::before {
+    content: '';
+    position: absolute;
+    top: 0; left: -150%;
+    width: 60%; height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.7), transparent);
+    animation: lightSweep 4.5s infinite linear;
+}
+
+@keyframes lightSweep {
+    0% { left: -150%; }
+    30% { left: 180%; }
+    100% { left: 180%; }
+}
+
+#BigText {
+    font-family: 'Playfair Display', serif;
+    font-size: 4rem;
+    font-weight: 700;
+    color: #1A1A1A;
+    line-height: 1.15;
+    margin-bottom: 20px;
+}
+
+.hero-subtitle {
+    font-size: 1rem;
+    color: var(--text-neutral);
+    line-height: 1.7;
+    margin-bottom: 35px;
+    max-width: 540px;
+}
+
+/* Premium Sweep Fill Effect on Action Buttons */
+.btn-unisex-fill {
+    background-color: var(--unisex-gold);
+    color: #FFFFFF;
+    border-radius: 30px;
+    padding: 14px 35px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    border: none;
+    position: relative;
+    z-index: 1;
+    overflow: hidden;
+    box-shadow: 0 4px 15px rgba(194, 159, 104, 0.2);
+    transition: var(--transition-smooth);
+}
+
+.btn-unisex-fill::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: #A6834E;
+    z-index: -1;
+    transform: scaleX(0);
+    transform-origin: right;
+    transition: transform 0.5s var(--cubic-premium);
+}
+
+.btn-unisex-fill:hover::before {
+    transform: scaleX(1);
+    transform-origin: left;
+}
+
+.btn-unisex-fill:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 30px rgba(194, 159, 104, 0.45);
+    color: #FFFFFF;
+}
+
+.btn-unisex-outline {
+    background-color: transparent;
+    color: var(--text-charcoal);
+    border: 1px solid var(--text-charcoal);
+    border-radius: 30px;
+    padding: 14px 35px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    transition: var(--transition-smooth);
+}
+
+.btn-unisex-outline:hover {
+    background-color: var(--text-charcoal);
+    color: #FFFFFF;
+    transform: translateY(-4px);
+    box-shadow: 0 10px 25px rgba(42, 42, 42, 0.15);
+}
+
+/* Floating Anti-Gravity Cards */
+.premium-anti-gravity {
+    animation: premiumFloat 6s ease-in-out infinite alternate;
+}
+
+@keyframes premiumFloat {
+    0% { transform: translateY(0px) rotate(0deg); }
+    100% { transform: translateY(-20px) rotate(-1.5deg); }
+}
+
+.luxury-card-unisex {
+    background: #FFFFFF;
+    padding: 60px 45px;
+    border-radius: 24px;
+    box-shadow: 0 15px 50px rgba(0, 0, 0, 0.02);
+    text-align: center;
+    width: 340px;
+    margin-left: auto;
+    border: 1px solid rgba(229, 229, 222, 0.6);
+    transition: box-shadow 0.6s var(--cubic-premium), transform 0.6s var(--cubic-premium);
+}
+
+.luxury-card-unisex:hover {
+    box-shadow: 0 25px 60px rgba(194, 159, 104, 0.18);
+    transform: translateY(-4px) scale(1.02);
+}
+
+.card-emblem-star {
+    font-size: 1.5rem;
+    color: var(--unisex-gold);
+    margin-bottom: 20px;
+}
+
+.slow-orbit-sparkle {
+    display: inline-block;
+    animation: slowOrbit 15s linear infinite;
+}
+
+@keyframes slowOrbit {
+    100% { transform: rotate(360deg); }
+}
+
+.collection-tag {
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: var(--text-neutral);
+    letter-spacing: 3px;
+    display: block;
+    margin-bottom: 10px;
+}
+
+.card-title {
+    font-family: 'Playfair Display', serif;
+    font-weight: 700;
+    font-size: 1.8rem;
+    letter-spacing: 1px;
+    margin-bottom: 8px;
+}
+
+.card-description {
+    font-size: 0.85rem;
+    color: var(--text-neutral);
+}
+
+/* ==========================================================================
+   4. SCROLL INTERSECTION PERFORMANCE ENGINE
+   ========================================================================== */
+.scroll-trigger-effect {
+    opacity: 0;
+    transform: translateY(40px);
+    transition: opacity 1.2s var(--cubic-premium), transform 1.2s var(--cubic-premium);
+}
+
+.scroll-trigger-card {
+    opacity: 0;
+    transform: translateY(60px) scale(0.97);
+    transition: opacity 1.4s var(--cubic-premium), transform 1.4s var(--cubic-premium);
+}
+
+/* Trigger Class hooked dynamically via JS script */
+.scroll-trigger-effect.cinematic-active,
+.scroll-trigger-card.cinematic-active {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+}
+
+/* Incremental Delays for Filter Row Elements */
+.element-delay-1 { transition-delay: 0.05s; }
+.element-delay-2 { transition-delay: 0.12s; }
+.element-delay-3 { transition-delay: 0.19s; }
+.element-delay-4 { transition-delay: 0.26s; }
+
+/* ==========================================================================
+   5. FILTER MODULE & TRANSITIONS
+   ========================================================================== */
+.filter-section {
+    padding: 30px 0;
+    background-color: #FFFFFF;
+    border-bottom: 1px solid var(--border-light);
+}
+
+.filter-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    align-items: center;
+}
+
+.filter-dropdown {
+    flex: 1;
+    min-width: 200px;
+    position: relative;
+}
+
+.filter-dropdown select {
+    width: 100%;
+    padding: 14px 22px;
+    border: 1px solid transparent;
+    background-color: #F6F6F2;
+    border-radius: 12px;
+    font-size: 0.85rem;
+    font-weight: 500;
+    color: var(--text-charcoal);
+    appearance: none;
+    cursor: pointer;
+    transition: var(--transition-smooth);
+}
+
+.custom-arrow {
+    position: absolute;
+    right: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 0.75rem;
+    color: var(--text-neutral);
+    pointer-events: none;
+}
+
+.search-box {
+    flex: 2;
+    min-width: 280px;
+    position: relative;
+}
+
+.search-box input {
+    width: 100%;
+    padding: 14px 22px 14px 50px;
+    border: 1px solid transparent;
+    background-color: #F6F6F2;
+    border-radius: 12px;
+    font-size: 0.85rem;
+    transition: var(--transition-smooth);
+}
+
+.search-inside-icon {
+    position: absolute;
+    left: 22px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--text-neutral);
+    font-size: 0.9rem;
+}
+
+/* Micro-Focus States */
+.filter-dropdown select:focus, 
+.search-box input:focus {
+    border-color: var(--unisex-gold);
+    background-color: #FFFFFF;
+    outline: none;
+    box-shadow: 0 8px 25px rgba(194, 159, 104, 0.12);
+    transform: translateY(-2px);
+}
+
+/* ==========================================================================
+   6. BRAND PHILOSOPHY BANNER LAYER
+   ========================================================================== */
+.philosophy-section {
+    padding: 90px 0;
+    background-color: #F9F9F6;
+}
+
+.philosophy-banner-card {
+    background-color: #FFFFFF;
+    border-radius: 28px;
+    padding: 70px 60px;
+    box-shadow: 0 4px 40px rgba(0, 0, 0, 0.01);
+    border: 1px solid rgba(229, 229, 222, 0.7);
+}
+
+.philosophy-tag {
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 3px;
+    color: var(--unisex-gold);
+    margin-bottom: 15px;
+}
+
+.philosophy-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.8rem;
+    font-weight: 700;
+    margin-bottom: 20px;
+}
+
+.highlight-gold {
+    color: var(--unisex-gold);
+    font-style: italic;
+}
+
+.philosophy-desc {
+    color: var(--text-neutral);
+    font-size: 0.95rem;
+    line-height: 1.8;
+    max-width: 620px;
+}
+
+/* Infinite Spinning Circular Badge Badge */
+.circular-badge-container {
+    position: relative;
+    width: 170px;
+    height: 170px;
+    margin: 0 auto;
+}
+
+.circular-svg {
+    width: 100%;
+    height: 100%;
+    animation: spinCircle 25s linear infinite;
+}
+
+@keyframes spinCircle {
+    100% { transform: rotate(360deg); }
+}
+
+.circle-text {
+    font-size: 9px;
+    font-weight: 600;
+    letter-spacing: 2.5px;
+    fill: var(--text-charcoal);
+    text-transform: uppercase;
+}
+
+.center-dot {
+    position: absolute;
+    width: 8px;
+    height: 8px;
+    background-color: var(--unisex-gold);
+    border-radius: 50%;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+/* ==========================================================================
+   7. STAGGERED PRODUCT MASONRY GRID & LIFTING CARDS
+   ========================================================================== */
+.products-section {
+    padding: 60px 0 100px;
+    background-color: #FFFFFF;
+}
+
+.section-header {
+    text-align: center;
+    margin-bottom: 60px;
+}
+
+.section-header .subtitle {
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 3px;
+    color: var(--text-neutral);
+}
+
+.section-header .main-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.6rem;
+    font-weight: 700;
+    margin-top: 5px;
+}
+
+/* Elastic Draw Animation for Title Underline */
+.title-underline {
+    width: 60px;
+    height: 1px;
+    background-color: var(--unisex-gold);
+    margin: 15px auto 0;
+    transform: scaleX(0);
+    transition: transform 1.2s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.scroll-trigger-effect.cinematic-active .title-underline {
+    transform: scaleX(1);
+}
+
+/* Products Layout Responsive System */
+.products-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 30px;
+}
+
+/* Dynamic Entrance Physics Configured with JS Classes */
+.dynamic-lifting-card {
+    background-color: var(--card-white);
+    border-radius: 20px;
+    border: 1px solid var(--border-light);
+    padding: 18px;
+    text-align: center;
+    opacity: 0;
+    transform: translateY(50px) scale(0.96);
+    transition: opacity 0.8s var(--cubic-premium), 
+                transform 0.8s var(--cubic-premium), 
+                border-color 0.4s ease, 
+                box-shadow 0.4s ease;
+}
+
+.dynamic-lifting-card.card-revealed {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+}
+
+/* Luxury Lift & Border Glow Hover State */
+.dynamic-lifting-card:hover {
+    transform: translateY(-12px) scale(1.015);
+    border-color: var(--unisex-gold);
+    box-shadow: 0 20px 45px rgba(42, 42, 42, 0.06);
+}
+
+/* Product Card Elements */
+.product-image-placeholder {
+    background-color: #F5F5F1;
+    height: 280px;
+    border-radius: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+.image-text {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.25rem;
+    color: var(--text-neutral);
+    font-style: italic;
+    transition: transform 0.6s var(--cubic-premium);
+}
+
+.dynamic-lifting-card:hover .image-text {
+    transform: scale(1.12);
+}
+
+.product-info .category {
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 2px;
+    color: var(--unisex-gold);
+    margin-bottom: 6px;
+}
+
+.product-info .product-name {
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: var(--text-charcoal);
+    margin-bottom: 8px;
+}
+
+.product-info .price {
+    font-size: 1rem;
+    font-weight: 700;
+    color: #1A1A1A;
+    margin-bottom: 18px;
+}
+
+/* Action Button Kinetic Flow */
+.add-to-cart-btn {
+    width: 100%;
+    background-color: transparent;
+    color: var(--text-charcoal);
+    border: 1px solid var(--text-charcoal);
+    padding: 10px 0;
+    font-size: 0.8rem;
+    font-weight: 600;
+    border-radius: 30px;
+    transition: var(--transition-smooth);
+}
+
+.dynamic-lifting-card:hover .add-to-cart-btn {
+    background-color: var(--text-charcoal);
+    color: #FFFFFF;
+    transform: translateY(-1px);
+    box-shadow: 0 5px 15px rgba(42, 42, 42, 0.2);
+}
+
+/* ==========================================================================
+   8. FOOTER WITH UNIQUE TEXT SPREAD & FLOATING ICONS
+   ========================================================================== */
+.footer {
+    background-color: #1A1A18;
+    color: #FFFFFF;
+    padding: 80px 0 40px;
+}
+
+.footer-logo {
+    font-family: 'Playfair Display', serif;
+    font-weight: 700;
+    font-size: 2rem;
+    letter-spacing: 1px;
+    margin-bottom: 30px;
+    transition: letter-spacing 0.6s var(--cubic-premium);
+}
+
+.footer:hover .footer-logo {
+    letter-spacing: 3px;
+}
+
+.brand-accent {
+    color: var(--unisex-gold);
+    font-family: 'Poppins', sans-serif;
+}
+
+.social-icons {
+    display: flex;
+    justify-content: center;
+    gap: 25px;
+    margin-bottom: 40px;
+}
+
+.soft-float-icon {
+    color: rgba(255, 255, 255, 0.6);
+    font-size: 1.2rem;
+    text-decoration: none;
+    transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1), color 0.3s ease;
+}
+
+.soft-float-icon:hover {
+    color: var(--unisex-gold);
+    transform: scale(1.35) translateY(-5px);
+}
+  
+.footer-copyright {
+    font-size: 0.8rem;
+    color: rgba(255, 255, 255, 0.4);
+    letter-spacing: 0.5px;
+}
+
+/* ==========================================================================
+   9. EXTRA RESPONSIVE ADJUSTMENTS (BREAKPOINTS)
+   ========================================================================== */
+@media (max-width: 991.98px) {
+    #BigText { font-size: 3rem; }
+    .hero-section { height: auto; padding: 100px 0; }
+    .luxury-card-unisex { margin: 40px auto 0; }
+    .philosophy-banner-card { padding: 40px 30px; }
+    .philosophy-title { font-size: 2.2rem; }
+}

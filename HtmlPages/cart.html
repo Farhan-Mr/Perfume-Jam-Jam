@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Shopping Cart | Perfume ~e~ Farhat</title>
+    
+    <!-- Bootstrap 5 & Icons -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="cart.css">
+</head>
+<body>
+  
+    <!-- NAVBAR -->
+    <nav class="navbar navbar-expand-lg fixed-top cart-nav">
+        <div class="container">
+            <a class="navbar-brand" href="../index.html">Perfume <span>~e~</span> Farhat</a>
+            <div class="ms-auto d-flex gap-3 align-items-center">
+                <a href="../Collection Page/Men.html" class="btn btn-outline-dark btn-sm"><i class="bi bi-arrow-left me-1"></i> Continue Shopping</a>
+                <a href="dashboard.html" class="btn btn-outline-dark btn-sm">Dashboard</a>
+                <a href="login.html" class="btn btn-dark btn-sm">Login</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- CART CONTAINER -->
+    <main class="container cart-wrapper">
+        <h2 class="cart-main-title mb-5">Shopping Bag <span>.</span></h2>
+        
+        <div class="row g-5">
+            <!-- LEFT: CART ITEMS TABLE/LIST -->
+            <div class="col-lg-8">
+                <div class="cart-table-container p-4">
+                    
+                    <!-- Table Header Layout -->
+                    <div class="row d-none d-md-flex pb-3 border-bottom text-muted small fw-600 tracking-wider">
+                        <div class="col-md-6">PRODUCT</div>
+                        <div class="col-md-2 text-center">PRICE</div>
+                        <div class="col-md-2 text-center">QUANTITY</div>
+                        <div class="col-md-2 text-end">SUBTOTAL</div>
+                    </div>
+
+                    <!-- Cart Item 1 -->
+                    <div class="row align-items-center py-4 border-bottom cart-item" id="item-1" data-price="6999">
+                        <div class="col-md-6 col-12 mb-3 mb-md-0">
+                            <div class="d-flex align-items-center gap-3">
+                                <div class="cart-img-box">
+                                    <img src="https://images.unsplash.com/photo-1541643600914-78b084683601?w=150" alt="Santal Wood">
+                                </div>
+                                <div>
+                                    <h5 class="cart-item-name m-0">Santal Wood</h5>
+                                    <span class="text-muted small d-block">Size: 100ml</span>
+                                    <button class="btn btn-remove p-0 mt-2 small text-danger" onclick="removeItem('item-1')">
+                                        <i class="bi bi-trash3 me-1"></i> Remove
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-2 col-4 text-md-center">
+                            <span class="text-muted d-md-none d-inline small fw-bold">Price: </span>
+                            <span class="fw-500">₹6,999</span>
+                        </div>
+                        <div class="col-md-2 col-4 text-md-center">
+                            <div class="qty-counter d-flex align-items-center justify-content-center">
+                                <button onclick="updateQty('item-1', -1)">-</button>
+                                <span id="item-1-qty" class="qty-val mx-2">1</span>
+                                <button onclick="updateQty('item-1', 1)">+</button>
+                            </div>
+                        </div>
+                        <div class="col-md-2 col-4 text-end">
+                            <span class="text-muted d-md-none d-inline small fw-bold">Total: </span>
+                            <span id="item-1-subtotal" class="fw-600 row-subtotal">₹6,999</span>
+                        </div>
+                    </div>
+
+                    <!-- Cart Item 2 -->
+                    <div class="row align-items-center py-4 border-bottom cart-item" id="item-2" data-price="5299">
+                        <div class="col-md-6 col-12 mb-3 mb-md-0">
+                            <div class="d-flex align-items-center gap-3">
+                                <div class="cart-img-box">
+                                    <img src="https://images.unsplash.com/photo-1595425970377-c9703cf48b6d?w=150" alt="Silver Musk">
+                                </div>
+                                <div>
+                                    <h5 class="cart-item-name m-0">Silver Musk</h5>
+                                    <span class="text-muted small d-block">Size: 50ml</span>
+                                    <button class="btn btn-remove p-0 mt-2 small text-danger" onclick="removeItem('item-2')">
+                                        <i class="bi bi-trash3 me-1"></i> Remove
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-2 col-4 text-md-center">
+                            <span class="text-muted d-md-none d-inline small fw-bold">Price: </span>
+                            <span class="fw-500">₹5,299</span>
+                        </div>
+                        <div class="col-md-2 col-4 text-md-center">
+                            <div class="qty-counter d-flex align-items-center justify-content-center">
+                                <button onclick="updateQty('item-2', -1)">-</button>
+                                <span id="item-2-qty" class="qty-val mx-2">1</span>
+                                <button onclick="updateQty('item-2', 1)">+</button>
+                            </div>
+                        </div>
+                        <div class="col-md-2 col-4 text-end">
+                            <span class="text-muted d-md-none d-inline small fw-bold">Total: </span>
+                            <span id="item-2-subtotal" class="fw-600 row-subtotal">₹5,299</span>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <!-- RIGHT: SUMMARY BLOCK & COUPON CODE -->
+            <div class="col-lg-4">
+                <!-- Promo Code Box -->
+                <div class="cart-summary-card p-4 mb-4">
+                    <h6 class="fw-600 mb-3">Apply Promotional Coupon</h6>
+                    <div class="input-group">
+                        <input type="text" id="cartCoupon" class="form-control custom-cart-input" placeholder="Coupon Code (FARHAT20)">
+                        <button class="btn btn-outline-dark font-cinzel px-3 btn-sm" onclick="applyCartPromo()">Apply</button>
+                    </div>
+                    <div id="couponAlert" class="small mt-2"></div>
+                </div>
+
+                <!-- Core Financial Totals -->
+                <div class="cart-summary-card p-4">
+                    <h4 class="summary-title pb-3 mb-4">Order Summary</h4>
+                    
+                    <div class="d-grid gap-3 breakdown-rows">
+                        <div class="d-flex justify-content-between text-muted">
+                            <span>Subtotal</span>
+                            <span id="cart-subtotal" class="text-dark fw-500">₹12,298</span>
+                        </div>
+                        <div class="d-flex justify-content-between text-muted">
+                            <span>Estimated Shipping</span>
+                            <span class="text-success fw-600">FREE</span>
+                        </div>
+                        <div class="d-flex justify-content-between text-muted">
+                            <span>GST / Tax (18%)</span>
+                            <span id="cart-tax" class="text-dark">₹2,213.64</span>
+                        </div>
+                        <div class="d-flex justify-content-between text-muted d-none" id="cartPromoRow">
+                            <span>Discount Applied</span>
+                            <span id="cartDiscountVal" class="text-danger">-₹0</span>
+                        </div>
+                        <hr class="my-2 border-slate">
+                        <div class="d-flex justify-content-between align-items-center total-grand-row">
+                            <span class="fw-600 fs-5">Total</span>
+                            <span id="cart-grand-total" class="fw-700 fs-4 text-dark">₹14,511.64</span>
+                        </div>
+                    </div>
+
+                    <!-- PROCEED CTA -->
+                    <a href="checkout.html" class="btn btn-proceed-checkout w-100 py-3 mt-4 text-center d-block">
+                        Proceed To Checkout <i class="bi bi-arrow-right ms-2"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Core Dynamic Calculations Script -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        let isDiscountActive = false;
+        let discountPercent = 0.20; // 20% off for FARHAT20
+
+        function updateQty(itemId, change) {
+            const qtySpan = document.getElementById(`${itemId}-qty`);
+            const subtotalSpan = document.getElementById(`${itemId}-subtotal`);
+            const itemRow = document.getElementById(itemId);
+            const basePrice = parseInt(itemRow.getAttribute('data-price'));
+            
+            let currentQty = parseInt(qtySpan.innerText);
+            currentQty += change;
+
+            if (currentQty < 1) return; // Prevent 0 or negative items
+
+            qtySpan.innerText = currentQty;
+            let netRowSubtotal = basePrice * currentQty;
+            subtotalSpan.innerText = `₹${netRowSubtotal.toLocaleString('en-IN')}`;
+
+            calculateCartTotals();
+        }
+
+        function removeItem(itemId) {
+            const row = document.getElementById(itemId);
+            row.style.opacity = '0';
+            row.style.transform = 'scale(0.95)';
+            setTimeout(() => {
+                row.remove();
+                calculateCartTotals();
+            }, 300);
+        }
+
+        function calculateCartTotals() {
+            let pureSubtotal = 0;
+            const rows = document.querySelectorAll('.cart-item');
+            
+            rows.forEach(row => {
+                const id = row.getAttribute('id');
+                const price = parseInt(row.getAttribute('data-price'));
+                const qty = parseInt(document.getElementById(`${id}-qty`).innerText);
+                pureSubtotal += (price * qty);
+            });
+
+            let calculatedTax = pureSubtotal * 0.18;
+            let discountAmount = isDiscountActive ? (pureSubtotal * discountPercent) : 0;
+            let absoluteTotal = (pureSubtotal + calculatedTax) - discountAmount;
+
+            // Update DOM Elements
+            document.getElementById('cart-subtotal').innerText = `₹${pureSubtotal.toLocaleString('en-IN')}`;
+            document.getElementById('cart-tax').innerText = `₹${calculatedTax.toLocaleString('en-IN', {minimumFractionDigits: 2, maximumFractionDigits: 2})}`;
+            
+            if(isDiscountActive) {
+                document.getElementById('cartDiscountVal').innerText = `-₹${discountAmount.toLocaleString('en-IN')}`;
+            }
+            
+            document.getElementById('cart-grand-total').innerText = `₹${absoluteTotal.toLocaleString('en-IN', {minimumFractionDigits: 2, maximumFractionDigits: 2})}`;
+
+            // Handle empty cart view state
+            if(rows.length === 0) {
+                document.querySelector('.cart-table-container').innerHTML = `
+                    <div class="text-center py-5">
+                        <i class="bi bi-bag-x text-muted" style="font-size: 3rem;"></i>
+                        <h4 class="mt-3 font-cinzel">Your Bag is Empty</h4>
+                        <p class="text-muted small">Aapne abhi tak koi luxury fragrance add nahi ki hai.</p>
+                        <a href="unisex-light.html" class="btn btn-outline-dark mt-2 btn-sm">Explore Fragrances</a>
+                    </div>`;
+                document.getElementById('cart-subtotal').innerText = "₹0";
+                document.getElementById('cart-tax').innerText = "₹0.00";
+                document.getElementById('cart-grand-total').innerText = "₹0.00";
+                if(document.getElementById('cartPromoRow')) document.getElementById('cartPromoRow').classList.add('d-none');
+            }
+        }
+
+        function applyCartPromo() {
+            const inputVal = document.getElementById('cartCoupon').value.trim().toUpperCase();
+            const alertBox = document.getElementById('couponAlert');
+            const promoRow = document.getElementById('cartPromoRow');
+
+            if(inputVal === 'FARHAT20') {
+                isDiscountActive = true;
+                promoRow.classList.remove('d-none');
+                alertBox.className = "small mt-2 text-success";
+                alertBox.innerText = "Coupon FARHAT20 verified successfully!";
+                calculateCartTotals();
+            } else {
+                alertBox.className = "small mt-2 text-danger";
+                alertBox.innerText = "Invalid code. Use 'FARHAT20'.";
+            }
+        }
+    </script>
+</body>
+</html>

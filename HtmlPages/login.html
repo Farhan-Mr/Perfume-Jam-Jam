@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Login | Perfume ~e~ Farhat</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family: 'Segoe UI', sans-serif;
+}
+
+body{
+    min-height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    background:linear-gradient(135deg,#020b26,#081633,#1e2d48);
+    padding:20px;
+}
+
+.navbar-top{
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    background: rgba(255,255,255,0.05);
+    backdrop-filter: blur(10px);
+    padding: 15px 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 1000;
+    border-bottom: 1px solid rgba(212,175,55,0.2);
+}
+
+.navbar-top a{
+    color: #d4af37;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.navbar-top a:hover{
+    text-decoration: underline;
+}
+
+.login-container{
+    width:100%;
+    max-width:1000px;
+    display:flex;
+    overflow:hidden;
+    border-radius:20px;
+    background:rgba(255,255,255,0.05);
+    backdrop-filter:blur(10px);
+    box-shadow:0 20px 50px rgba(0,0,0,0.4);
+    margin-top: 80px;
+}
+
+.left-side{
+    flex:1;
+    padding:60px;
+    color:white;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+}
+
+.logo{
+    font-size:32px;
+    font-weight:bold;
+    margin-bottom:20px;
+}
+
+.logo span{
+    color:#d4af37;
+}
+
+.left-side h1{
+    font-size:52px;
+    line-height:1.1;
+    margin-bottom:20px;
+}
+
+.left-side h1 span{
+    color:#d4af37;
+}
+
+.left-side p{
+    color:#d0d0d0;
+    line-height:1.7;
+    max-width:450px;
+}
+
+.right-side{
+    flex:1;
+    background:rgba(0,0,0,0.2);
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    padding:40px;
+}
+
+.login-box{
+    width:100%;
+    max-width:400px;
+}
+
+.login-box h2{
+    color:white;
+    text-align:center;
+    margin-bottom:30px;
+    font-size:32px;
+}
+
+.input-group{
+    margin-bottom:20px;
+}
+
+.input-group label{
+    display:block;
+    color:#d4af37;
+    margin-bottom:8px;
+    font-size:14px;
+}
+
+.input-group input{
+    width:100%;
+    padding:14px 16px;
+    border:1px solid rgba(255,255,255,0.15);
+    border-radius:10px;
+    background:rgba(255,255,255,0.08);
+    color:white;
+    outline:none;
+}
+
+.input-group input::placeholder{
+    color:#bbb;
+}
+
+.input-group input:focus{
+    border-color:#d4af37;
+}
+
+.options{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:25px;
+    color:white;
+    font-size:14px;
+}
+
+.options a{
+    color:#d4af37;
+    text-decoration:none;
+}
+
+.login-btn{
+    width:100%;
+    padding:15px;
+    border:none;
+    border-radius:12px;
+    background:#d4af37;
+    color:#111;
+    font-size:16px;
+    font-weight:600;
+    cursor:pointer;
+    transition:.3s;
+}
+
+.login-btn:hover{
+    transform:translateY(-2px);
+    box-shadow:0 10px 25px rgba(212,175,55,.35);
+}
+
+.signup{
+    text-align:center;
+    margin-top:20px;
+    color:white;
+}
+
+.signup a{
+    color:#d4af37;
+    text-decoration:none;
+    font-weight:600;
+}
+
+@media(max-width:850px){
+
+    .login-container{
+        flex-direction:column;
+    }
+
+    .left-side{
+        padding:40px 30px;
+        text-align:center;
+    }
+
+    .left-side h1{
+        font-size:38px;
+    }
+
+    .left-side p{
+        margin:auto;
+    }
+
+    .right-side{
+        padding:30px 20px;
+    }
+}
+
+@media(max-width:480px){
+
+    .left-side h1{
+        font-size:30px;
+    }
+
+    .logo{
+        font-size:26px;
+    }
+
+    .login-box h2{
+        font-size:26px;
+    }
+}
+</style>
+</head>
+<body>
+
+<!-- Navigation Top Bar -->
+<div class="navbar-top">
+    <a href="../index.html" style="font-size: 18px;">← Back to Home</a>
+    <div>
+        <a href="../index.html" style="margin-right: 20px;">Home</a>
+        <a href="register.html">Create Account</a>
+    </div>
+</div>
+
+<div class="login-container">
+
+    <div class="left-side">
+        <div class="logo">
+            <span>Perfume</span> ~e~ Farhat
+        </div>
+
+        <h1>
+            Discover Luxury 
+            <span>Fragrances</span>
+            That Define You
+        </h1>
+
+        <p>
+            Premium perfumes crafted for men and women.
+            Sign in to access your account, wishlist,
+            orders and exclusive fragrance collections.
+        </p>
+    </div>
+
+    <div class="right-side">
+
+        <div class="login-box">
+
+            <h2>Welcome Back</h2>
+
+            <form>
+
+                <div class="input-group">
+                    <label>Email Address</label>
+                    <input type="email" placeholder="Enter your email">
+                </div>
+
+                <div class="input-group">
+                    <label>Password</label>
+                    <input type="password" placeholder="Enter your password">
+                </div>
+
+                <div class="options">
+                    <label>
+                        <input type="checkbox">
+                        Remember Me
+                    </label>
+
+                    <a href="forgot-password.html">Forgot Password?</a>
+                </div>
+
+                <button type="submit" class="login-btn">
+                    Login
+                </button>
+
+                <div class="signup">
+                    Don't have an account?
+                    <a href="register.html">Register Now</a>
+                </div>
+
+            </form>
+
+        </div>
+
+    </div>
+
+</div>
+
+</body>
+</html>
