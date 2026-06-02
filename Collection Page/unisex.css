@@ -574,7 +574,7 @@ body {
     transform: scaleX(1);
 }
 
-/* Products Layout Responsive System */
+/* Products Layout Responsive System (Default Desktop view) */
 .products-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
@@ -726,12 +726,72 @@ body {
 }
 
 /* ==========================================================================
-   9. EXTRA RESPONSIVE ADJUSTMENTS (BREAKPOINTS)
+   9. EXTRA RESPONSIVE ADJUSTMENTS & FIXED BREAKPOINTS (2x2 Grid Engineered)
    ========================================================================== */
+
+/* Medium Screens & Tablets (991px aur usse niche) */
 @media (max-width: 991.98px) {
     #BigText { font-size: 3rem; }
     .hero-section { height: auto; padding: 100px 0; }
     .luxury-card-unisex { margin: 40px auto 0; }
     .philosophy-banner-card { padding: 40px 30px; }
     .philosophy-title { font-size: 2.2rem; }
+    
+    /* Perfect 2 Columns Grid Layout on Tablets */
+    .products-grid {
+        grid-template-columns: repeat(2, 1fr) !important;
+        gap: 20px !important;
+    }
+    .product-image-placeholder {
+        height: 220px !important;
+    }
+}
+
+/* Small Screens & Mobile Phones (576px aur usse niche) */
+@media (max-width: 576px) {
+    #BigText {
+        font-size: 2.3rem;
+    }
+    .hero-subtitle {
+        font-size: 0.9rem;
+    }
+    .philosophy-title {
+        font-size: 1.8rem;
+    }
+    .section-header .main-title {
+        font-size: 2rem;
+    }
+
+    /* Perfect 2x2 Grid Layout for Mobile Screens */
+    .products-grid {
+        grid-template-columns: repeat(2, 1fr) !important;
+        gap: 12px !important; /* Premium narrow padding for mobile cards */
+    }
+    .dynamic-lifting-card {
+        padding: 12px !important;
+        border-radius: 14px !important;
+    }
+    .product-image-placeholder {
+        height: 140px !important; /* Cards are perfectly balanced inside 2x2 aspect */
+        margin-bottom: 12px !important;
+    }
+    .image-text {
+        font-size: 0.95rem !important;
+    }
+    .product-info .category {
+        font-size: 0.65rem !important;
+        margin-bottom: 4px !important;
+    }
+    .product-info .product-name {
+        font-size: 0.8rem !important;
+        margin-bottom: 4px !important;
+    }
+    .product-info .price {
+        font-size: 0.9rem !important;
+        margin-bottom: 10px !important;
+    }
+    .add-to-cart-btn {
+        font-size: 0.75rem !important;
+        padding: 8px 0 !important;
+    }
 }

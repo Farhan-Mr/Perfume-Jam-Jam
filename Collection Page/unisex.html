@@ -17,7 +17,7 @@
   <nav class="navbar sticky-top navbar-expand-xl bg-body-tertiary shadow-sm-custom">
     <div class="container-md">
 
-      <a class="navbar-brand luxury-brand-glow" href="#">
+      <a class="navbar-brand luxury-brand-glow" href="unisex.html">
         <span class="logo-perfume" style="font-family: cursive;">Perfume</span>
         <span class="logo-brand">~e~ Farhat</span>
       </a>
@@ -67,8 +67,8 @@
           </p>
 
           <div class="hero-buttons button-stagger">
-            <button class="btn btn-unisex-fill luxury-btn-sweep me-3">Explore Collection</button>
-            <button class="btn btn-unisex-outline magnetic-outline-btn">View Best Sellers</button>
+            <button class="btn btn-unisex-fill luxury-btn-sweep me-3" onclick="document.querySelector('.products-section').scrollIntoView({behavior:'smooth'})">Explore Collection</button>
+            <button class="btn btn-unisex-outline magnetic-outline-btn" onclick="document.querySelector('.products-section').scrollIntoView({behavior:'smooth'})">View Best Sellers</button>
           </div>
         </div>
 
@@ -129,7 +129,9 @@
                     <p class="philosophy-tag">THE EVOLUTION OF SCENT</p>
                     <h2 class="philosophy-title">No Labels. Just <span class="highlight-gold">Artistry.</span></h2>
                     <p class="philosophy-desc">
-                        Hamari Unisex collection kisi gender stereotype ko follow nahi karti. Yeh ek aisi khushboo hai jo insaan ki personality ko represent karti hai, chahe woh men ho ya women. Pure essential oils aur unique formulations ke sath ek balance jo sabko bhae.
+                        <p>The Unisex Collection is designed for those who believe that fragrance has no gender. It’s for the individual, not the label.</p>
+                        <p>A perfect harmony of carefully selected essential oils and modern artistry, each scent is crafted to complement every mood, every moment, and every you.</p>
+                        <p> Because true style is about expression — and real elegance knows no bounds.</p>
                     </p>
                     <button class="btn btn-unisex-fill luxury-btn-sweep mt-3">Discover Philosophy</button>
                 </div>
@@ -139,7 +141,7 @@
                             <path id="circlePath" d="M 50, 50 m -37, 0 a 37,37 0 1,1 74,0 a 37,37 0 1,1 -74,0" fill="transparent"/>
                             <text class="circle-text">
                                 <textPath href="#circlePath" startOffset="50%" text-anchor="middle">
-                                    100% UNIVERSAL • 100% UNIVERSAL •
+                                    100% UNIVERSAL  100% UNIVERSAL 
                                 </textPath>
                             </text>
                         </svg>
@@ -315,13 +317,13 @@
 
   <footer class="footer scroll-trigger-effect">
     <div class="container text-center">
-        <h2 class="footer-logo unique-letter-glow">PERFUME <span class="brand-accent">~E~</span> FARHAT</h2>
+        <h3 class="brand-logo"><span class="gold-text" style="font-family: cursive;">Perfume</span> <span style="color: #c29f68;">~e~ Farhat</span></h3>
         <div class="social-icons">
             <a href="#" class="soft-float-icon"><i class="fa-brands fa-instagram"></i></a>
             <a href="#" class="soft-float-icon"><i class="fa-brands fa-facebook-f"></i></a>
             <a href="#" class="soft-float-icon"><i class="fa-solid fa-globe"></i></a>
         </div>
-        <p class="footer-copyright">&copy; 2026 Perfume ~e~ Farhat. Transcending Gender Labels Perfectly.</p>
+        <p class="footer-copyright">&copy; 2026 <span class="gold-text" style="font-family: cursive; color: white;">Perfume</span> <span style="color: #c29f68;">~e~ Farhat</span>. Transcending Gender Labels Perfectly.</p>
     </div>
   </footer>
 

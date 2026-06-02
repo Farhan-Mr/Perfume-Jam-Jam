@@ -417,9 +417,10 @@ h1, h2, h3 {
     transform: scaleX(1);
 }
 
+/* Default Desktop View: 4 Columns in a row */
 .products-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    grid-template-columns: repeat(4, 1fr);
     gap: 25px;
 }
 
@@ -542,7 +543,7 @@ h1, h2, h3 {
 .features-grid .feature-item:nth-child(3) { transition-delay: 0.3s; }
 
 .feature-icon {
-    font-size: 1.8rem;
+    font-size: 2.5rem;
     margin-bottom: 12px;
     display: inline-block;
 }
@@ -612,4 +613,131 @@ h1, h2, h3 {
 .footer-copyright {
     font-size: 0.8rem;
     color: var(--text-muted);
+}
+
+/* ==========================================================================
+   Responsiveness Engine (Configured for perfect 2x2 Grid Layout)
+   ========================================================================== */
+
+/* Large Screens & Small Desktop Breaks */
+@media (max-width: 1200px) {
+    #BigText {
+        font-size: 2.8rem;
+    }
+    .hero-section {
+        height: auto;
+        padding: 60px 0;
+    }
+    .navbar-icons {
+        margin-top: 15px;
+        justify-content: start;
+    }
+}
+
+/* Medium Screens (Tablets - 991px aur usse niche) */
+@media (max-width: 991px) {
+    .hero-section {
+        height: auto;
+        padding: 60px 0;
+        text-align: center;
+    }
+    .hero-subtitle {
+        margin-left: auto;
+        margin-right: auto;
+    }
+    .hero-image-container {
+        margin-top: 40px;
+        display: flex;
+        justify-content: center;
+    }
+    .filter-container {
+        flex-direction: column;
+        gap: 12px;
+    }
+    .filter-dropdown, .search-box {
+        width: 100%;
+        flex: none;
+    }
+    .philosophy-banner-card {
+        padding: 30px 20px;
+        text-align: center !important;
+    }
+    .text-start-custom {
+        text-align: center !important;
+    }
+    
+    /* 2 Columns per row on Tablet (2x2 Grid Setup) */
+    .products-grid {
+        grid-template-columns: repeat(2, 1fr) !important;
+        gap: 20px !important;
+    }
+    .product-card {
+        padding: 20px 15px !important;
+    }
+    .product-image-placeholder {
+        height: 160px !important;
+    }
+}
+
+/* Small Screens (Mobile Phones - 576px aur usse niche) */
+@media (max-width: 576px) {
+    #BigText {
+        font-size: 2.2rem;
+    }
+    .hero-subtitle {
+        font-size: 0.85rem;
+    }
+    .hero-buttons {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        align-items: center;
+    }
+    .hero-buttons .btn {
+        width: 100%;
+        margin-right: 0 !important;
+    }
+    .luxury-card-unisex, .luxury-card-women {
+        width: 100%;
+        max-width: 300px;
+        padding: 30px 20px;
+    }
+    .section-header .main-title {
+        font-size: 1.8rem;
+    }
+    .navbar-brand {
+        font-size: 1.2rem;
+    }
+
+    /* Perfect 2x2 Grid Layout for Mobile Screens */
+    .products-grid {
+        grid-template-columns: repeat(2, 1fr) !important;
+        gap: 12px !important; /* Items ke beech clean layout spacing */
+    }
+    .product-card {
+        padding: 15px 10px !important;
+        border-radius: 10px !important;
+    }
+    .product-image-placeholder {
+        height: 130px !important; /* Image proportion perfectly balanced */
+        margin-bottom: 12px !important;
+    }
+    .image-text {
+        font-size: 0.65rem !important;
+    }
+    .product-info .category {
+        font-size: 1rem !important;
+    }
+    .product-name {
+        font-size: 0.75rem !important;
+        margin-bottom: 8px !important;
+    }
+    .price {
+        font-size: 1rem !important;
+        margin-bottom: 12px !important;
+    }
+    .add-to-cart-btn {
+        font-size: 0.8rem !important;
+        padding: 8px 0 !important;
+    }
 }

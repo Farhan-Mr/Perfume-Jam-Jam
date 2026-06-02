@@ -104,22 +104,15 @@ body{
 
 /* ================= HERO BACKGROUND IMAGE (FIXED) ================= */
 
-/* ================= HERO BACKGROUND IMAGE (FIXED FOR HIGH QUALITY) ================= */
-
 .hero-bg {
   position: absolute;
   inset: 0;
-  background-image: url("/Perfume-e-Farhat/images/BG02.png");
-  
-  /* 1. Image ko stretch hone se bachane ke liye aur center rakhne ke liye */
+  background-image: url("/Perfume-Jam-Jam/images/BG02.png");
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-  
-  /* 2. Browser ko batane ke liye ki image ki sharpness maintain rakhe */
-  image-rendering: -webkit-optimize-contrast; /* For Safari/Chrome */
-  image-rendering: crisp-edges;               /* For modern browsers */
-  
+  image-rendering: -webkit-optimize-contrast; 
+  image-rendering: crisp-edges;               
   z-index: 1;
 }
 
@@ -128,7 +121,6 @@ body{
   position: absolute;
   inset: 0;
   background: rgba(2, 5, 14, 0.7); 
-  
 }
 
 .hero-section .container{
@@ -332,104 +324,6 @@ body{
   }
 }
 
-/* ================= TABLET ================= */
-
-@media(max-width:992px){
-
-  .hero-section{
-    text-align:center;
-    padding:100px 20px 60px;
-  }
-
-  .hero-content{
-    padding-left:0;
-  }
-
-  .hero-subtitle{
-    margin:auto;
-  }
-
-  .hero-buttons{
-    justify-content:center;
-  }
-
-  .hero-image{
-    padding-left:0;
-    margin-top:40px;
-  }
-
-  .luxury-card{
-    margin-left:0;
-  }
-}
-
-/* ================= MOBILE ================= */
-
-@media(max-width:768px){
-
-  .navbar{
-    padding:12px 15px;
-  }
-
-  .navbar-nav{
-    text-align:center;
-    margin-top:15px;
-  }
-
-  .navbar-icons{
-    justify-content:center;
-    margin-top:20px;
-    flex-wrap:wrap;
-  }
-
-  #BigText{
-    font-size:2.3rem;
-  }
-
-  .hero-buttons{
-    flex-direction:column;
-    align-items:center;
-  }
-
-  .btn-gold{
-    width:220px;
-  }
-
-  .hero-image{
-    padding-left:0;
-    margin-top:25px;
-  }
-
-  .luxury-card{
-    width:190px;
-    height:255px;
-    margin-left:0;
-  }
-}
-
-/* ================= SMALL MOBILE ================= */
-
-@media(max-width:480px){
-
-  #BigText{
-    font-size:2rem;
-  }
-
-  .btn-gold{
-    width:100%;
-    max-width:260px;
-  }
-
-  .luxury-card{
-    width:175px;
-    height:235px;
-  }
-
-  .card-title{
-    font-size:16px;
-  }
-}
-
 
 /* =========================
    FILTER SECTION
@@ -488,7 +382,6 @@ body{
     font-family:'Poppins',sans-serif;
     font-size:15px;
     box-shadow:0 4px 14px rgba(0,0,0,.08);
-    
 }
 
 /* =========================
@@ -529,7 +422,7 @@ body{
 }
 
 /* =========================
-   PRODUCTS GRID
+   PRODUCTS GRID (Default Desktop)
 ========================= */
 
 .products-grid{
@@ -669,8 +562,6 @@ body{
     gap:24px;
 }
 
-
-
 .feature-item{
     text-align:center;
     padding:28px 21px;
@@ -722,37 +613,149 @@ body{
     font-size:12.5px;
 }
 
-/* =========================
-   MOBILE
-========================= */
 
+/* ==========================================================================
+   UPDATED RESPONSIVENESS SYSTEM (Clean 2x2 Grid Engineered)
+   ========================================================================== */
+
+/* Tablet View (Max-width: 992px) */
+@media(max-width:992px){
+  .hero-section{
+    text-align:center;
+    padding:100px 20px 60px;
+  }
+  .hero-content{
+    padding-left:0;
+  }
+  .hero-subtitle{
+    margin:auto;
+  }
+  .hero-buttons{
+    justify-content:center;
+  }
+  .hero-image{
+    padding-left:0;
+    margin-top:40px;
+  }
+  .luxury-card{
+    margin-left:0;
+  }
+
+  /* Tablets par pure 2 columns grid arrangement */
+  .products-grid {
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 20px !important;
+  }
+}
+
+/* Mobile View (Max-width: 768px) */
 @media(max-width:768px){
+  .navbar{
+    padding:12px 15px;
+  }
+  .navbar-nav{
+    text-align:center;
+    margin-top:15px;
+  }
+  .navbar-icons{
+    justify-content:center;
+    margin-top:20px;
+    flex-wrap:wrap;
+  }
+  #BigText{
+    font-size:2.3rem;
+  }
+  .hero-buttons{
+    flex-direction:column;
+    align-items:center;
+  }
+  .btn-gold{
+    width:220px;
+  }
+  .hero-image{
+    padding-left:0;
+    margin-top:25px;
+  }
+  .luxury-card{
+    width:190px;
+    height:255px;
+    margin-left:0;
+  }
 
-    .main-title{
-        font-size:27px;
-    }
+  /* Filters & Titles adjustment */
+  .main-title{
+    font-size:27px;
+  }
+  .search-box input{
+    width:100%;
+  }
+  .filter-dropdown select{
+    width:100%;
+  }
+  .filter-container{
+    flex-direction:column;
+  }
 
-    .search-box input{
-        width:100%;
-    }
+  /* Perfect 2x2 Grid View for Mobile Tablets */
+  .products-grid {
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 15px !important;
+  }
+  .product-image-placeholder{
+    height:175px !important;
+  }
+  .product-name{
+    font-size:15px;
+  }
+  .price{
+    font-size:18px;
+  }
+}
 
-    .filter-dropdown select{
-        width:100%;
-    }
+/* Small Smart Phones (Max-width: 576px) */
+@media(max-width:576px){
+  #BigText{
+    font-size:2rem;
+  }
+  .btn-gold{
+    width:100%;
+    max-width:260px;
+  }
+  .luxury-card{
+    width:175px;
+    height:235px;
+  }
+  .card-title{
+    font-size:16px;
+  }
 
-    .filter-container{
-        flex-direction:column;
-    }
-
-    .product-image-placeholder{
-        height:175px;
-    }
-
-    .product-name{
-        font-size:15px;
-    }
-
-    .price{
-        font-size:18px;
-    }
+  /* Strict 2x2 Clean Mobile Layout setup */
+  .products-grid {
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 12px !important; /* Premium precise margin for small screen */
+  }
+  .product-card {
+    border-radius: 12px !important;
+  }
+  .product-image-placeholder {
+    height: 135px !important; /* Proportions perfectly scaled */
+  }
+  .image-text {
+    font-size: 16px !important;
+  }
+  .product-info {
+    padding: 12px !important;
+  }
+  .product-name {
+    font-size: 13px !important;
+    margin-bottom: 4px !important;
+  }
+  .price {
+    font-size: 15px !important;
+    margin-bottom: 12px !important;
+  }
+  .add-to-cart-btn {
+    height: 34px !important;
+    font-size: 10px !important;
+  }
 }
