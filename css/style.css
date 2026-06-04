@@ -431,10 +431,20 @@ body{
   font-size: 3.5rem;
   margin-bottom: 18px;
   transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 150px;
+  overflow: hidden;
 }
 
-.card:hover .emoji {
-  transform: scale(1.15) rotate(8deg);
+.emoji img {
+  max-width: 100%;
+  max-height: 150px;
+  height: auto;
+  width: auto;
+  display: block;
+  object-fit: contain;
 }
 
 .card h2 {
@@ -1318,6 +1328,10 @@ body{
   }
   .emoji {
     font-size: 3rem;
+    min-height: 140px;
+  }
+  .emoji img {
+    max-height: 140px;
   }
   .card h2 {
     font-size: 1.6rem;
@@ -1452,6 +1466,10 @@ body{
   }
   .emoji {
     font-size: 2.8rem;
+    min-height: 120px;
+  }
+  .emoji img {
+    max-height: 120px;
   }
   .card h2 {
     font-size: 1.4rem;
@@ -1470,6 +1488,28 @@ body{
     padding: 7px 20px;
     flex-grow: 1; 
     text-align: center;
+  }
+}
+
+/* VERY SMALL DEVICES (360px and below) */
+@media(max-width:360px){
+  .emoji {
+    min-height: 110px;
+  }
+  .emoji img {
+    max-height: 110px;
+  }
+  .card {
+    padding: 20px 16px;
+    border-radius: 16px;
+  }
+  .card h2 {
+    font-size: 1.3rem;
+    margin-bottom: 10px;
+  }
+  .card p {
+    font-size: 0.85rem;
+    margin-bottom: 20px;
   }
 }
 
