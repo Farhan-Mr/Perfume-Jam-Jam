@@ -441,13 +441,25 @@ h1, h2, h3 {
 }
 
 .product-image-placeholder {
-    height: 200px;
-    background-color: #FAF8F5;
-    border-radius: 6px;
+    background-color: #F5F5F1;
+    height: 280px; /* Desktop height */
+    border-radius: 14px;
     display: flex;
     align-items: center;
     justify-content: center;
     margin-bottom: 20px;
+    overflow: hidden; /* Zaroori hai taaki image box ke bahar na nikle */
+}
+
+.product-image-placeholder img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain; /* Image ko box mein fit karega bina stretch kiye */
+    transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.product-card:hover .product-image-placeholder img {
+    transform: scale(1.1); /* Hover karne par image halki zoom hogi */
 }
 
 .zoom-text-effect {

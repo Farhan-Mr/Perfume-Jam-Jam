@@ -13,22 +13,18 @@
 
 <body>
   
-  <!-- Navbar -->
   <nav class="navbar sticky-top navbar-expand-xl bg-body-tertiary">
     <div class="container-md">
 
-      <!-- Logo -->
       <a class="navbar-brand" href="index.html">
         <span class="logo-perfume">Perfume</span>
         <span class="logo-brand">~e~ Farhat</span>
       </a>
 
-      <!-- Mobile Toggle -->
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
         <span class="navbar-toggler-icon"></span>
       </button>
 
-      <!-- Menu + Icons dono collapse ke andar -->
       <div class="collapse navbar-collapse" id="navbarNav">
 
         <ul class="navbar-nav mx-auto">
@@ -51,12 +47,10 @@
     </div>
   </nav>
 
-  <!-- Hero Section -->
   <section id="home" class="hero-section">
     <div class="container h-100">
       <div class="row h-100 align-items-center">
 
-        <!-- Left Side -->
         <div class="col-md-6 hero-content">
           <h1 id="BigText">
             Discover Luxury <br>
@@ -75,7 +69,6 @@
           </div>
         </div>
 
-        <!-- Right Side -->
         <div class="col-md-6 hero-image">
           
               <div class="luxury-card">
@@ -103,8 +96,7 @@
         
   </section>
 
-  <!-- Google Poppins Font -->
-<link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 
@@ -112,7 +104,6 @@
 
 <main id="main1">
 
-  <!-- Heading Section -->
   <section id="collection-section">
 
     <h1>
@@ -125,7 +116,6 @@
 
   </section>
 
-  <!-- Scroll Indicator -->
   <section>
     <div id="scroll">
       <span>Scroll to Explore</span>
@@ -133,15 +123,12 @@
     </div>
   </section>
 
-<!-- Card Section Men Women and Unisex -->
-<!-- GOOGLE FONT -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 
 <section id="collection-cards">
 
-  <!-- CARD 1 -->
   <div class="card">
     <div class="emoji"><img src="images/menimg.png" alt=""></div>
     <h2>Men Collection</h2>
@@ -150,7 +137,6 @@
     <a onclick="window.location.href='Collection Page/menn.html'" style="cursor: pointer; color: goldenrod;">20 Fragrances &rarr;</a>
   </div>
 
-  <!-- CARD 2 -->
   <div class="card">
     <div class="emoji"><img src="images/womenimg.png" alt=""></div>
     <h2>Women Collection</h2>
@@ -159,7 +145,6 @@
     <a onclick="window.location.href='Collection Page/womenn.html'" style="cursor: pointer; color: goldenrod;">25 Fragrances &rarr;</a>
   </div>
 
-  <!-- CARD 3 -->
   <div class="card">
     <div class="emoji"><img src="images/UNIimg.png" alt=""></div>
     <h2>Unisex</h2>
@@ -183,8 +168,7 @@
   </section>
 
   <section>
-    <!-- Category Filters -->
-  <div class="category-filters">
+    <div class="category-filters">
       <button class="filter-btn active">Woody</button>
       <button class="filter-btn">Floral</button>
       <button class="filter-btn">Fresh</button>
@@ -195,130 +179,104 @@
   </section>
 
 
-  <!-- Product Grid Section -->
-<section class="product-section">
+  <section class="product-section">
   
   <div class="product-grid">
     
-    <!-- Product Card 1 -->
-<div class="product-card">
-  <div class="card-image-box">
-    <span class="badge">Bestseller</span>
-
-    <img 
-      src="images/01..png" 
-      alt="Midnight Oud"
-      class="product-image"
-    >
-    
-  </div>
-
-  <div class="card-details">
-    <span class="brand-name">NOIR PERFUMES</span>
-    <h3 class="product-title">Midnight Oud</h3>
-    <span class="reviews">(245)</span>
-
-    <div class="price-container">
-      <span class="current-price">₹4,999</span>
-      <span class="original-price">₹6,999</span>
+    <!-- PRODUCT 1 -->
+    <div class="product-card">
+      <div class="card-image-box">
+        <span class="badge">Bestseller</span>
+        <img src="images/01..png" alt="Midnight Oud" class="product-image">
+      </div>
+      <div class="card-details">
+        <span class="brand-name">NOIR PERFUMES</span>
+        <h3 class="product-title">Midnight Oud</h3>
+        <span class="reviews">(245)</span>
+        <div class="price-container">
+          <span class="current-price">₹990</span>
+          <span class="original-price">₹1,599</span>
+        </div>
+        <div class="d-grid gap-2">
+          <button class="add-to-cart-btn mb-1" onclick="addToCart('h1', 'Midnight Oud', 990, 'images/01..png', '100ml')">
+            Add to Cart
+          </button>
+          <a href="HtmlPages/productDetail.html?id=h1&title=Midnight Oud&price=990&oldPrice=6999&discount=28%25&img=../images/01..png&top=Oud Wood, Saffron&heart=Rose, Patchouli&base=Amber, Sandalwood&desc=A majestic representation of pure oriental luxury mixed with bold oud notes." class="btn btn-outline-dark btn-sm rounded-0">View Details</a>
+        </div>
+      </div>
     </div>
 
-    <button class="add-to-cart-btn">
-      Add to Cart
-    </button>
-  </div>
-</div>
-
-   <!-- Product Card 2 -->
-<div class="product-card">
-  <div class="card-image-box">
-    <span class="badge">Classy</span>
-
-    <img 
-      src="images/02..png" 
-      alt="Midnight Oud"
-      class="product-image"
-    >
-    
-  </div>
-
-  <div class="card-details">
-    <span class="brand-name">VELVEL ESSENCE</span>
-    <h3 class="product-title">Rose Garden</h3>
-    <span class="reviews">(180)</span>
-
-    <div class="price-container">
-      <span class="current-price">₹3,999</span>
-      <span class="original-price">₹5,499</span>
+    <!-- PRODUCT 2 -->
+    <div class="product-card">
+      <div class="card-image-box">
+        <span class="badge">Classy</span>
+        <img src="images/02..png" alt="Rose Garden" class="product-image">
+      </div>
+      <div class="card-details">
+        <span class="brand-name">VELVEL ESSENCE</span>
+        <h3 class="product-title">Rose Garden</h3>
+        <span class="reviews">(180)</span>
+        <div class="price-container">
+          <span class="current-price">₹890</span>
+          <span class="original-price">₹1,499</span>
+        </div>
+        <div class="d-grid gap-2">
+          <button class="add-to-cart-btn mb-1" onclick="addToCart('h2', 'Rose Garden', 890, 'images/02..png', '100ml')">
+            Add to Cart
+          </button>
+          <a href="HtmlPages/productDetail.html?id=h2&title=Rose Garden&price=890&oldPrice=5499&discount=27%25&img=../images/02..png&top=Pink Pepper, Bergamot&heart=Damask Rose, Peony&base=White Musk, Vanilla&desc=An elegant and fresh touch of traditional floral gardens combined for supreme grace." class="btn btn-outline-dark btn-sm rounded-0">View Details</a>
+        </div>
+      </div>
     </div>
 
-    <button class="add-to-cart-btn">
-      Add to Cart
-    </button>
-  </div>
-</div>
-
-   <!-- Product Card 3 -->
-<div class="product-card">
-  <div class="card-image-box">
-    <span class="badge">Prime</span>
-
-    <img 
-      src="images/03..png" 
-      alt="Midnight Oud"
-      class="product-image"
-    >
-    
-  </div>
-
-  <div class="card-details">
-    <span class="brand-name">AROMALUX</span>
-    <h3 class="product-title">Ocean Breeze</h3>
-    <span class="reviews">(312)</span>
-
-    <div class="price-container">
-      <span class="current-price">₹3,499</span>
-      <span class="original-price">₹4,999</span>
+    <!-- PRODUCT 3 -->
+    <div class="product-card">
+      <div class="card-image-box">
+        <span class="badge">Prime</span>
+        <img src="images/03..png" alt="Ocean Breeze" class="product-image">
+      </div>
+      <div class="card-details">
+        <span class="brand-name">AROMALUX</span>
+        <h3 class="product-title">Ocean Breeze</h3>
+        <span class="reviews">(312)</span>
+        <div class="price-container">
+          <span class="current-price">₹789</span>
+          <span class="original-price">₹1,250</span>
+        </div>
+        <div class="d-grid gap-2">
+          <button class="add-to-cart-btn mb-1" onclick="addToCart('h3', 'Ocean Breeze', 789, 'images/03..png', '100ml')">
+            Add to Cart
+          </button>
+          <a href="HtmlPages/productDetail.html?id=h3&title=Ocean Breeze&price=789&oldPrice=4999&discount=30%25&img=../images/03..png&top=Sea Salt, Grapefruit&heart=Seaweed, Sage&base=Musk, Ambrette&desc=A crisp refreshing aura delivering high-end marine freshness with deep versatile longevity." class="btn btn-outline-dark btn-sm rounded-0">View Details</a>
+        </div>
+      </div>
     </div>
 
-    <button class="add-to-cart-btn">
-      Add to Cart
-    </button>
-  </div>
-</div>
-
-   <!-- Product Card 3 -->
-<div class="product-card">
-  <div class="card-image-box">
-    <span class="badge">Royal</span>
-
-    <img 
-      src="images/04..png" 
-      alt="Midnight Oud"
-      class="product-image"
-    >
-    
-  </div>
-
-  <div class="card-details">
-    <span class="brand-name">ESSENCE COLLECTION</span>
-    <h3 class="product-title">Vanilla Dreams</h3>
-    <span class="reviews">(156)</span>
-
-    <div class="price-container">
-      <span class="current-price">₹2,999</span>
-      <span class="original-price">₹4,299</span>
+    <!-- PRODUCT 4 -->
+    <div class="product-card">
+      <div class="card-image-box">
+        <span class="badge">Royal</span>
+        <img src="images/04..png" alt="Vanilla Dreams" class="product-image">
+      </div>
+      <div class="card-details">
+        <span class="brand-name">ESSENCE COLLECTION</span>
+        <h3 class="product-title">Vanilla Dreams</h3>
+        <span class="reviews">(156)</span>
+        <div class="price-container">
+          <span class="current-price">₹1,200</span>
+          <span class="original-price">₹2,200</span>
+        </div>
+        <div class="d-grid gap-2">
+          <button class="add-to-cart-btn mb-1" onclick="addToCart('h4', 'Vanilla Dreams', 1200, 'images/04..png', '100ml')">
+            Add to Cart
+          </button>
+          <a href="HtmlPages/productDetail.html?id=h4&title=Vanilla Dreams&price=1200&oldPrice=4299&discount=30%25&img=../images/04..png&top=Vanilla Orchid, Jasmine&heart=Brown Sugar, Tonka Bean&base=Amber, Musk&desc=A warm sweet expression of smooth vanilla notes tailored perfectly for deep soothing presence." class="btn btn-outline-dark btn-sm rounded-0">View Details</a>
+        </div>
+      </div>
     </div>
 
-    <button class="add-to-cart-btn">
-      Add to Cart
-    </button>
-  </div>
-</div>
-
   </div>
 
-  <!-- View All Button -->
   <div class="view-all-container">
     <button class="view-all-btn"><a href="Collection Page/menn.html" style="color: black; text-decoration: none;">View All Products</a></button>
   </div>
@@ -327,24 +285,18 @@
 
 <br>
 
-<!-- Hero Section -->
 <section class="premium-hero-section">
   <div class="hero-container">
     
-    <!-- Left Visual: Card Stack -->
-    <!-- ================= HERO SECTION ================= -->
-<div class="hero-visual">
+    <div class="hero-visual">
   
   <div class="card-stack">
 
-    <!-- Background Cards -->
     <div class="card-bg-2"></div>
     <div class="card-bg-1"></div>
 
-    <!-- Front Card -->
     <div class="card-front">
 
-      <!-- Image -->
       <img src="images/00101.png" alt="Perfume Bottle" class="card-image">
 
     </div>
@@ -353,7 +305,6 @@
 
 </div>
 
-    <!-- Right Content: Text & Buttons -->
     <div class="hero-content">
       <p class="eyebrow">PREMIUM COLLECTION</p>
       
@@ -382,11 +333,9 @@
 </section>
 <br>
 
-<!-- Dark Theme Wrapper -->
 <section>
 <div class="dark-theme-wrapper">
   
-  <!-- ================= TOP NEWSLETTER CTA SECTION ================= -->
   <section class="newsletter-cta">
     <h2>Exclusive <span class="gold-text">Offers</span> Await</h2>
     
@@ -409,17 +358,14 @@
     </div>
   </section>
 
-  <!-- ================= BOTTOM FOOTER SECTION ================= -->
   <footer class="main-footer">
     <div class="footer-container">
       
-      <!-- Footer Left Side -->
       <div class="footer-left">
         <h3 class="brand-logo"><span class="gold-text" style="font-family: cursive;">Perfume</span>~e~Farhat</h3>
         <p>Luxury fragrances crafted for timeless personalities.</p>
       </div>
       
-      <!-- Footer Right Side -->
       <div class="footer-right">
         <h4>Subscribe to Our Newsletter</h4>
         <form class="footer-form">
@@ -433,7 +379,6 @@
     <hr class="footer-divider">
     <div class="footer-links-grid">
       
-      <!-- Column 1 -->
       <div class="footer-col">
         <h4 class="footer-heading">Quick Links</h4>
         <ul>
@@ -444,7 +389,6 @@
         </ul>
       </div>
       
-      <!-- Column 2 -->
       <div class="footer-col">
         <h4 class="footer-heading">Customer Service</h4>
         <ul>
@@ -455,7 +399,6 @@
         </ul>
       </div>
       
-      <!-- Column 3 -->
       <div class="footer-col">
         <h4 class="footer-heading">Company</h4>
         <ul>
@@ -466,23 +409,18 @@
         </ul>
       </div>
       
-      <!-- Column 4 -->
       <div class="footer-col">
         <h4 class="footer-heading">Follow Us</h4>
         <div class="social-icons">
-          <!-- Instagram -->
           <a href="#" aria-label="Instagram">
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
           </a>
-          <!-- Facebook -->
           <a href="#" aria-label="Facebook">
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path></svg>
           </a>
-          <!-- Twitter -->
           <a href="#" aria-label="Twitter">
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"></path></svg>
           </a>
-          <!-- Email -->
           <a href="#" aria-label="Email">
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
           </a>
@@ -491,10 +429,8 @@
       
     </div>
     
-    <!-- Divider -->
     <hr class="footer-divider">
     
-    <!-- Bottom Copyright & Legal Links -->
     <div class="footer-bottom">
       <p class="footer-copyright">&copy; 2026 <span class="gold-text" style="font-family: cursive; color: goldenrod;">Perfume</span> <span style="color: white;">~e~ Farhat</span>. All rights reserved.</p>
       <div class="footer-legal-links">
@@ -514,6 +450,39 @@
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
   <script src="js/script.js"></script>
+
+  <!-- CART ENGINE INJECTION FOR INDEX PAGE -->
+ 
+
+<script>
+function addToCart(id, name, price, img, size) {
+
+    let cart = JSON.parse(localStorage.getItem('perfumeCart')) || [];
+
+    let existingItem = cart.find(item => item.id === id);
+
+    // Image path normalize
+    let finalImg = img.replace(/^\/+/, '');
+
+    if (existingItem) {
+        existingItem.qty += 1;
+    } else {
+        cart.push({
+            id: id,
+            name: name,
+            price: price,
+            img: finalImg,
+            size: size,
+            qty: 1
+        });
+    }
+
+    localStorage.setItem('perfumeCart', JSON.stringify(cart));
+
+    alert(name + " successfully added to cart!");
+}
+</script>
+
 
 </body>
 </html>

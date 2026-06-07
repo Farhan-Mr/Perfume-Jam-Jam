@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Perfume~e~Farhat | Dynamic Product Details</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,400&family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="productDetail.css">
+</head>
+<body>
+
+  <nav class="navbar sticky-top navbar-expand-xl bg-body-tertiary shadow-sm-custom">
+    <div class="container-md">
+
+      <a class="navbar-brand unique-logo-glow" href="womenn.html">
+        <span class="logo-perfume" style="font-family: cursive;">Perfume</span>
+        <span class="logo-brand">~e~ Farhat</span>
+      </a>
+
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav mx-auto">
+          <li class="nav-item"><a class="nav-link" href="../index.html">Home</a></li>
+          <li class="nav-item"><a class="nav-link" href="menn.html">Men</a></li>
+          <li class="nav-item"><a class="nav-link active" href="womenn.html">Women</a></li>
+          <li class="nav-item"><a class="nav-link" href="unisex.html">Unisex</a></li>
+          <li class="nav-item"><a class="nav-link" href="../HtmlPages/dashboard.html">Dashboard</a></li>
+          <li class="nav-item"><a class="nav-link" href="../HtmlPages/admin.html">Admin</a></li>
+        </ul>
+
+        <div class="navbar-icons">
+          <a href="../HtmlPages/product-detail.html" class="icon-link icon-hover-bounce">🔍<span style="font-size:smaller;">Search</span></a>
+          <a href="../HtmlPages/dashboard.html" class="icon-link icon-hover-bounce">❤️<span style="font-size:smaller;">Favourite</span></a>
+          <a href="../HtmlPages/cart.html" class="icon-link icon-hover-bounce">🛒<span style="font-size:smaller;">Shop</span></a>
+          <a href="../HtmlPages/login.html" class="btn btn-dark btn-sm login-btn pulse-effect">Login</a>
+        </div>
+      </div>
+
+    </div>
+  </nav>
+
+  <main class="flipkart-style-container container-fluid py-4 my-4">
+      <div class="row g-4 justify-content-center">
+          
+          <div class="col-12 col-md-5 col-lg-5 col-xl-4 left-sticky-column">
+              <div class="gallery-wrapper">
+                  <div class="thumbs-strip">
+                      <div class="thumb-card active" onclick="switchPreview(this, 'https://images.unsplash.com/photo-1541643600914-78b084683601?w=800')">
+                          <img src="https://images.unsplash.com/photo-1541643600914-78b084683601?w=150" alt="View 1" id="thumb-img-1">
+                      </div>
+                      <div class="thumb-card" onclick="switchPreview(this, 'https://images.unsplash.com/photo-1594035910387-fea47794261f?w=800')">
+                          <img src="https://images.unsplash.com/photo-1594035910387-fea47794261f?w=150" alt="View 2" id="thumb-img-2">
+                      </div>
+                      <div class="thumb-card" onclick="switchPreview(this, 'https://images.unsplash.com/photo-1523293182086-7651a899d37f?w=800')">
+                          <img src="https://images.unsplash.com/photo-1523293182086-7651a899d37f?w=150" alt="View 3" id="thumb-img-3">
+                      </div>
+                  </div>
+
+                  <div class="main-preview-frame" id="zoom-box">
+                      <img src="https://images.unsplash.com/photo-1541643600914-78b084683601?w=800" id="current-view-img" alt="Main View">
+                  </div>
+              </div>
+
+              <div class="action-grid mt-3">
+                  <button class="fk-btn fk-cart-btn"><i class="fa-solid fa-cart-shopping me-2"></i>ADD TO CART</button>
+                  <button class="fk-btn fk-buy-btn"><i class="fa-solid fa-bolt me-2"></i>BUY NOW</button>
+              </div>
+          </div>
+
+          <div class="col-12 col-md-7 col-lg-6 col-xl-6 right-scroll-column">
+              <div class="info-panel">
+                  <nav class="breadcrumb-nav mb-2" id="dyn-breadcrumb">Home &gt; Women &gt; Elite Collection &gt; Parisian Bloom</nav>
+                  
+                  <span class="brand-tag text-uppercase">Maison De Farhat</span>
+                  <h1 class="product-header-title" id="dyn-title">Parisian Bloom Luxury Eau De Parfum</h1>
+                  
+                  <div class="rating-row d-flex align-items-center gap-2 my-2">
+                      <span class="badge badge-rating">4.8 <i class="fa-solid fa-star ms-1" style="font-size: 10px;"></i></span>
+                      <span class="text-muted small fw-bold">467 Ratings & 120 Reviews</span>
+                  </div>
+
+                  <div class="price-matrix my-3">
+                      <span class="sale-price" id="active-price">₹5,499</span>
+                      <span class="retail-price" id="active-old-price">₹6,999</span>
+                      <span class="discount-percentage" id="active-discount">21% off</span>
+                  </div>
+                  <div class="tax-clause text-muted mb-4">Inclusive of all taxes</div>
+
+                  <div class="variant-wrapper mb-4">
+                      <div class="variant-title text-muted mb-2">Selected Size</div>
+                      <div class="variant-options-grid">
+                          <input type="radio" class="btn-check" name="perfume-size" id="size-50" data-price="3499" data-old="4499" data-disc="22% off">
+                          <label class="variant-pill-card" for="size-50">
+                              <span class="size-label">50 ml</span>
+                              <span class="pill-price" id="p-size-50">₹3,499</span>
+                          </label>
+
+                          <input type="radio" class="btn-check" name="perfume-size" id="size-100" data-price="5499" data-old="6999" data-disc="21% off" checked>
+                          <label class="variant-pill-card" for="size-100">
+                              <span class="size-label">100 ml</span>
+                              <span class="pill-price" id="p-size-100">₹5,499</span>
+                              <span class="stock-left text-danger">5 left</span>
+                          </label>
+                      </div>
+                  </div>
+
+                  <div class="composition-wrapper mb-4">
+                      <div class="variant-title text-muted mb-2">Fragrance Composition</div>
+                      <div class="row g-2">
+                          <div class="col-4">
+                              <div class="composition-card">
+                                  <h6>Top Notes</h6>
+                                  <p id="dyn-top">Velvet Rose, Saffron</p>
+                              </div>
+                          </div>
+                          <div class="col-4">
+                              <div class="composition-card">
+                                  <h6>Heart Notes</h6>
+                                  <p id="dyn-heart">French Jasmine</p>
+                              </div>
+                          </div>
+                          <div class="col-4">
+                              <div class="composition-card">
+                                  <h6>Base Notes</h6>
+                                  <p id="dyn-base">White Musk, Amber</p>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+
+                  <div class="product-description-block border-top pt-3">
+                      <h5 class="block-title">Product Description</h5>
+                      <p class="content-text" id="dyn-desc">
+                          Experience the soft touch of luxury. A premium curation of fresh florals, rich vanilla and delicate oriental fragrances crafted for her. High concentration formulas that stay with you all day long.
+                      </p>
+                  </div>
+              </div>
+          </div>
+
+      </div>
+  </main>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <script>
+      function switchPreview(element, sourceUrl) {
+          document.getElementById('current-view-img').src = sourceUrl;
+          let currentActiveThumbs = document.getElementsByClassName('thumb-card');
+          for(let i=0; i < currentActiveThumbs.length; i++) {
+              currentActiveThumbs[i].classList.remove('active');
+          }
+          element.classList.add('active');
+      }
+
+      const variantRadios = document.querySelectorAll('input[name="perfume-size"]');
+      variantRadios.forEach(radio => {
+          radio.addEventListener('change', function() {
+              document.getElementById('active-price').innerText = "₹" + parseInt(this.getAttribute('data-price')).toLocaleString('en-IN');
+              document.getElementById('active-old-price').innerText = "₹" + parseInt(this.getAttribute('data-old')).toLocaleString('en-IN');
+              document.getElementById('active-discount').innerText = this.getAttribute('data-disc');
+          });
+      });
+
+      const zoomBox = document.getElementById('zoom-box');
+      const zoomImg = document.getElementById('current-view-img');
+      zoomBox.addEventListener('mousemove', (e) => {
+          const { left, top, width, height } = zoomBox.getBoundingClientRect();
+          const posX = ((e.clientX - left) / width) * 100;
+          const posY = ((e.clientY - top) / height) * 100;
+          zoomImg.style.transformOrigin = `${posX}% ${posY}%`;
+          zoomImg.style.transform = 'scale(1.7)';
+      });
+      zoomBox.addEventListener('mouseleave', () => {
+          zoomImg.style.transformOrigin = 'center center';
+          zoomImg.style.transform = 'scale(1)';
+      });
+
+      // --- NEW DYNAMIC ROUTER PARSER ENGINE ---
+      window.addEventListener('DOMContentLoaded', () => {
+          const urlParams = new URLSearchParams(window.location.search);
+          
+          if (urlParams.has('title')) {
+              const title = urlParams.get('title');
+              const price = parseInt(urlParams.get('price'));
+              const oldPrice = parseInt(urlParams.get('oldPrice'));
+              const discount = urlParams.get('discount');
+              const imgUrl = urlParams.get('img');
+              const topNotes = urlParams.get('top');
+              const heartNotes = urlParams.get('heart');
+              const baseNotes = urlParams.get('base');
+              const description = urlParams.get('desc');
+
+              // Text Content Refresher
+              document.getElementById('dyn-breadcrumb').innerText = `Home > Unisex Collection > ${title}`;
+              document.getElementById('dyn-title').innerText = title;
+              document.getElementById('dyn-desc').innerText = description ? description : "Premium luxury perfume crafted with high concentration oils.";
+              
+              // Price Grid Setter
+              document.getElementById('active-price').innerText = "₹" + price.toLocaleString('en-IN');
+              document.getElementById('active-old-price').innerText = "₹" + oldPrice.toLocaleString('en-IN');
+              document.getElementById('active-discount').innerText = discount;
+
+              // Size Variations Math Auto-calculation (50ml price logic)
+              const size50Radio = document.getElementById('size-50');
+              const size100Radio = document.getElementById('size-100');
+              if(size50Radio && size100Radio) {
+                  // 100ml update
+                  size100Radio.setAttribute('data-price', price);
+                  size100Radio.setAttribute('data-old', oldPrice);
+                  size100Radio.setAttribute('data-disc', discount);
+                  document.getElementById('p-size-100').innerText = "₹" + price.toLocaleString('en-IN');
+
+                  // 50ml standard math dynamic offset (60% value auto-generation)
+                  const p50 = Math.round(price * 0.6);
+                  const o50 = Math.round(oldPrice * 0.6);
+                  size50Radio.setAttribute('data-price', p50);
+                  size50Radio.setAttribute('data-old', o50);
+                  size50Radio.setAttribute('data-disc', discount);
+                  document.getElementById('p-size-50').innerText = "₹" + p50.toLocaleString('en-IN');
+              }
+
+              // Composition Accords
+              if(topNotes) document.getElementById('dyn-top').innerText = topNotes;
+              if(heartNotes) document.getElementById('dyn-heart').innerText = heartNotes;
+              if(baseNotes) document.getElementById('dyn-base').innerText = baseNotes;
+
+              // Galleries Refresher
+              document.getElementById('current-view-img').src = imgUrl;
+              document.getElementById('thumb-img-1').src = imgUrl;
+              document.getElementById('thumb-img-2').src = imgUrl;
+              document.getElementById('thumb-img-3').src = imgUrl;
+
+              // Re-mapping thumbnail event strings dynamically
+              const cards = document.querySelectorAll('.thumbs-strip .thumb-card');
+              cards.forEach(card => card.setAttribute('onclick', `switchPreview(this, '${imgUrl}')`));
+          }
+      });
+  </script>
+</body>
+</html>

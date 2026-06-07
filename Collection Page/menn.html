@@ -9,12 +9,10 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght=700;900&family=Poppins:wght=300;400;500;600;700;800&display=swap" rel="stylesheet">
     
-    <!-- 1. AOS Animation CSS (Bina aapka code chede premium scroll effect ke liye) -->
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
        
     <link rel="stylesheet" href="menn.css">
 </head>
-<!-- this is body -->
 <body>
 
   <nav class="navbar sticky-top navbar-expand-xl bg-body-tertiary">
@@ -56,7 +54,6 @@
     <div class="container h-100">
       <div class="row h-100 align-items-center">
 
-        <!-- Fade Right Animation for Hero Content -->
         <div class="col-md-6 hero-content" data-aos="fade-right" data-aos-duration="1000">
           <div class="fragrance-tag"> MEN'S FRAGRANCES </div>
 
@@ -76,7 +73,6 @@
           </div>
         </div>
 
-        <!-- Fade Left Animation for Hero Luxury Card -->
         <div class="col-md-6 hero-image" data-aos="fade-left" data-aos-duration="1000">
           <div class="luxury-card">
             <div class="card-logo-area">
@@ -104,7 +100,6 @@
   </section>
 
 
-  <!-- Filter Section with Upward Fade -->
   <section class="filter-section" data-aos="fade-up" data-aos-duration="800">
         <div class="container filter-container">
             <div class="filter-dropdown">
@@ -133,183 +128,163 @@
 
     <section class="products-section">
         <div class="container">
-            <!-- Section Header Animation -->
             <div class="section-header" data-aos="fade-up" data-aos-duration="800">
                 <p class="subtitle" style="font-size: large;">CURATED EXCLUSIVES</p>
                 <h2 class="main-title">The Men's Anthology</h2>
                 <div class="title-underline"></div>
             </div>
 
-            <!-- Grid 1: Cards stagger one after another using data-aos-delay -->
+            <!-- Product 1 Men -->
             <div class="products-grid">
                 <div class="product-card" data-aos="fade-up" data-aos-delay="100">
                     <span class="badge badge-best">BEST SELLER</span>
                     <div class="product-image-placeholder">
-                        <span class="image-text">Oud Supreme</span>
+                        <!-- img -->
+                        <img src="/Perfume-Jam-Jam/images/Men_Perfumes/Golden_caravan.png" alt="Product Img"> 
                     </div>
                     <div class="product-info">
-                        <p class="category">EAU DE PARFUM</p>
-                        <h3 class="product-name">Oud Supreme Intense</h3>
-                        <p class="price">₹4,499</p>
-                        <button class="add-to-cart-btn">Add To Cart</button>
+                        <p class="category">Oud & Arabic</p>
+                        <h3 class="product-name">Golden Caravan</h3>
+                        <p class="price">₹1,500</p>
+                        <div class="d-grid gap-2">
+                            <button class="add-to-cart-btn mb-1" onclick="addToCart('m1', 'Golden Caravan', 1500, '/Perfume-Jam-Jam/images/Men_Perfumes/Golden_caravan.png', 'Standard')"> Add To Cart </button>
+                            <a href="../HtmlPages/productDetail.html?id=m1&title=Golden Caravan&price=1500&img=/Perfume-Jam-Jam/images/Men_Perfumes/Golden_caravan.png&desc=A rich corporate expression..." class="btn btn-outline-dark btn-sm rounded-0">View Details</a>
+                        </div>
                     </div>
                 </div>
 
+                <!-- Product 2  -->
                 <div class="product-card" data-aos="fade-up" data-aos-delay="200">
                     <span class="badge badge-new">NEW</span>
                     <div class="product-image-placeholder">
-                        <span class="image-text">Noir Horizon</span>
+                       <!-- img -->
+                        <img src="/Perfume-Jam-Jam/images/Men_Perfumes/Sultan_Oud.png" alt="img">
                     </div>
                     <div class="product-info">
-                        <p class="category">PURE PARFUM</p>
-                        <h3 class="product-name">Noir Horizon</h3>
-                        <p class="price">₹5,200</p>
-                        <button class="add-to-cart-btn">Add To Cart</button>
+                        <p class="category">Oud & Arabic</p>
+                        <h3 class="product-name">Sultan's Oud</h3>
+                        <p class="price">₹1,400</p>
+                        <div class="d-grid gap-2">
+                            <button class="add-to-cart-btn mb-1" onclick="addToCart('m2', 'Sultan s Oud', 1400, '/Perfume-Jam-Jam/images/Men_Perfumes/Sultan_Oud.png', 'Standard')"> Add To Cart </button>
+                            <a href="../HtmlPages/productDetail.html?id=m2&title=Sultan's Oud&price=1400&img=/Perfume-Jam-Jam/images/Men_Perfumes/Sultan_Oud.png&desc=A royal aromatic experience..." class="btn btn-outline-dark btn-sm rounded-0">View Details</a>
+                        </div>
                     </div>
                 </div>
 
+                <!-- Product 3 -->
                 <div class="product-card" data-aos="fade-up" data-aos-delay="300">
                     <div class="product-image-placeholder">
-                        <span class="image-text">Royal Amber</span>
+                        <!-- .img -->
+                         <img src="/Perfume-Jam-Jam/images/Men_Perfumes/Royal_Mejestic.png" alt="img">
                     </div>
                     <div class="product-info">
-                        <p class="category">EAU DE TOILETTE</p>
-                        <h3 class="product-name">Royal Amber Gold</h3>
-                        <p class="price">₹3,850</p>
-                        <button class="add-to-cart-btn">Add To Cart</button>
+                        <p class="category">Oud & Arabic</p>
+                        <h3 class="product-name">Royal Majestic</h3>
+                        <p class="price">₹1,350</p>
+                        <div class="d-grid gap-2">
+                            <button class="add-to-cart-btn mb-1" onclick="addToCart('m3', 'Royal Majestic', 1350, '/Perfume-Jam-Jam/images/Men_Perfumes/Royal_Mejestic.png', 'Standard')"> Add To Cart </button>
+                            <a href="../HtmlPages/productDetail.html?id=m3&title=Royal Majestic&price=1350&img=/Perfume-Jam-Jam/images/Men_Perfumes/Royal_Mejestic.png" class="btn btn-outline-dark btn-sm rounded-0">View Details</a>
+                        </div>
                     </div>
                 </div>
 
+                <!-- Product 4 -->
                 <div class="product-card" data-aos="fade-up" data-aos-delay="400">
                     <span class="badge badge-limited">LIMITED</span>
                     <div class="product-image-placeholder">
-                        <span class="image-text">Velvet Musk</span>
+                        <!-- img -->
+                         <img src="/Perfume-Jam-Jam/images/Men_Perfumes/Desert_Mirage.png" alt="img">
                     </div>
                     <div class="product-info">
-                        <p class="category">EAU DE PARFUM</p>
-                        <h3 class="product-name">Velvet Musk Signature</h3>
-                        <p class="price">₹6,100</p>
-                        <button class="add-to-cart-btn">Add To Cart</button>
+                        <p class="category">Oud & Arabic</p>
+                        <h3 class="product-name">Desert Mirage</h3>
+                        <p class="price">₹1,200</p>
+                        <div class="d-grid gap-2">
+                            <button class="add-to-cart-btn mb-1" onclick="addToCart('m4', 'Desert Mirage', 1200, '/Perfume-Jam-Jam/images/Men_Perfumes/Desert_Mirage.png', 'Standard')"> Add To Cart </button>
+                            <a href="../HtmlPages/productDetail.html?id=m4&title=Desert Mirage&price=1200&img=/Perfume-Jam-Jam/images/Men_Perfumes/Desert_Mirage.png" class="btn btn-outline-dark btn-sm rounded-0">View Details</a>
+                        </div>
                     </div>
                 </div>
             </div>
 
             <br><br>
-
-            <!-- Grid 2 -->
+            <!-- product 5 -->
+             <!-- Next Grid -->
             <div class="products-grid">
                 <div class="product-card" data-aos="fade-up" data-aos-delay="100">
                     <span class="badge badge-best">BEST SELLER</span>
                     <div class="product-image-placeholder">
-                        <span class="image-text">Oud Supreme</span>
+                        <!-- img -->
+                         <img src="/Perfume-Jam-Jam/images/Men_Perfumes/Azure_tide.png" alt="img">
                     </div>
                     <div class="product-info">
-                        <p class="category">EAU DE PARFUM</p>
-                        <h3 class="product-name">Oud Supreme Intense</h3>
-                        <p class="price">₹4,499</p>
-                        <button class="add-to-cart-btn">Add To Cart</button>
+                        <p class="category">Fresh & Modern Series</p>
+                        <h3 class="product-name">Azure Tide</h3>
+                        <p class="price">₹890</p>
+                        <div class="d-grid gap-2">
+                            <button class="add-to-cart-btn mb-1" onclick="addToCart('m5', 'Azure Tide', 890, '/Perfume-Jam-Jam/images/Men_Perfumes/Azure_tide.png', 'Standard')"> Add To Cart </button>
+                            <a href="../HtmlPages/productDetail.html?id=m5&title=Azure Tide&price=890&img=/Perfume-Jam-Jam/images/Men_Perfumes/Azure_tide.png" class="btn btn-outline-dark btn-sm rounded-0">View Details</a>
+                        </div>
                     </div>
                 </div>
 
+                <!-- product 6 -->
                 <div class="product-card" data-aos="fade-up" data-aos-delay="200">
                     <span class="badge badge-new">NEW</span>
                     <div class="product-image-placeholder">
-                        <span class="image-text">Noir Horizon</span>
+                        <!-- img -->
+                         <img src="/Perfume-Jam-Jam/images/Men_Perfumes/Nori_eclipse2.png" alt="img">
                     </div>
                     <div class="product-info">
-                        <p class="category">PURE PARFUM</p>
-                        <h3 class="product-name">Noir Horizon</h3>
-                        <p class="price">₹5,200</p>
-                        <button class="add-to-cart-btn">Add To Cart</button>
+                        <p class="category">Fresh & Modern Series</p>
+                        <h3 class="product-name">Noir Eclipse</h3>
+                        <p class="price">₹1,080</p>
+                        <div class="d-grid gap-2">
+                            <button class="add-to-cart-btn mb-1" onclick="addToCart('m6', 'Noir Eclipse', 1080, '/Perfume-Jam-Jam/images/Men_Perfumes/Nori_eclipse2.png', 'Standard')"> Add To Cart </button>
+                            <a href="../HtmlPages/productDetail.html?id=m6&title=Noir Eclipse&price=1080&img=/Perfume-Jam-Jam/images/Men_Perfumes/Nori_eclipse2.png" class="btn btn-outline-dark btn-sm rounded-0">View Details</a>
+                        </div>
                     </div>
                 </div>
 
+                <!-- product 7 -->
                 <div class="product-card" data-aos="fade-up" data-aos-delay="300">
                     <div class="product-image-placeholder">
-                        <span class="image-text">Royal Amber</span>
+                        <!-- img -->
+                         <img src="/Perfume-Jam-Jam/images/Men_Perfumes/Velvet_Royale.png" alt="img">
                     </div>
                     <div class="product-info">
-                        <p class="category">EAU DE TOILETTE</p>
-                        <h3 class="product-name">Royal Amber Gold</h3>
-                        <p class="price">₹3,850</p>
-                        <button class="add-to-cart-btn">Add To Cart</button>
+                        <p class="category">Fresh & Modern Series</p>
+                        <h3 class="product-name">Velvet Royale</h3>
+                        <p class="price">₹1,050</p>
+                        <div class="d-grid gap-2">
+                            <button class="add-to-cart-btn mb-1" onclick="addToCart('m7', 'Velvet Royale', 1050, '/Perfume-Jam-Jam/images/Men_Perfumes/Velvet_Royale.png', 'Standard')"> Add To Cart </button>
+                            <a href="../HtmlPages/productDetail.html?id=m7&title=Velvet Royale&price=1050&img=/Perfume-Jam-Jam/images/Men_Perfumes/Velvet_Royale.png" class="btn btn-outline-dark btn-sm rounded-0">View Details</a>                        </div>
                     </div>
                 </div>
 
+                <!-- product 8 -->
                 <div class="product-card" data-aos="fade-up" data-aos-delay="400">
                     <span class="badge badge-limited">LIMITED</span>
                     <div class="product-image-placeholder">
-                        <span class="image-text">Velvet Musk</span>
+                        <!-- img -->
+                         <img src="/Perfume-Jam-Jam/images/Men_Perfumes/Midnight_Legacy.png" alt="img">
                     </div>
                     <div class="product-info">
-                        <p class="category">EAU DE PARFUM</p>
-                        <h3 class="product-name">Velvet Musk Signature</h3>
-                        <p class="price">₹6,100</p>
-                        <button class="add-to-cart-btn">Add To Cart</button>
+                        <p class="category">Fresh & Modern Series</p>
+                        <h3 class="product-name">Midnight Legacy</h3>
+                        <p class="price">₹1,250</p>
+                        <div class="d-grid gap-2">
+                            <button class="add-to-cart-btn mb-1" onclick="addToCart('m8', 'Midnight Legacy', 1250, '/Perfume-Jam-Jam/images/Men_Perfumes/Midnight_Legacy.png', 'Standard')"> Add To Cart </button>
+                            <a href="../HtmlPages/productDetail.html?id=m8&title=Midnight Legacy&price=1250&img=/Perfume-Jam-Jam/images/Men_Perfumes/Midnight_Legacy.png" class="btn btn-outline-dark btn-sm rounded-0">View Details</a>
+                        </div>
                     </div>
                 </div>
             </div>
-            
-            <br><br>
-
-            <!-- Grid 3 -->
-            <div class="products-grid">
-                <div class="product-card" data-aos="fade-up" data-aos-delay="100">
-                    <span class="badge badge-best">BEST SELLER</span>
-                    <div class="product-image-placeholder">
-                        <span class="image-text">Oud Supreme</span>
-                    </div>
-                    <div class="product-info">
-                        <p class="category">EAU DE PARFUM</p>
-                        <h3 class="product-name">Oud Supreme Intense</h3>
-                        <p class="price">₹4,499</p>
-                        <button class="add-to-cart-btn">Add To Cart</button>
-                    </div>
-                </div>
-
-                <div class="product-card" data-aos="fade-up" data-aos-delay="200">
-                    <span class="badge badge-new">NEW</span>
-                    <div class="product-image-placeholder">
-                        <span class="image-text">Noir Horizon</span>
-                    </div>
-                    <div class="product-info">
-                        <p class="category">PURE PARFUM</p>
-                        <h3 class="product-name">Noir Horizon</h3>
-                        <p class="price">₹5,200</p>
-                        <button class="add-to-cart-btn">Add To Cart</button>
-                    </div>
-                </div>
-
-                <div class="product-card" data-aos="fade-up" data-aos-delay="300">
-                    <div class="product-image-placeholder">
-                        <span class="image-text">Royal Amber</span>
-                    </div>
-                    <div class="product-info">
-                        <p class="category">EAU DE TOILETTE</p>
-                        <h3 class="product-name">Royal Amber Gold</h3>
-                        <p class="price">₹3,850</p>
-                        <button class="add-to-cart-btn">Add To Cart</button>
-                    </div>
-                </div>
-
-                <div class="product-card" data-aos="fade-up" data-aos-delay="400">
-                    <span class="badge badge-limited">LIMITED</span>
-                    <div class="product-image-placeholder">
-                        <span class="image-text">Velvet Musk</span>
-                    </div>
-                    <div class="product-info">
-                        <p class="category">EAU DE PARFUM</p>
-                        <h3 class="product-name">Velvet Musk Signature</h3>
-                        <p class="price">₹6,100</p>
-                        <button class="add-to-cart-btn">Add To Cart</button>
-                    </div>
-                </div>
-            </div>
+         </div>
             
         </div>
     </section>
 
-    <!-- Features Items Zoom-in Effect on scroll -->
     <section class="features-section">
         <div class="container features-grid">
             <div class="feature-item" data-aos="zoom-in" data-aos-delay="100">
@@ -339,13 +314,34 @@
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
   
-  <!-- 2. AOS Animation Scripts & Initialization -->
   <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
   <script>
     AOS.init({
       once: false, // true karne par animation sirf ek baar hogi, false par har baar scroll karne par hogi
       mirror: true
     });
+
+    function addToCart(id, name, price, img, size) {
+        // LocalStorage se data fetch karein
+        let cart = JSON.parse(localStorage.getItem('perfumeCart')) || [];
+        
+        // Check karein ki item pehle se hai ya nahi
+        let existingItem = cart.find(item => item.id === id);
+
+        if (existingItem) {
+            existingItem.qty += 1; // Agar hai, toh quantity badhayein
+        } else {
+            // Agar nahi hai, toh naya item push karein
+            cart.push({ id: id, name: name, price: price, img: img, size: size, qty: 1 });
+        }
+
+        // Updated cart ko wapas save karein
+        localStorage.setItem('perfumeCart', JSON.stringify(cart));
+        
+        // Confirmation alert
+        alert(name + " cart mein add ho gaya!");
+    }
+
   </script>
 </body>
 </html>
