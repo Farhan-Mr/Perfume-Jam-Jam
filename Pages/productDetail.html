@@ -1,246 +1,639 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Perfume~e~Farhat | Dynamic Product Details</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,400&family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="../css/productDetail.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Perfume~e~Farhat | Parisian Bloom</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --ivory:#FAF7F2;
+  --white:#FFFFFF;
+  --ink:#1A1410;
+  --ink-soft:#4A3F38;
+  --ink-muted:#8A7E78;
+  --gold:#B8935A;
+  --gold-light:#D4AD78;
+  --gold-pale:#F5EFE5;
+  --border:#EDE6DC;
+  --green:#2E7D32;
+  --serif:'Cormorant Garamond',Georgia,serif;
+  --sans:'DM Sans',system-ui,sans-serif;
+  --nav-h:68px;
+  --ease-out:cubic-bezier(0.16,1,0.3,1);
+}
+html{scroll-behavior:smooth}
+body{font-family:var(--sans);background:var(--ivory);color:var(--ink);min-height:100vh;overflow-x:hidden}
+
+/* ── NAVBAR ── */
+.nav{
+  position:sticky;top:0;z-index:100;
+  height:var(--nav-h);
+  background:rgba(250,247,242,0.92);
+  backdrop-filter:blur(12px);
+  -webkit-backdrop-filter:blur(12px);
+  border-bottom:1px solid var(--border);
+  display:flex;align-items:center;
+  padding:0 clamp(16px,4vw,48px);
+  gap:24px;
+}
+.nav-brand{
+  font-family:var(--serif);font-size:1.4rem;font-weight:600;
+  color:var(--ink);text-decoration:none;white-space:nowrap;
+  letter-spacing:0.02em;
+}
+.nav-brand span{color:var(--gold);font-weight:300;font-style:italic}
+.nav-links{
+  display:flex;gap:6px;list-style:none;margin:0 auto;padding:0;
+}
+.nav-links a{
+  font-size:0.85rem;font-weight:400;letter-spacing:0.04em;text-transform:uppercase;
+  color:var(--ink-muted);text-decoration:none;padding:6px 12px;border-radius:20px;
+  transition:all 0.25s ease;
+}
+.nav-links a:hover,.nav-links a.active{color:var(--gold);background:var(--gold-pale)}
+.nav-actions{display:flex;align-items:center;gap:8px}
+.nav-icon{
+  width:38px;height:38px;border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+  color:var(--ink-soft);text-decoration:none;font-size:1rem;
+  transition:all 0.25s var(--ease-out);
+  background:transparent;border:1px solid transparent;
+}
+.nav-icon:hover{background:var(--gold-pale);border-color:var(--border);transform:scale(1.05)}
+.nav-login{
+  font-family:var(--sans);font-size:0.8rem;font-weight:500;letter-spacing:0.06em;text-transform:uppercase;
+  background:var(--ink);color:#fff;border:none;border-radius:24px;
+  padding:8px 20px;cursor:pointer;text-decoration:none;
+  transition:all 0.3s ease;white-space:nowrap;
+}
+.nav-login:hover{background:var(--gold);box-shadow:0 6px 20px rgba(184,147,90,0.35)}
+.nav-hamburger{
+  display:none;width:38px;height:38px;border:1px solid var(--border);
+  background:transparent;border-radius:8px;cursor:pointer;
+  flex-direction:column;align-items:center;justify-content:center;gap:5px;
+}
+.nav-hamburger span{display:block;width:18px;height:1.5px;background:var(--ink);transition:all 0.3s ease}
+.nav-mobile-drawer{
+  display:none;position:fixed;inset:0;top:var(--nav-h);
+  background:var(--ivory);z-index:99;padding:32px 24px;
+  flex-direction:column;gap:8px;
+  transform:translateY(-10px);opacity:0;pointer-events:none;
+  transition:all 0.3s var(--ease-out);
+}
+.nav-mobile-drawer.open{opacity:1;transform:translateY(0);pointer-events:all;display:flex}
+.nav-mobile-drawer a{
+  font-size:1.1rem;font-weight:400;letter-spacing:0.03em;text-transform:uppercase;
+  color:var(--ink-soft);text-decoration:none;padding:14px 0;
+  border-bottom:1px solid var(--border);
+}
+.nav-mobile-drawer a:hover,.nav-mobile-drawer a.active{color:var(--gold)}
+
+/* ── BREADCRUMB ── */
+.breadcrumb{
+  padding:16px clamp(16px,4vw,48px);
+  font-size:0.78rem;color:var(--ink-muted);letter-spacing:0.03em;
+  display:flex;align-items:center;gap:8px;flex-wrap:wrap;
+}
+.breadcrumb span{color:var(--ink-muted)}
+.breadcrumb a{color:var(--ink-muted);text-decoration:none;transition:color 0.2s}
+.breadcrumb a:hover{color:var(--gold)}
+.bc-sep{opacity:0.4}
+
+/* ── MAIN PRODUCT LAYOUT ── */
+.product-wrap{
+  max-width:1160px;margin:0 auto;
+  padding:0 clamp(16px,4vw,48px) 80px;
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:clamp(24px,4vw,64px);
+  align-items:start;
+}
+@media(max-width:860px){.product-wrap{grid-template-columns:1fr}}
+
+/* ── LEFT: GALLERY ── */
+.gallery-col{position:sticky;top:calc(var(--nav-h) + 24px)}
+@media(max-width:860px){.gallery-col{position:relative;top:0}}
+
+.gallery-inner{
+  display:grid;
+  grid-template-columns:72px 1fr;
+  gap:10px;
+  height:520px;
+}
+@media(max-width:480px){
+  .gallery-inner{grid-template-columns:1fr;grid-template-rows:auto 1fr;height:auto}
+}
+
+.thumbs{
+  display:flex;flex-direction:column;gap:8px;overflow-y:auto;
+  scrollbar-width:none;
+}
+.thumbs::-webkit-scrollbar{display:none}
+@media(max-width:480px){.thumbs{flex-direction:row;overflow-x:auto;overflow-y:hidden}}
+
+.thumb{
+  width:68px;height:68px;flex-shrink:0;
+  border:1.5px solid var(--border);border-radius:8px;
+  background:#fff;cursor:pointer;overflow:hidden;
+  transition:border-color 0.25s ease,transform 0.2s var(--ease-out);
+}
+.thumb:hover{border-color:var(--gold-light);transform:scale(1.03)}
+.thumb.active{border-color:var(--gold);box-shadow:0 0 0 3px rgba(184,147,90,0.15)}
+.thumb img{width:100%;height:100%;object-fit:cover}
+
+.main-img-wrap{
+  border-radius:12px;overflow:hidden;
+  background:#fff;border:1px solid var(--border);
+  display:flex;align-items:center;justify-content:center;
+  cursor:zoom-in;height:100%;
+  position:relative;
+}
+@media(max-width:480px){.main-img-wrap{height:340px}}
+
+.main-img-wrap img{
+  width:100%;height:100%;object-fit:cover;
+  transition:transform 0.1s ease-out;
+  display:block;
+}
+.zoom-hint{
+  position:absolute;bottom:14px;right:14px;
+  background:rgba(26,20,16,0.55);color:#fff;
+  font-size:0.7rem;letter-spacing:0.05em;padding:5px 10px;border-radius:20px;
+  pointer-events:none;opacity:0;transition:opacity 0.3s ease;
+}
+.main-img-wrap:hover .zoom-hint{opacity:1}
+
+/* Gallery badges */
+.badge-new{
+  position:absolute;top:14px;left:14px;
+  background:var(--ink);color:#fff;
+  font-size:0.65rem;letter-spacing:0.1em;text-transform:uppercase;
+  padding:4px 10px;border-radius:4px;font-weight:500;
+}
+
+/* Wishlist float */
+.wishlist-btn{
+  position:absolute;top:14px;right:14px;
+  width:36px;height:36px;border-radius:50%;
+  background:#fff;border:1px solid var(--border);
+  display:flex;align-items:center;justify-content:center;
+  cursor:pointer;font-size:1rem;
+  transition:all 0.25s var(--ease-out);
+  box-shadow:0 2px 8px rgba(0,0,0,0.08);
+}
+.wishlist-btn:hover{transform:scale(1.1);border-color:var(--gold)}
+.wishlist-btn.liked{color:#e05252}
+
+/* Action buttons */
+.action-row{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:14px}
+.btn-cart,.btn-buy{
+  padding:15px;border:none;border-radius:10px;
+  font-family:var(--sans);font-size:0.82rem;font-weight:500;
+  letter-spacing:0.06em;text-transform:uppercase;cursor:pointer;
+  display:flex;align-items:center;justify-content:center;gap:8px;
+  transition:all 0.3s var(--ease-out);
+}
+.btn-cart{
+  background:var(--ink);color:#fff;
+}
+.btn-cart:hover{background:#2C241E;box-shadow:0 8px 24px rgba(26,20,16,0.25);transform:translateY(-2px)}
+.btn-buy{
+  background:var(--gold);color:#fff;
+}
+.btn-buy:hover{background:var(--gold-light);box-shadow:0 8px 24px rgba(184,147,90,0.4);transform:translateY(-2px)}
+.btn-cart svg,.btn-buy svg{width:16px;height:16px;flex-shrink:0}
+
+/* ── RIGHT: INFO PANEL ── */
+.info-col{padding-top:8px}
+
+.brand-eyebrow{
+  font-size:0.72rem;font-weight:500;letter-spacing:0.14em;text-transform:uppercase;
+  color:var(--gold);margin-bottom:8px;
+}
+.product-title{
+  font-family:var(--serif);font-size:clamp(1.8rem,3.5vw,2.5rem);
+  font-weight:300;line-height:1.2;color:var(--ink);
+  margin-bottom:16px;font-style:italic;
+}
+.product-title em{font-style:normal;font-weight:600}
+
+.rating-row{display:flex;align-items:center;gap:12px;margin-bottom:20px}
+.stars{display:flex;gap:2px}
+.star{width:14px;height:14px;fill:var(--gold);color:var(--gold)}
+.star-empty{fill:none;stroke:var(--gold);stroke-width:1.5}
+.rating-num{font-size:0.85rem;font-weight:500;color:var(--ink)}
+.rating-count{font-size:0.8rem;color:var(--ink-muted)}
+
+.divider{height:1px;background:var(--border);margin:20px 0}
+
+/* Price */
+.price-block{margin-bottom:6px}
+.price-sale{font-family:var(--serif);font-size:2.2rem;font-weight:600;color:var(--ink);line-height:1}
+.price-row{display:flex;align-items:baseline;gap:12px;margin-bottom:4px}
+.price-old{font-size:1rem;color:var(--ink-muted);text-decoration:line-through}
+.price-off{font-size:0.85rem;font-weight:500;color:var(--green);background:#E8F5E9;padding:3px 8px;border-radius:4px}
+.price-note{font-size:0.75rem;color:var(--ink-muted);margin-top:4px}
+
+/* Size Selector */
+.section-label{font-size:0.72rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--ink-muted);font-weight:500;margin-bottom:10px}
+.size-grid{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:8px}
+.size-option{position:relative}
+.size-option input[type=radio]{position:absolute;opacity:0;width:0;height:0}
+.size-card{
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  width:90px;min-height:68px;padding:10px 12px;
+  border:1.5px solid var(--border);border-radius:10px;
+  background:#fff;cursor:pointer;
+  transition:all 0.25s ease;font-family:var(--sans);
+}
+.size-card:hover{border-color:var(--gold-light);background:var(--gold-pale)}
+.size-option input:checked + .size-card{
+  border-color:var(--gold);background:var(--gold-pale);
+  box-shadow:0 0 0 3px rgba(184,147,90,0.15);
+}
+.size-ml{font-size:1rem;font-weight:500;color:var(--ink)}
+.size-price{font-size:0.75rem;color:var(--ink-muted);margin-top:2px}
+.size-stock{
+  position:absolute;top:-8px;left:50%;transform:translateX(-50%);
+  background:#e05252;color:#fff;font-size:0.6rem;font-weight:600;
+  letter-spacing:0.04em;padding:2px 7px;border-radius:4px;white-space:nowrap;
+}
+
+/* Accord notes */
+.accord-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:0}
+.accord-card{
+  background:#fff;border:1px solid var(--border);border-radius:10px;
+  padding:14px 12px;text-align:center;
+  transition:border-color 0.25s ease;
+}
+.accord-card:hover{border-color:var(--gold-light)}
+.accord-icon{font-size:1.4rem;margin-bottom:6px;display:block}
+.accord-type{font-size:0.65rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--gold);font-weight:500;margin-bottom:4px}
+.accord-notes{font-size:0.78rem;color:var(--ink-soft);line-height:1.4}
+
+/* Description */
+.desc-text{font-size:0.9rem;line-height:1.75;color:var(--ink-soft)}
+
+/* Delivery info */
+.delivery-card{
+  background:#fff;border:1px solid var(--border);border-radius:10px;
+  padding:14px 16px;display:flex;flex-direction:column;gap:10px;
+}
+.delivery-row{display:flex;align-items:center;gap:10px}
+.delivery-icon{font-size:1.1rem;flex-shrink:0}
+.delivery-text{font-size:0.82rem;color:var(--ink-soft);line-height:1.4}
+.delivery-text strong{color:var(--ink);font-weight:500}
+
+/* Promo strip */
+.promo-strip{
+  background:linear-gradient(135deg,var(--ink) 0%,#2C241E 100%);
+  border-radius:10px;padding:14px 18px;
+  display:flex;align-items:center;gap:12px;
+  color:#fff;
+}
+.promo-strip-text{font-size:0.82rem;line-height:1.4;opacity:0.9}
+.promo-strip-text strong{opacity:1;font-weight:500}
+
+/* Offer pills */
+.offer-row{display:flex;gap:8px;flex-wrap:wrap}
+.offer-pill{
+  font-size:0.72rem;letter-spacing:0.04em;padding:5px 12px;border-radius:20px;
+  border:1px solid var(--border);background:#fff;color:var(--ink-soft);
+  display:flex;align-items:center;gap:5px;
+}
+.offer-pill span{font-size:0.8rem}
+
+/* ── ANIMATIONS ── */
+@keyframes fadeUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+.gallery-col{animation:fadeUp 0.6s var(--ease-out) both}
+.info-col{animation:fadeUp 0.6s var(--ease-out) 0.1s both}
+
+/* ── FOOTER ── */
+.footer{
+  border-top:1px solid var(--border);padding:40px clamp(16px,4vw,48px);
+  text-align:center;color:var(--ink-muted);font-size:0.8rem;letter-spacing:0.05em;
+}
+.footer-brand{font-family:var(--serif);font-size:1.1rem;color:var(--ink);margin-bottom:8px;font-style:italic}
+
+/* ── RESPONSIVE NAVBAR ADJUSTMENTS ── */
+@media(max-width:900px){
+  .nav-links{display:none}
+}
+@media(max-width:600px){
+  .nav-hamburger{display:flex}
+  .nav-actions .nav-icon:not(:last-child){display:none}
+}
+</style>
 </head>
 <body>
 
-  <nav class="navbar sticky-top navbar-expand-xl bg-body-tertiary shadow-sm-custom">
-    <div class="container-md">
+<!-- NAVBAR -->
+<nav class="nav">
+  <a class="nav-brand" href="#">Perfume<span>~e~ Farhat</span></a>
+  <ul class="nav-links">
+    <li><a href="../index.html">Home</a></li>
+    <li><a href="menn.html">Men</a></li>
+    <li><a href="womenn.html" class="active">Women</a></li>
+    <li><a href="unisex.html">Unisex</a></li>
+    <li><a href="dashboard.html">Dashboard</a></li>
+    <li><a href="admin.html">Admin</a></li>
+  </ul>
+  <div class="nav-actions">
+    <a href="../Pages/productDetail.html" class="nav-icon" title="Search">🔍</a>
+    <a href="../Pages/cart.html" class="nav-icon" title="Wishlist">❤️</a>
+    <a href="../Pages/cart.html" class="nav-icon" title="Cart">🛒</a>
+    <a href="../Pages/auth.html" class="nav-login">Login</a>
+    <button class="nav-hamburger" id="hamburger" aria-label="Menu" onclick="toggleMenu()">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
 
-      <a class="navbar-brand unique-logo-glow" href="womenn.html">
-        <span class="logo-perfume" style="font-family: cursive;">Perfume</span>
-        <span class="logo-brand">~e~ Farhat</span>
-      </a>
+<!-- MOBILE DRAWER -->
+<div class="nav-mobile-drawer" id="mobileDrawer">
+  <a href="../index.html">Home</a>
+  <a href="menn.html">Men</a>
+  <a href="womenn.html" class="active">Women</a>
+  <a href="unisex.html">Unisex</a>
+  <a href="dashboard.html">Dashboard</a>
+  <a href="admin.html">Admin</a>
+</div>
 
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-        <span class="navbar-toggler-icon"></span>
-      </button>
+<!-- BREADCRUMB -->
+<div class="breadcrumb">
+  <a href="../index.html">Home</a><span class="bc-sep">›</span>
+  <a href="womenn.html">Women</a><span class="bc-sep">›</span>
+  <a href="unisex.html">Elite Collection</a><span class="bc-sep">›</span>
+  <span id="dyn-breadcrumb-last" style="color:var(--ink)">Parisian Bloom</span>
+</div>
 
-      <div class="collapse navbar-collapse" id="navbarNav">
-        <ul class="navbar-nav mx-auto">
-          <li class="nav-item"><a class="nav-link" href="../index.html">Home</a></li>
-          <li class="nav-item"><a class="nav-link" href="menn.html">Men</a></li>
-          <li class="nav-item"><a class="nav-link active" href="womenn.html">Women</a></li>
-          <li class="nav-item"><a class="nav-link" href="unisex.html">Unisex</a></li>
-          <li class="nav-item"><a class="nav-link" href="../HtmlPages/dashboard.html">Dashboard</a></li>
-          <li class="nav-item"><a class="nav-link" href="../HtmlPages/admin.html">Admin</a></li>
-        </ul>
+<!-- PRODUCT -->
+<div class="product-wrap">
 
-        <div class="navbar-icons">
-          <a href="../HtmlPages/product-detail.html" class="icon-link icon-hover-bounce">🔍<span style="font-size:smaller;">Search</span></a>
-          <a href="../HtmlPages/dashboard.html" class="icon-link icon-hover-bounce">❤️<span style="font-size:smaller;">Favourite</span></a>
-          <a href="../HtmlPages/cart.html" class="icon-link icon-hover-bounce">🛒<span style="font-size:smaller;">Shop</span></a>
-          <a href="../Pages/auth.html" class="btn btn-dark btn-sm login-btn pulse-effect">Login</a>
+  <!-- LEFT COL: GALLERY -->
+  <div class="gallery-col">
+    <div class="gallery-inner">
+
+      <!-- Thumbnails -->
+      <div class="thumbs" id="thumbs">
+        <div class="thumb active" onclick="switchPreview(this,'https://images.unsplash.com/photo-1541643600914-78b084683601?w=900&q=80')">
+          <img src="https://images.unsplash.com/photo-1541643600914-78b084683601?w=150&q=80" alt="View 1">
+        </div>
+        <div class="thumb" onclick="switchPreview(this,'https://images.unsplash.com/photo-1594035910387-fea47794261f?w=900&q=80')">
+          <img src="https://images.unsplash.com/photo-1594035910387-fea47794261f?w=150&q=80" alt="View 2">
+        </div>
+        <div class="thumb" onclick="switchPreview(this,'https://images.unsplash.com/photo-1523293182086-7651a899d37f?w=900&q=80')">
+          <img src="https://images.unsplash.com/photo-1523293182086-7651a899d37f?w=150&q=80" alt="View 3">
+        </div>
+        <div class="thumb" onclick="switchPreview(this,'https://images.unsplash.com/photo-1615634260167-c8cdede054de?w=900&q=80')">
+          <img src="https://images.unsplash.com/photo-1615634260167-c8cdede054de?w=150&q=80" alt="View 4">
         </div>
       </div>
 
-    </div>
-  </nav>
-
-  <main class="flipkart-style-container container-fluid py-4 my-4">
-      <div class="row g-4 justify-content-center">
-          
-          <div class="col-12 col-md-5 col-lg-5 col-xl-4 left-sticky-column">
-              <div class="gallery-wrapper">
-                  <div class="thumbs-strip">
-                      <div class="thumb-card active" onclick="switchPreview(this, 'https://images.unsplash.com/photo-1541643600914-78b084683601?w=800')">
-                          <img src="https://images.unsplash.com/photo-1541643600914-78b084683601?w=150" alt="View 1" id="thumb-img-1">
-                      </div>
-                      <div class="thumb-card" onclick="switchPreview(this, 'https://images.unsplash.com/photo-1594035910387-fea47794261f?w=800')">
-                          <img src="https://images.unsplash.com/photo-1594035910387-fea47794261f?w=150" alt="View 2" id="thumb-img-2">
-                      </div>
-                      <div class="thumb-card" onclick="switchPreview(this, 'https://images.unsplash.com/photo-1523293182086-7651a899d37f?w=800')">
-                          <img src="https://images.unsplash.com/photo-1523293182086-7651a899d37f?w=150" alt="View 3" id="thumb-img-3">
-                      </div>
-                  </div>
-
-                  <div class="main-preview-frame" id="zoom-box">
-                      <img src="https://images.unsplash.com/photo-1541643600914-78b084683601?w=800" id="current-view-img" alt="Main View">
-                  </div>
-              </div>
-
-              <div class="action-grid mt-3">
-                  <button class="fk-btn fk-cart-btn"><i class="fa-solid fa-cart-shopping me-2"></i>ADD TO CART</button>
-                  <button class="fk-btn fk-buy-btn"><i class="fa-solid fa-bolt me-2"></i>BUY NOW</button>
-              </div>
-          </div>
-
-          <div class="col-12 col-md-7 col-lg-6 col-xl-6 right-scroll-column">
-              <div class="info-panel">
-                  <nav class="breadcrumb-nav mb-2" id="dyn-breadcrumb">Home &gt; Women &gt; Elite Collection &gt; Parisian Bloom</nav>
-                  
-                  <span class="brand-tag text-uppercase">Maison De Farhat</span>
-                  <h1 class="product-header-title" id="dyn-title">Parisian Bloom Luxury Eau De Parfum</h1>
-                  
-                  <div class="rating-row d-flex align-items-center gap-2 my-2">
-                      <span class="badge badge-rating">4.8 <i class="fa-solid fa-star ms-1" style="font-size: 10px;"></i></span>
-                      <span class="text-muted small fw-bold">467 Ratings & 120 Reviews</span>
-                  </div>
-
-                  <div class="price-matrix my-3">
-                      <span class="sale-price" id="active-price">₹5,499</span>
-                      <span class="retail-price" id="active-old-price">₹6,999</span>
-                      <span class="discount-percentage" id="active-discount">21% off</span>
-                  </div>
-                  <div class="tax-clause text-muted mb-4">Inclusive of all taxes</div>
-
-                  <div class="variant-wrapper mb-4">
-                      <div class="variant-title text-muted mb-2">Selected Size</div>
-                      <div class="variant-options-grid">
-                          <input type="radio" class="btn-check" name="perfume-size" id="size-50" data-price="3499" data-old="4499" data-disc="22% off">
-                          <label class="variant-pill-card" for="size-50">
-                              <span class="size-label">50 ml</span>
-                              <span class="pill-price" id="p-size-50">₹3,499</span>
-                          </label>
-
-                          <input type="radio" class="btn-check" name="perfume-size" id="size-100" data-price="5499" data-old="6999" data-disc="21% off" checked>
-                          <label class="variant-pill-card" for="size-100">
-                              <span class="size-label">100 ml</span>
-                              <span class="pill-price" id="p-size-100">₹5,499</span>
-                              <span class="stock-left text-danger">5 left</span>
-                          </label>
-                      </div>
-                  </div>
-
-                  <div class="composition-wrapper mb-4">
-                      <div class="variant-title text-muted mb-2">Fragrance Composition</div>
-                      <div class="row g-2">
-                          <div class="col-4">
-                              <div class="composition-card">
-                                  <h6>Top Notes</h6>
-                                  <p id="dyn-top">Velvet Rose, Saffron</p>
-                              </div>
-                          </div>
-                          <div class="col-4">
-                              <div class="composition-card">
-                                  <h6>Heart Notes</h6>
-                                  <p id="dyn-heart">French Jasmine</p>
-                              </div>
-                          </div>
-                          <div class="col-4">
-                              <div class="composition-card">
-                                  <h6>Base Notes</h6>
-                                  <p id="dyn-base">White Musk, Amber</p>
-                              </div>
-                          </div>
-                      </div>
-                  </div>
-
-                  <div class="product-description-block border-top pt-3">
-                      <h5 class="block-title">Product Description</h5>
-                      <p class="content-text" id="dyn-desc">
-                          Experience the soft touch of luxury. A premium curation of fresh florals, rich vanilla and delicate oriental fragrances crafted for her. High concentration formulas that stay with you all day long.
-                      </p>
-                  </div>
-              </div>
-          </div>
-
+      <!-- Main Image -->
+      <div class="main-img-wrap" id="zoom-box">
+        <div class="badge-new">New</div>
+        <button class="wishlist-btn" id="wishlistBtn" onclick="toggleWishlist()" title="Add to wishlist">♡</button>
+        <img src="https://images.unsplash.com/photo-1541643600914-78b084683601?w=900&q=80" id="main-img" alt="Parisian Bloom Perfume">
+        <div class="zoom-hint">Hover to zoom</div>
       </div>
-  </main>
 
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-  <script>
-      function switchPreview(element, sourceUrl) {
-          document.getElementById('current-view-img').src = sourceUrl;
-          let currentActiveThumbs = document.getElementsByClassName('thumb-card');
-          for(let i=0; i < currentActiveThumbs.length; i++) {
-              currentActiveThumbs[i].classList.remove('active');
-          }
-          element.classList.add('active');
-      }
+    </div>
 
-      const variantRadios = document.querySelectorAll('input[name="perfume-size"]');
-      variantRadios.forEach(radio => {
-          radio.addEventListener('change', function() {
-              document.getElementById('active-price').innerText = "₹" + parseInt(this.getAttribute('data-price')).toLocaleString('en-IN');
-              document.getElementById('active-old-price').innerText = "₹" + parseInt(this.getAttribute('data-old')).toLocaleString('en-IN');
-              document.getElementById('active-discount').innerText = this.getAttribute('data-disc');
-          });
-      });
+    <!-- CTA Buttons -->
+    <div class="action-row">
+      <button class="btn-cart" id="cartBtn" onclick="addToCart()">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg>
+        Add to Cart
+      </button>
+      <button class="btn-buy">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+        Buy Now
+      </button>
+    </div>
 
-      const zoomBox = document.getElementById('zoom-box');
-      const zoomImg = document.getElementById('current-view-img');
-      zoomBox.addEventListener('mousemove', (e) => {
-          const { left, top, width, height } = zoomBox.getBoundingClientRect();
-          const posX = ((e.clientX - left) / width) * 100;
-          const posY = ((e.clientY - top) / height) * 100;
-          zoomImg.style.transformOrigin = `${posX}% ${posY}%`;
-          zoomImg.style.transform = 'scale(1.7)';
-      });
-      zoomBox.addEventListener('mouseleave', () => {
-          zoomImg.style.transformOrigin = 'center center';
-          zoomImg.style.transform = 'scale(1)';
-      });
+    <!-- Delivery info -->
+    <div class="delivery-card" style="margin-top:14px">
+      <div class="delivery-row">
+        <span class="delivery-icon">🚚</span>
+        <div class="delivery-text"><strong>Free delivery</strong> on orders above ₹999. Estimated 2–4 business days.</div>
+      </div>
+      <div class="delivery-row">
+        <span class="delivery-icon">↩️</span>
+        <div class="delivery-text"><strong>7-day returns</strong>. Hassle-free if you're not satisfied.</div>
+      </div>
+      <div class="delivery-row">
+        <span class="delivery-icon">✅</span>
+        <div class="delivery-text"><strong>100% authentic</strong>. Direct from Maison De Farhat.</div>
+      </div>
+    </div>
+  </div>
 
-      // --- NEW DYNAMIC ROUTER PARSER ENGINE ---
-      window.addEventListener('DOMContentLoaded', () => {
-          const urlParams = new URLSearchParams(window.location.search);
-          
-          if (urlParams.has('title')) {
-              const title = urlParams.get('title');
-              const price = parseInt(urlParams.get('price'));
-              const oldPrice = parseInt(urlParams.get('oldPrice'));
-              const discount = urlParams.get('discount');
-              const imgUrl = urlParams.get('img');
-              const topNotes = urlParams.get('top');
-              const heartNotes = urlParams.get('heart');
-              const baseNotes = urlParams.get('base');
-              const description = urlParams.get('desc');
+  <!-- RIGHT COL: INFO -->
+  <div class="info-col">
+    <div class="brand-eyebrow">Maison De Farhat</div>
+    <h1 class="product-title" id="dyn-title"><em>Parisian Bloom</em> Luxury Eau De Parfum</h1>
 
-              // Text Content Refresher
-              document.getElementById('dyn-breadcrumb').innerText = `Home > Unisex Collection > ${title}`;
-              document.getElementById('dyn-title').innerText = title;
-              document.getElementById('dyn-desc').innerText = description ? description : "Premium luxury perfume crafted with high concentration oils.";
-              
-              // Price Grid Setter
-              document.getElementById('active-price').innerText = "₹" + price.toLocaleString('en-IN');
-              document.getElementById('active-old-price').innerText = "₹" + oldPrice.toLocaleString('en-IN');
-              document.getElementById('active-discount').innerText = discount;
+    <div class="rating-row">
+      <div class="stars" aria-label="4.8 out of 5 stars">
+        <svg class="star" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+        <svg class="star" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+        <svg class="star" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+        <svg class="star" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+        <svg class="star" viewBox="0 0 24 24" style="fill:none;stroke:var(--gold);stroke-width:1.5"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+      </div>
+      <span class="rating-num">4.8</span>
+      <span class="rating-count">467 ratings · 120 reviews</span>
+    </div>
 
-              // Size Variations Math Auto-calculation (50ml price logic)
-              const size50Radio = document.getElementById('size-50');
-              const size100Radio = document.getElementById('size-100');
-              if(size50Radio && size100Radio) {
-                  // 100ml update
-                  size100Radio.setAttribute('data-price', price);
-                  size100Radio.setAttribute('data-old', oldPrice);
-                  size100Radio.setAttribute('data-disc', discount);
-                  document.getElementById('p-size-100').innerText = "₹" + price.toLocaleString('en-IN');
+    <div class="divider"></div>
 
-                  // 50ml standard math dynamic offset (60% value auto-generation)
-                  const p50 = Math.round(price * 0.6);
-                  const o50 = Math.round(oldPrice * 0.6);
-                  size50Radio.setAttribute('data-price', p50);
-                  size50Radio.setAttribute('data-old', o50);
-                  size50Radio.setAttribute('data-disc', discount);
-                  document.getElementById('p-size-50').innerText = "₹" + p50.toLocaleString('en-IN');
-              }
+    <!-- Price -->
+    <div class="price-block">
+      <div class="price-row">
+        <span class="price-sale" id="active-price">₹5,499</span>
+        <span class="price-old" id="active-old">₹6,999</span>
+        <span class="price-off" id="active-disc">21% off</span>
+      </div>
+      <div class="price-note">Inclusive of all taxes</div>
+    </div>
 
-              // Composition Accords
-              if(topNotes) document.getElementById('dyn-top').innerText = topNotes;
-              if(heartNotes) document.getElementById('dyn-heart').innerText = heartNotes;
-              if(baseNotes) document.getElementById('dyn-base').innerText = baseNotes;
+    <!-- Offer pills -->
+    <div class="offer-row" style="margin-top:12px">
+      <div class="offer-pill"><span>🏷️</span> Use FARHAT10 for extra 10%</div>
+      <div class="offer-pill"><span>💳</span> EMI from ₹183/mo</div>
+    </div>
 
-              // Galleries Refresher
-              document.getElementById('current-view-img').src = imgUrl;
-              document.getElementById('thumb-img-1').src = imgUrl;
-              document.getElementById('thumb-img-2').src = imgUrl;
-              document.getElementById('thumb-img-3').src = imgUrl;
+    <div class="divider"></div>
 
-              // Re-mapping thumbnail event strings dynamically
-              const cards = document.querySelectorAll('.thumbs-strip .thumb-card');
-              cards.forEach(card => card.setAttribute('onclick', `switchPreview(this, '${imgUrl}')`));
-          }
-      });
-  </script>
+    <!-- Size -->
+    <div class="section-label">Select Size</div>
+    <div class="size-grid">
+      <label class="size-option">
+        <input type="radio" name="size" value="50" data-price="3299" data-old="4199" data-disc="21% off">
+        <div class="size-card">
+          <span class="size-ml">30 ml</span>
+          <span class="size-price">₹2,999</span>
+        </div>
+      </label>
+      <label class="size-option">
+        <input type="radio" name="size" value="50" data-price="3499" data-old="4499" data-disc="22% off">
+        <div class="size-card">
+          <span class="size-ml">50 ml</span>
+          <span class="size-price">₹3,499</span>
+        </div>
+      </label>
+      <label class="size-option" style="position:relative">
+        <span class="size-stock">5 left</span>
+        <input type="radio" name="size" value="100" data-price="5499" data-old="6999" data-disc="21% off" checked>
+        <div class="size-card">
+          <span class="size-ml">100 ml</span>
+          <span class="size-price">₹5,499</span>
+        </div>
+      </label>
+    </div>
+
+    <div class="divider"></div>
+
+    <!-- Fragrance Notes -->
+    <div class="section-label">Fragrance Composition</div>
+    <div class="accord-grid">
+      <div class="accord-card">
+        <span class="accord-icon">🌹</span>
+        <div class="accord-type">Top Notes</div>
+        <div class="accord-notes" id="dyn-top">Velvet Rose, Saffron</div>
+      </div>
+      <div class="accord-card">
+        <span class="accord-icon">🌸</span>
+        <div class="accord-type">Heart Notes</div>
+        <div class="accord-notes" id="dyn-heart">French Jasmine</div>
+      </div>
+      <div class="accord-card">
+        <span class="accord-icon">🌿</span>
+        <div class="accord-type">Base Notes</div>
+        <div class="accord-notes" id="dyn-base">White Musk, Amber</div>
+      </div>
+    </div>
+
+    <div class="divider"></div>
+
+    <!-- Description -->
+    <div class="section-label">About this Perfume</div>
+    <p class="desc-text" id="dyn-desc">
+      Experience the soft touch of luxury. A premium curation of fresh florals, rich vanilla and delicate oriental fragrances crafted for her. High concentration formulas with long-lasting sillage that stay with you all day — from morning meetings to candlelit evenings.
+    </p>
+
+    <div class="divider"></div>
+
+    <!-- Promo strip -->
+    <div class="promo-strip">
+      <span style="font-size:1.4rem">🎁</span>
+      <div class="promo-strip-text">
+        <strong>Gift wrapping available.</strong> Order by 5 PM for same-day dispatch. Add a personalised message at checkout.
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="footer-brand">Perfume~e~ Farhat</div>
+  <div>© 2025 Maison De Farhat. All rights reserved. Crafted with elegance.</div>
+</footer>
+
+<script>
+function switchPreview(el, src) {
+  document.getElementById('main-img').src = src;
+  document.querySelectorAll('.thumb').forEach(t => t.classList.remove('active'));
+  el.classList.add('active');
+}
+
+function toggleWishlist() {
+  const btn = document.getElementById('wishlistBtn');
+  const liked = btn.classList.toggle('liked');
+  btn.textContent = liked ? '♥' : '♡';
+  btn.style.transition = 'transform 0.3s cubic-bezier(0.34,1.56,0.64,1)';
+  btn.style.transform = 'scale(1.3)';
+  setTimeout(() => btn.style.transform = 'scale(1)', 300);
+}
+
+function addToCart() {
+  const btn = document.getElementById('cartBtn');
+  const orig = btn.innerHTML;
+  btn.innerHTML = '✓ Added!';
+  btn.style.background = '#388e3c';
+  setTimeout(() => {
+    btn.innerHTML = orig;
+    btn.style.background = '';
+  }, 1800);
+}
+
+function toggleMenu() {
+  const drawer = document.getElementById('mobileDrawer');
+  drawer.classList.toggle('open');
+  if (drawer.classList.contains('open')) {
+    drawer.style.display = 'flex';
+  } else {
+    setTimeout(() => { if (!drawer.classList.contains('open')) drawer.style.display = 'none'; }, 300);
+  }
+}
+
+// Zoom on hover
+const zoomBox = document.getElementById('zoom-box');
+const img = document.getElementById('main-img');
+zoomBox.addEventListener('mousemove', e => {
+  const r = zoomBox.getBoundingClientRect();
+  const x = ((e.clientX - r.left) / r.width) * 100;
+  const y = ((e.clientY - r.top) / r.height) * 100;
+  img.style.transformOrigin = `${x}% ${y}%`;
+  img.style.transform = 'scale(1.65)';
+});
+zoomBox.addEventListener('mouseleave', () => {
+  img.style.transform = 'scale(1)';
+  img.style.transformOrigin = 'center center';
+});
+
+// Size variant change
+document.querySelectorAll('input[name="size"]').forEach(r => {
+  r.addEventListener('change', function() {
+    const price = parseInt(this.dataset.price);
+    const old = parseInt(this.dataset.old);
+    document.getElementById('active-price').textContent = '₹' + price.toLocaleString('en-IN');
+    document.getElementById('active-old').textContent = '₹' + old.toLocaleString('en-IN');
+    document.getElementById('active-disc').textContent = this.dataset.disc;
+  });
+});
+
+// URL param router (same as original)
+window.addEventListener('DOMContentLoaded', () => {
+  const p = new URLSearchParams(window.location.search);
+  if (!p.has('title')) return;
+  const title = p.get('title');
+  const price = parseInt(p.get('price'));
+  const oldPrice = parseInt(p.get('oldPrice'));
+  const discount = p.get('discount');
+  const img = p.get('img');
+
+  document.getElementById('dyn-title').innerHTML = '<em>' + title + '</em>';
+  document.getElementById('dyn-breadcrumb-last').textContent = title;
+  document.getElementById('active-price').textContent = '₹' + price.toLocaleString('en-IN');
+  document.getElementById('active-old').textContent = '₹' + oldPrice.toLocaleString('en-IN');
+  document.getElementById('active-disc').textContent = discount;
+  if (p.get('top')) document.getElementById('dyn-top').textContent = p.get('top');
+  if (p.get('heart')) document.getElementById('dyn-heart').textContent = p.get('heart');
+  if (p.get('base')) document.getElementById('dyn-base').textContent = p.get('base');
+  if (p.get('desc')) document.getElementById('dyn-desc').textContent = p.get('desc');
+  if (img) {
+    document.getElementById('main-img').src = img;
+    document.querySelectorAll('.thumb img').forEach(t => t.src = img.replace('w=900','w=150'));
+    document.querySelectorAll('.thumb').forEach(t => t.setAttribute('onclick', `switchPreview(this,'${img}')`));
+  }
+});
+</script>
 </body>
 </html>
