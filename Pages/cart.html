@@ -11,18 +11,18 @@
     <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     
-    <link rel="stylesheet" href="cart.css">
+    <link rel="stylesheet" href="../css/cart.css">
 </head>
 <body>
   
     <!-- NAVBAR -->
     <nav class="navbar navbar-expand-lg fixed-top cart-nav">
         <div class="container">
-            <a class="navbar-brand" href="../index.html">Perfume <span>~e~</span> Farhat</a>
+            <a class="navbar-brand" href="../index.html">Perfume <span style="font-family: cursive;">~e~</span> <span style="font-family: cursive;">Farhat</span></a>
             <div class="ms-auto d-flex gap-2 align-items-center">
-                <a href="../Collection Page/menn.html" class="btn btn-outline-dark btn-sm rounded-pill px-3"><i class="bi bi-arrow-left me-1"></i> Continue Shopping</a>
+                <a href="../index.html" class="btn btn-outline-dark btn-sm rounded-pill px-3"><i class="bi bi-arrow-left me-1"></i>Home</a>
                 <a href="dashboard.html" class="btn btn-outline-dark btn-sm rounded-pill px-3">Dashboard</a>
-                <a href="login.html" class="btn btn-dark btn-sm rounded-pill px-3">Login</a>
+                <a href="auth.html" class="btn btn-dark btn-sm rounded-pill px-3">Login</a>
             </div>
         </div>
     </nav>
@@ -45,7 +45,7 @@
                 <div class="cart-summary-card p-4 mb-4">
                     <h6 class="fw-600 mb-3 text-dark">Apply Promotional Coupon</h6>
                     <div class="input-group">
-                        <input type="text" id="cartCoupon" class="form-control custom-cart-input shadow-none" placeholder="Coupon Code (FARHAT20)">
+                        <input type="text" id="cartCoupon" class="form-control custom-cart-input shadow-none" placeholder="Coupon Code (eg. FARHAT20)">
                         <button class="btn btn-apply-coupon font-cinzel px-4 btn-sm" onclick="applyCartPromo()">Apply</button>
                     </div>
                     <div id="couponAlert" class="small mt-2"></div>
@@ -109,7 +109,7 @@
                         <i class="bi bi-bag-x text-muted" style="font-size: 3.5rem; opacity: 0.5;"></i>
                         <h4 class="mt-4 font-cinzel fw-700">Your Bag is Empty</h4>
                         <p class="text-muted small px-3">Aapne abhi tak koi luxury fragrance add nahi ki hai.</p>
-                        <a href="../Collection Page/menn.html" class="btn btn-dark mt-3 rounded-pill px-4 btn-sm">Explore Fragrances</a>
+                        <a href="../index.html" class="btn btn-dark mt-3 rounded-pill px-4 btn-sm">Explore Fragrances</a>
                     </div>`;
                 document.getElementById('cart-subtotal').innerText = "₹0";
                 document.getElementById('cart-tax').innerText = "₹0.00";

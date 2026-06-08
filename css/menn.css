@@ -107,7 +107,7 @@ body{
 .hero-bg {
   position: absolute;
   inset: 0;
-  background-image: url("/Perfume-Jam-Jam/images/BG02.png");
+  background-image: url("../images/BG02.png");
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
