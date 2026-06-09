@@ -5,17 +5,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Secure Checkout | Perfume ~e~ Farhat</title>
     
-    <!-- Bootstrap 5 & Icons -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
-    <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
     
     <link rel="stylesheet" href="../css/pay.css">
 </head>
 <body>
-  
-    <!-- SECURE TOP NAVIGATION -->
+ 
     <nav class="navbar navbar-expand-lg fixed-top checkout-nav">
         <div class="container">
             <a class="navbar-brand" href="../index.html">Perfume <span style="font-family: cursive;">~e~</span> <span style="font-family: cursive;">Farhat</span></a>
@@ -26,246 +23,228 @@
         </div>
     </nav>
 
-    <!-- MAIN CHECKOUT LAYOUT -->
     <main class="container checkout-wrapper">
         <div class="row g-5">
             
-            <!-- LEFT: SHIPPING INFO & MULTI-GATEWAY PAYMENT -->
             <div class="col-lg-7 order-2 order-lg-1">
                 <div class="checkout-card p-4">
                     
                     <form id="perfumeCheckoutForm" class="needs-validation" novalidate>
                         
-                        <!-- SHIPPING INFORMATION SECTION -->
                         <h4 class="checkout-section-title mb-4"><i class="bi bi-truck me-2 text-gold"></i> Shipping Information</h4>
                         <div class="row g-3">
                             <div class="col-12">
                                 <label class="form-label custom-label">Full Name</label>
-                                <input type="text" class="form-control custom-input" placeholder="John Doe" required>
-                                <div class="invalid-feedback">Please enter your full name.</div>
+                                <!-- 1 -->
+                                <input type="text" id="fullName" class="form-control custom-input" placeholder="John Doe" required>
                             </div>
                             <div class="col-md-6">
                                 <label class="form-label custom-label">Phone Number</label>
-                                <input type="tel" class="form-control custom-input" placeholder="+91 XXXXX XXXXX" required>
-                                <div class="invalid-feedback">Please enter a valid phone number.</div>
+                                <!-- 2 -->
+                                <input type="tel" id="phone" class="form-control custom-input" placeholder="+91 XXXXX XXXXX" required>
                             </div>
                             <div class="col-md-6">
                                 <label class="form-label custom-label">Email Address</label>
-                                <input type="email" class="form-control custom-input" placeholder="john@example.com" required>
-                                <div class="invalid-feedback">Please enter a valid email address.</div>
+                                <!-- 3 -->
+                                <input type="email" id="email" class="form-control custom-input" placeholder="john@example.com" required>
                             </div>
                             <div class="col-12">
                                 <label class="form-label custom-label">Flat / House No. / Street Address</label>
-                                <input type="text" class="form-control custom-input" placeholder="Apartment, suite, unit, or landmark" required>
-                                <div class="invalid-feedback">Please provide your delivery address.</div>
+                                <!-- 4 -->
+                               <input type="text" id="address" class="form-control custom-input" placeholder="Apartment, suite, unit, or landmark" required>
                             </div>
                             <div class="col-md-6">
                                 <label class="form-label custom-label">City</label>
-                                <input type="text" class="form-control custom-input" placeholder="New Delhi" required>
-                                <div class="invalid-feedback">City name required.</div>
+                                <!-- 5 -->
+                                <input type="text" id="city" class="form-control custom-input" placeholder="New Delhi" required>
                             </div>
                             <div class="col-md-6">
                                 <label class="form-label custom-label">Postal Code / PIN</label>
-                                <input type="text" class="form-control custom-input" placeholder="110001" required>
-                                <div class="invalid-feedback">Please enter your local postal code.</div>
+                                <!-- 6 -->
+                                <input type="text" id="pincode" class="form-control custom-input" placeholder="110001" required>
                             </div>
                         </div>
 
                         <hr class="my-5 custom-divider">
 
-                        <!-- PHASE 5 PAYMENT METHODS (INTEGRATION READY) -->
                         <h4 class="checkout-section-title mb-4"><i class="bi bi-credit-card-2-front me-2 text-gold"></i> Payment Method</h4>
                         <div class="payment-gateway-wrapper d-grid gap-3 mb-4">
-                            
-                            <!-- 1. Cash On Delivery -->
                             <div class="gateway-option p-3 border rounded" onclick="switchGateway('cod')">
                                 <div class="form-check d-flex align-items-center">
                                     <input class="form-check-input me-3" type="radio" name="paymentMethod" id="pay-cod" checked>
-                                    <label class="form-check-label w-100" for="pay-cod">
-                                        <strong>Cash On Delivery (COD)</strong>
-                                        <span class="d-block small text-muted">Pay with cash upon package delivery.</span>
-                                    </label>
-                                    <i class="bi bi-cash-coin fs-3 text-success"></i>
+                                    <label class="form-check-label w-100" for="pay-cod"><strong>Cash On Delivery (COD)</strong></label>
                                 </div>
                             </div>
-
-                            <!-- 2. Stripe Gateway -->
-                            <div class="gateway-option p-3 border rounded" onclick="switchGateway('stripe')">
-                                <div class="form-check d-flex align-items-center">
-                                    <input class="form-check-input me-3" type="radio" name="paymentMethod" id="pay-stripe">
-                                    <label class="form-check-label w-100" for="pay-stripe">
-                                        <strong>Stripe (International Cards)</strong>
-                                        <span class="d-block small text-muted">Supports Visa, Mastercard, AMEX, and Apple Pay.</span>
-                                    </label>
-                                    <i class="bi bi-credit-card fs-3 text-primary"></i>
-                                </div>
-                                <!-- Stripe Dynamic Fields -->
-                                <div id="stripe-fields" class="gateway-subfields mt-3 d-none">
-                                    <div class="p-3 bg-light rounded border">
-                                        <label class="form-label small fw-500 mb-1">Card Details (Stripe Elements Container)</label>
-                                        <div class="form-control custom-input d-flex align-items-center bg-white">
-                                            <i class="bi bi-credit-card-2-back me-2 text-muted"></i>
-                                            <input type="text" class="border-0 w-100 outline-none small-text" placeholder="1234  5678  9101  1121   MM/YY   CVC" style="outline: none;">
-                                        </div>
-                                    </div>
-                                </div>
                             </div>
 
-                            <!-- 3. Razorpay Gateway -->
-                            <div class="gateway-option p-3 border rounded" onclick="switchGateway('razorpay')">
-                                <div class="form-check d-flex align-items-center">
-                                    <input class="form-check-input me-3" type="radio" name="paymentMethod" id="pay-razorpay">
-                                    <label class="form-check-label w-100" for="pay-razorpay">
-                                        <strong>Razorpay (UPI, NetBanking & Indian Cards)</strong>
-                                        <span class="d-block small text-muted">Instant checkout via GooglePay, PhonePe, Paytm, or NetBanking.</span>
-                                    </label>
-                                    <span class="badge bg-primary-subtle text-primary border border-primary-subtle px-2 py-1">Popular</span>
-                                </div>
-                                <!-- Razorpay Dynamic Info -->
-                                <div id="razorpay-fields" class="gateway-subfields mt-3 d-none">
-                                    <div class="p-3 bg-light rounded border text-center text-muted small">
-                                        <i class="bi bi-qr-code-scan text-dark fs-4 d-block mb-1"></i>
-                                        Razorpay popup window will launch securely to complete UPI/Card transfer.
-                                    </div>
-                                </div>
-                            </div>
-
-                            <!-- 4. PayPal Gateway -->
-                            <div class="gateway-option p-3 border rounded" onclick="switchGateway('paypal')">
-                                <div class="form-check d-flex align-items-center">
-                                    <input class="form-check-input me-3" type="radio" name="paymentMethod" id="pay-paypal">
-                                    <label class="form-check-label w-100" for="pay-paypal">
-                                        <strong>PayPal Express</strong>
-                                        <span class="d-block small text-muted">Safe global transactions directly from your PayPal account balance.</span>
-                                    </label>
-                                    <i class="bi bi-paypal fs-3 text-info"></i>
-                                </div>
-                                <!-- PayPal Dynamic Buttons -->
-                                <div id="paypal-fields" class="gateway-subfields mt-3 d-none">
-                                    <div class="p-3 bg-light rounded border text-center">
-                                        <button type="button" class="btn btn-warning w-100 fw-bold rounded-pill mb-2 py-2" style="background:#ffc439; border:none; color:#111;"><i class="bi bi-paypal me-2"></i>PayPal Express Checkout</button>
-                                    </div>
-                                </div>
-                            </div>
-
-                        </div>
-
-                        <!-- SUBMIT ORDER -->
                         <button class="btn btn-finalize-order w-100 py-3 mt-4" type="submit">Complete Secure Purchase</button>
                     </form>
                 </div>
             </div>
 
-            <!-- RIGHT: COMPREHENSIVE ORDER SUMMARY -->
             <div class="col-lg-5 order-1 order-lg-2">
                 <div class="summary-card p-4 sticky-summary">
                     <h4 class="checkout-section-title mb-4"><i class="bi bi-bag-check me-2 text-gold"></i> Order Summary</h4>
                     
-                    <!-- Products Curation List -->
-                    <div class="checkout-cart-items mb-4">
-                        <!-- Product Item 1 -->
-                        <div class="cart-item-row d-flex align-items-center justify-content-between py-3 border-bottom">
-                            <div class="d-flex align-items-center gap-3">
-                                <div class="item-img-wrapper">
-                                    <img src="https://images.unsplash.com/photo-1541643600914-78b084683601?w=100" alt="Santal Wood">
-                                </div>
-                                <div>
-                                    <h6 class="item-name m-0">Santal Wood</h6>
-                                    <span class="item-meta text-muted d-block">Size: 100ml | Qty: 1</span>
-                                </div>
-                            </div>
-                            <span class="item-price fw-600">₹6,999</span>
-                        </div>
-                        
-                        <!-- Product Item 2 -->
-                        <div class="cart-item-row d-flex align-items-center justify-content-between py-3 border-bottom">
-                            <div class="d-flex align-items-center gap-3">
-                                <div class="item-img-wrapper">
-                                    <img src="https://images.unsplash.com/photo-1595425970377-c9703cf48b6d?w=100" alt="Silver Musk">
-                                </div>
-                                <div>
-                                    <h6 class="item-name m-0">Silver Musk</h6>
-                                    <span class="item-meta text-muted d-block">Size: 50ml | Qty: 1</span>
-                                </div>
-                            </div>
-                            <span class="item-price fw-600">₹5,299</span>
-                        </div>
+                    <div id="payment-summary" class="mb-4 p-3 border rounded bg-light">
+                        <img id="pay-img" src="" style="width: 100px; border-radius: 5px;">
+                        <h3 id="pay-name" class="h5 mt-2"></h3>
+                        <p class="fw-bold">Total: <span id="pay-price"></span></p>
                     </div>
 
-                    <!-- Financial Math Breakdown -->
                     <div class="price-breakdown d-grid gap-2 pt-2">
-                        <div class="d-flex justify-content-between text-muted">
-                            <span>Products Subtotal</span>
-                            <span class="fw-500 text-dark">₹12,298</span>
-                        </div>
-                        <div class="d-flex justify-content-between text-muted">
-                            <span>Shipping Handling</span>
-                            <span class="text-success fw-600">FREE SHIPPING</span>
-                        </div>
-                        <hr class="my-2 custom-divider">
                         <div class="d-flex justify-content-between align-items-center total-row pt-1">
                             <span class="fw-600 fs-5">Total Amount</span>
-                            <span class="fw-700 fs-4 text-dark">₹12,298</span>
+                            <span class="fw-700 fs-4 text-dark" id="pay-total-display"></span>
                         </div>
                     </div>
-
                 </div>
             </div>
-
         </div>
     </main>
 
-    <!-- Success Feedback Modal -->
     <div class="modal fade" id="successModal" tabindex="-1" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content border-0 shadow text-center p-4">
                 <div class="modal-body">
-                    <div class="success-icon-container mb-3">
-                        <i class="bi bi-shield-check text-success" style="font-size: 4.5rem;"></i>
-                    </div>
+                    <i class="bi bi-shield-check text-success" style="font-size: 4.5rem;"></i>
                     <h3 class="font-cinzel mt-2">Order Confirmed!</h3>
-                    <p class="text-muted small">Aapki luxury fragrance order receive ho gayi hai. Scent and tracking detail emails jaldi hi send kiye jayenge.</p>
                     <a href="../index.html" class="btn btn-finalize-order w-100 py-2 mt-3">Back to Store</a>
                 </div>
             </div>
         </div>
     </div>
 
-    <!-- Core Interactions Script -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
     <script>
-        // Form handling & native triggers
+        
+        
+        // Data Fetching Script
+        
+        window.onload = function() {
+    // 1. SessionStorage se data uthayein
+    const cart = JSON.parse(sessionStorage.getItem('checkoutData'));
+    const total = sessionStorage.getItem('checkoutTotal');
+
+    if (cart && total) {
+        // Display Total Price
+        document.getElementById('pay-price').innerText = total;
+        document.getElementById('pay-total-display').innerText = total;
+
+        // Products ka naam list karein
+        const itemNames = cart.map(item => item.name).join(', ');
+        document.getElementById('pay-name').innerText = itemNames;
+        
+        // Pehle item ki image dikha dein
+        document.getElementById('pay-img').src = cart[0].img;
+    } else {
+        alert("Koi item select nahi hua!");
+        window.location.href = "cart.html";
+    }
+}
+
+
+        // Form handling
         const checkoutForm = document.getElementById('perfumeCheckoutForm');
-        checkoutForm.addEventListener('submit', function (event) {
-            event.preventDefault();
-            if (!checkoutForm.checkValidity()) {
-                event.stopPropagation();
-                checkoutForm.classList.add('was-validated');
-                // Scroll up on errors instantly 
-                window.scrollTo({ top: 0, behavior: 'smooth' });
-            } else {
-                var confirmationModal = new bootstrap.Modal(document.getElementById('successModal'));
-                confirmationModal.show();
-            }
-        }, false);
 
-        // Dynamic Payment Gateways UI Switcher
-        function switchGateway(gatewayType) {
-            // Uncheck/Check inputs securely
+        checkoutForm.addEventListener('submit', async function(event) {
+
+    event.preventDefault();
+
+    if (!checkoutForm.checkValidity()) {
+        checkoutForm.classList.add('was-validated');
+        return;
+    }
+
+    const cart =
+        JSON.parse(sessionStorage.getItem('checkoutData'));
+
+    const total =
+        sessionStorage.getItem('checkoutTotal');
+
+    const orderData = {
+
+        name:
+            document.getElementById('fullName').value,
+
+        email:
+            document.getElementById('email').value,
+
+        phone:
+            document.getElementById('phone').value,
+
+        address:
+            document.getElementById('address').value +
+            ", " +
+            document.getElementById('city').value +
+            " - " +
+            document.getElementById('pincode').value,
+
+        productName:
+            cart.map(item => item.name).join(', '),
+
+        price: total
+    };
+
+    try {
+
+        const response =
+            await fetch('/place-order', {
+
+                method: 'POST',
+
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+
+                body: JSON.stringify(orderData)
+            });
+
+        const result =
+            await response.json();
+
+        if(result.success){
+
+            sessionStorage.removeItem('checkoutData');
+            sessionStorage.removeItem('checkoutTotal');
+
+            var confirmationModal =
+                new bootstrap.Modal(
+                    document.getElementById('successModal')
+                );
+
+            confirmationModal.show();
+
+        } else {
+
+            alert(result.error || 'Order Failed');
+        }
+
+    } catch(error){
+
+        console.error(error);
+
+        alert('Server Error');
+    }
+});
+
+        function switchGateway(gatewayType) 
+        {
             document.getElementById('pay-cod').checked = (gatewayType === 'cod');
-            document.getElementById('pay-stripe').checked = (gatewayType === 'stripe');
-            document.getElementById('pay-razorpay').checked = (gatewayType === 'razorpay');
-            document.getElementById('pay-paypal').checked = (gatewayType === 'paypal');
+        document.getElementById('pay-stripe').checked = (gatewayType === 'stripe');
+        document.getElementById('pay-razorpay').checked = (gatewayType === 'razorpay');
+        document.getElementById('pay-paypal').checked = (gatewayType === 'paypal');
 
-            // Hide all subfields
-            document.getElementById('stripe-fields').classList.add('d-none');
-            document.getElementById('razorpay-fields').classList.add('d-none');
-            document.getElementById('paypal-fields').classList.add('d-none');
+    // 2. Sabhi dynamic fields ko pehle 'd-none' (hide) kar do
+        document.getElementById('stripe-fields').classList.add('d-none');
+        document.getElementById('razorpay-fields').classList.add('d-none');
+        document.getElementById('paypal-fields').classList.add('d-none');
 
-            // Show current active fields
-            if(gatewayType !== 'cod') {
-                document.getElementById(`${gatewayType}-fields`).classList.remove('d-none');
-            }
+    // 3. Sirf selected gateway ki fields ko show karo
+        if(gatewayType !== 'cod') 
+        {
+            document.getElementById(`${gatewayType}-fields`).classList.remove('d-none');
+        }
         }
     </script>
 </body>

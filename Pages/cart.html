@@ -240,24 +240,29 @@
                 alertBox.innerText = "✕ Invalid code. Use 'FARHAT20'.";
             }
         }
-        function proceedToCheckout() {
+        
+        
+    function proceedToCheckout() {
     let cart = JSON.parse(localStorage.getItem('perfumeCart')) || [];
     
     if (cart.length === 0) {
-        // Aap yaha alert ki jagah Bootstrap toast bhi use kar sakte hain
         alert("Aapka bag khali hai! Pehle kuch fragrances add karein.");
         return;
     }
+
+    // 1. Grand total jo screen par dikh raha hai wo uthayein
+    let finalTotal = document.getElementById('cart-grand-total').innerText;
+
+    // 2. Data ko sessionStorage mein save karein taaki pay.html ise read kar sake
+    sessionStorage.setItem('checkoutData', JSON.stringify(cart));
+    sessionStorage.setItem('checkoutTotal', finalTotal);
     
-    // Agar cart mein items hain, tabhi checkout page par le jayenge
-    window.location.href = "checkout.html";
+    // 3. Checkout page (pay.html) par redirect karein
+    // Note: Agar aapne file ka naam checkout.html rakha hai toh yaha change kar dein
+    window.location.href = "pay.html"; 
 }
 
-
-
-
-
-
     </script>
+
 </body>
 </html>

@@ -410,9 +410,9 @@ body{font-family:var(--sans);background:var(--ivory);color:var(--ink);min-height
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg>
         Add to Cart
       </button>
-      <button class="btn-buy">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
-        Buy Now
+      <button class="btn-buy" onclick="buyNow()">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+          Buy Now
       </button>
     </div>
 
@@ -547,6 +547,9 @@ body{font-family:var(--sans);background:var(--ivory);color:var(--ink);min-height
 </footer>
 
 <script>
+
+
+  
 function switchPreview(el, src) {
   document.getElementById('main-img').src = src;
   document.querySelectorAll('.thumb').forEach(t => t.classList.remove('active'));
@@ -562,16 +565,75 @@ function toggleWishlist() {
   setTimeout(() => btn.style.transform = 'scale(1)', 300);
 }
 
+
 function addToCart() {
-  const btn = document.getElementById('cartBtn');
-  const orig = btn.innerHTML;
-  btn.innerHTML = '✓ Added!';
-  btn.style.background = '#388e3c';
-  setTimeout(() => {
-    btn.innerHTML = orig;
-    btn.style.background = '';
-  }, 1800);
+    // 1. Product details get karein
+    const name = document.getElementById('dyn-title').innerText.replace('<em>', '').replace('</em>', '').trim();
+    const priceText = document.getElementById('active-price').innerText.replace('₹', '').replace(',', '');
+    const price = parseInt(priceText);
+    const img = document.getElementById('main-img').src;
+    
+    // Size check (selected radio button)
+    const selectedSize = document.querySelector('input[name="size"]:checked');
+    const size = selectedSize ? selectedSize.parentElement.querySelector('.size-ml').innerText : "Standard";
+
+    // 2. LocalStorage se cart fetch karein
+    let cart = JSON.parse(localStorage.getItem('perfumeCart')) || [];
+
+    // 3. Check karein ki item already hai ya nahi
+    const existingItem = cart.find(item => item.name === name && item.size === size);
+
+    if (existingItem) {
+        existingItem.qty += 1; // Agar hai, toh quantity badhayein
+    } else {
+        // Naya item add karein
+        cart.push({
+            id: 'perfume-' + Date.now(), // Unique ID
+            name: name,
+            price: price,
+            img: img,
+            size: size,
+            qty: 1
+        });
+    }
+
+    // 4. Update karein localStorage
+    localStorage.setItem('perfumeCart', JSON.stringify(cart));
+
+    // 5. UI Feedback
+    const btn = document.getElementById('cartBtn');
+    const orig = btn.innerHTML;
+    btn.innerHTML = '✓ Added to Cart!';
+    btn.style.background = '#388e3c';
+    setTimeout(() => {
+        btn.innerHTML = orig;
+        btn.style.background = '';
+    }, 1800);
 }
+
+
+// Naya function banayein
+function buyNow() {
+    const title = document.getElementById('dyn-title').innerText;
+    const price = document.getElementById('active-price').innerText;
+    const img = document.getElementById('main-img').src;
+
+    const product = {
+        name: title,
+        price: price,
+        img: img
+    };
+
+    // Wahi keys set karein jo pay.html dhoond raha hai
+    sessionStorage.setItem('checkoutData', JSON.stringify([product]));
+    sessionStorage.setItem('checkoutTotal', price);
+
+    // Ab pay.html par bhejein
+    window.location.href = "pay.html";
+}
+
+
+
 
 function toggleMenu() {
   const drawer = document.getElementById('mobileDrawer');
