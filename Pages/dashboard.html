@@ -12,13 +12,14 @@
     <link rel="stylesheet" href="../css/dashboard.css">
 </head>
 <body>
-  
+        <script src="../auth-status.js"></script>
+
     <nav class="navbar navbar-expand-lg fixed-top dashboard-nav">
         <div class="container-fluid px-md-5">
             <a class="navbar-brand" href="../index.html">Perfume <span style="font-family: cursive;">~e~</span> <span style="font-family: cursive;">Farhat</span></a>
             <div class="ms-auto d-flex gap-3 align-items-center">
                 <a href="../Pages/menn.html" class="btn btn-sm btn-outline-dark">Shop</a>
-                <a href="cart.html" class="btn btn-sm btn-outline-dark"><i class="bi bi-bag me-1"></i>Cart</a>
+                <a href="cart.html" id="cartBtn" class="btn btn-sm btn-outline-dark"><i class="bi bi-bag me-1"></i>Cart</a>
                 <a href="auth.html" class="btn btn-logout px-3 py-2"><i class="bi bi-box-arrow-right me-2"></i>Logout</a>
             </div>
         </div>
@@ -287,6 +288,16 @@
                 triggerAlert('Item safely released from your wishlist vault.');
             }, 300);
         }
+
+        const role = localStorage.getItem("role");
+
+        if(role === "admin"){
+            window.location.href = "admin.html";
+        }
+        else if(role !== "user"){
+            window.location.href = "../Pages/auth.html";
+        }
+
     </script>
 </body>
 </html>

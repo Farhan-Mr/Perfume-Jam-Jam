@@ -15,6 +15,9 @@
 </head>
 <body>
   
+    <script src="../auth-status.js"></script>
+
+
     <!-- NAVBAR -->
     <nav class="navbar navbar-expand-lg fixed-top cart-nav">
         <div class="container">
@@ -22,7 +25,7 @@
             <div class="ms-auto d-flex gap-2 align-items-center">
                 <a href="../index.html" class="btn btn-outline-dark btn-sm rounded-pill px-3"><i class="bi bi-arrow-left me-1"></i>Home</a>
                 <a href="dashboard.html" class="btn btn-outline-dark btn-sm rounded-pill px-3">Dashboard</a>
-                <a href="auth.html" class="btn btn-dark btn-sm rounded-pill px-3">Login</a>
+                <a href="auth.html" id="loginBtn"  class="btn btn-dark btn-sm rounded-pill px-3">Login</a>
             </div>
         </div>
     </nav>
@@ -136,7 +139,7 @@
                         <div class="col-md-6 col-12 mb-3 mb-md-0">
                             <div class="d-flex align-items-center gap-4">
                                 <div class="cart-img-box">
-                                    <img src="${item.img}" alt="${item.name}">
+                                    <img src="${resolveCartImagePath(item.img)}" alt="${item.name}">
                                 </div>
                                 <div>
                                     <h5 class="cart-item-name m-0">${item.name}</h5>
@@ -224,6 +227,22 @@
             document.getElementById('cart-grand-total').innerText = `₹${absoluteTotal.toLocaleString('en-IN', {minimumFractionDigits: 2, maximumFractionDigits: 2})}`;
         }
 
+        function resolveCartImagePath(imgPath) {
+            if (!imgPath) {
+                return '../images/00101.png';
+            }
+
+            if (/^(https?:)?\/\//.test(imgPath) || imgPath.startsWith('data:')) {
+                return imgPath;
+            }
+
+            if (imgPath.startsWith('../') || imgPath.startsWith('/')) {
+                return imgPath;
+            }
+
+            return `../${imgPath.replace(/^\.\//, '')}`;
+        }
+
         function applyCartPromo() {
             const inputVal = document.getElementById('cartCoupon').value.trim().toUpperCase();
             const alertBox = document.getElementById('couponAlert');
@@ -243,6 +262,12 @@
         
         
     function proceedToCheckout() {
+    const role = localStorage.getItem('role');
+    if (!role) {
+        window.location.href = 'auth.html?mode=login';
+        return;
+    }
+
     let cart = JSON.parse(localStorage.getItem('perfumeCart')) || [];
     
     if (cart.length === 0) {

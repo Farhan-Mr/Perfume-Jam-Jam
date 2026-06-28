@@ -330,6 +330,12 @@ renderProducts();
 renderOrders(); 
 renderCoupons();
 
+const role = localStorage.getItem("role");
+
+if(role !== "admin"){
+  window.location.href = role === "user" ? "dashboard.html" : "../Pages/auth.html";
+}
+
 </script>
 </body>
 </html>

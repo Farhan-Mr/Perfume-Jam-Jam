@@ -17,7 +17,7 @@
         <div class="container">
             <a class="navbar-brand" href="../index.html">Perfume <span style="font-family: cursive;">~e~</span> <span style="font-family: cursive;">Farhat</span></a>
             <div class="ms-auto d-flex gap-3 align-items-center">
-                <a href="cart.html" class="text-decoration-none text-dark btn btn-sm btn-outline-dark">Back to Cart</a>
+                <a href="cart.html" id="cartBtn" class="text-decoration-none text-dark btn btn-sm btn-outline-dark">Back to Cart</a>
                 <span class="text-muted small"><i class="bi bi-shield-lock-fill text-success me-1"></i> Secure 256-Bit SSL Checkout</span>
             </div>
         </div>
@@ -117,6 +117,9 @@
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
     <script>
+        if (!localStorage.getItem('role')) {
+            window.location.href = 'auth.html?mode=login';
+        }
         
         
         // Data Fetching Script
@@ -136,12 +139,28 @@
         document.getElementById('pay-name').innerText = itemNames;
         
         // Pehle item ki image dikha dein
-        document.getElementById('pay-img').src = cart[0].img;
+        document.getElementById('pay-img').src = resolvePayImagePath(cart[0].img);
     } else {
         alert("Koi item select nahi hua!");
         window.location.href = "cart.html";
     }
 }
+
+        function resolvePayImagePath(imgPath) {
+            if (!imgPath) {
+                return '../images/00101.png';
+            }
+
+            if (/^(https?:)?\/\//.test(imgPath) || imgPath.startsWith('data:')) {
+                return imgPath;
+            }
+
+            if (imgPath.startsWith('../') || imgPath.startsWith('/')) {
+                return imgPath;
+            }
+
+            return `../${imgPath.replace(/^\.\//, '')}`;
+        }
 
 
         // Form handling
