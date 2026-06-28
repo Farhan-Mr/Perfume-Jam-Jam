@@ -304,8 +304,8 @@
   };
 
 
-  const res = await fetch(
-  "/api/register",
+ const res = await fetch(
+  "https://perfume-jam-jam-production.up.railway.app/api/register",
   {
     method: "POST",
     headers: {
@@ -314,6 +314,7 @@
     body: JSON.stringify(data)
   }
 );
+
   const result = await res.json();
 
   alert("Registration Successful");
@@ -334,14 +335,14 @@ document
     try {
 
         const res = await fetch(
-            "http://localhost:3000/api/login",
-            {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json"
-                },
-                body: JSON.stringify(data)
-            }
+    "https://perfume-jam-jam-production.up.railway.app/api/login",
+    {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify(data)
+    }
         );
 
         const result = await res.json();
