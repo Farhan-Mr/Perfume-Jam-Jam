@@ -38,6 +38,71 @@ async function sendEmailNotification(userEmail, subject, message) {
     });
 }
 
+
+async function sendWhatsAppMessage(order) {
+    try {
+
+        const deliveryDate = new Date();
+        deliveryDate.setDate(deliveryDate.getDate() + 5);
+
+        const formattedDate = deliveryDate.toLocaleDateString("en-IN");
+
+        const message = `🛍️ *Perfume Jam Jam*
+
+✅ Order Confirmed
+
+👤 Customer : ${order.name}
+
+🆔 Order ID : PJJ-${Date.now()}
+
+📦 Product :
+${order.productName}
+
+💰 Price :
+₹${order.price}
+
+💳 Payment :
+Cash on Delivery
+
+🚚 Expected Delivery :
+${formattedDate}
+
+📍 Address :
+${order.address}
+
+Thank you for shopping with Perfume Jam Jam ❤️`;
+
+        await axios.post(
+            `https://graph.facebook.com/v22.0/${process.env.PHONE_NUMBER_ID}/messages`,
+            {
+                messaging_product: "whatsapp",
+                to: `91${order.phone.replace(/\D/g, "")}`,
+                type: "text",
+                text: {
+                    body: message
+                }
+            },
+            {
+                headers: {
+                    Authorization: `Bearer ${process.env.WHATSAPP_TOKEN}`,
+                    "Content-Type": "application/json"
+                }
+            }
+        );
+
+        console.log("✅ WhatsApp Message Sent");
+
+    } catch (err) {
+
+        console.error(
+            "❌ WhatsApp Error:",
+            err.response?.data || err.message
+        );
+
+    }
+}
+
+
 transporter.verify((error, success) => {
     if (error) {
         console.error('SMTP verification failed:', error.message);
@@ -49,21 +114,41 @@ transporter.verify((error, success) => {
 
 const app = express();
 
-const allowedOrigins = [
+const explicitAllowedOrigins = new Set([
     'https://perfume-aa.vercel.app',
-    'http://localhost:3000',
-    'http://127.0.0.1:3000',
-    'http://localhost:5500',
-    'http://127.0.0.1:5500'
-];
+    ...(process.env.FRONTEND_ORIGIN ? process.env.FRONTEND_ORIGIN.split(',') : [])
+        .map(origin => origin.trim())
+        .filter(Boolean)
+]);
+
+function isAllowedOrigin(origin) {
+    if (!origin) {
+        return true;
+    }
+
+    if (
+        origin.startsWith('http://localhost:') ||
+        origin.startsWith('http://127.0.0.1:') ||
+        origin.startsWith('https://localhost:') ||
+        origin.startsWith('https://127.0.0.1:')
+    ) {
+        return true;
+    }
+
+    if (explicitAllowedOrigins.has(origin)) {
+        return true;
+    }
+
+    return /^https:\/\/[a-z0-9-]+\.vercel\.app$/i.test(origin);
+}
 
 app.use(cors({
     origin(origin, callback) {
-        if (!origin || allowedOrigins.includes(origin)) {
+        if (isAllowedOrigin(origin)) {
             return callback(null, true);
         }
 
-        return callback(new Error('Not allowed by CORS'));
+        return callback(null, false);
     },
     credentials: true
 }));
@@ -72,8 +157,12 @@ app.use(cors({
 const dbConfig = {
     user: process.env.ORACLE_USER || "system",
     password: process.env.ORACLE_PASSWORD || "xxxxx",
-    connectString: process.env.ORACLE_CONNECT_STRING || "localhost:1521/xe"
+    connectString: process.env.ORACLE_CONNECT_STRING || (process.env.NODE_ENV === 'production' ? "" : "localhost:1521/xe")
 };
+
+if (process.env.NODE_ENV === 'production' && !process.env.ORACLE_CONNECT_STRING) {
+    console.warn('ORACLE_CONNECT_STRING is not set. Production login will fail until Railway environment variables are configured.');
+}
 
 // Middleware
 app.use(express.json());
@@ -375,8 +464,22 @@ try {
         Perfume Jam Jam`
     );
 
+
+
+
     console.log('Email sent:', mailInfo.messageId, mailInfo.response);
     console.log('Order confirmation email completed for:', email);
+
+
+    await sendWhatsAppMessage({
+    name,
+    phone,
+    productName,
+    price: priceNum,
+    address
+    });
+
+
 
     res.json({
         success: true,
