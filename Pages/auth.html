@@ -273,6 +273,27 @@
             switchAuthMode('login');
         }
 
+        function getApiBaseUrl() {
+            const isLocalhost = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
+
+            if (isLocalhost) {
+                return 'http://localhost:3000';
+            }
+
+            return '';
+        }
+
+        async function parseApiResponse(res) {
+            const contentType = res.headers.get('content-type') || '';
+
+            if (contentType.includes('application/json')) {
+                return await res.json();
+            }
+
+            const text = await res.text();
+            throw new Error(text || `Request failed with status ${res.status}`);
+        }
+
         // Native Forms Validation Handling
         const forms = document.querySelectorAll('.needs-validation');
         forms.forEach(form => {
@@ -297,33 +318,39 @@
 
   e.preventDefault();
 
-            const apiBaseUrl = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1'
-                        ? ''
-                        : 'https://perfume-jam-jam-production.up.railway.app';
+                try {
+                        const apiBaseUrl = getApiBaseUrl();
 
-  const data = {
-    full_name: document.getElementById("regName").value,
-    email: document.getElementById("regEmail").value,
-    password: document.getElementById("regPassword").value
-  };
+                        const data = {
+                                full_name: document.getElementById("regName").value,
+                                email: document.getElementById("regEmail").value,
+                                password: document.getElementById("regPassword").value
+                        };
 
+                        const res = await fetch(
+                                `${apiBaseUrl}/api/register`,
+                                {
+                                        method: "POST",
+                                        headers: {
+                                                "Content-Type": "application/json"
+                                        },
+                                        body: JSON.stringify(data)
+                                }
+                        );
 
- const res = await fetch(
-            `${apiBaseUrl}/api/register`,
-  {
-    method: "POST",
-    headers: {
-      "Content-Type":"application/json"
-    },
-    body: JSON.stringify(data)
-  }
-);
+                        const result = await parseApiResponse(res);
 
-  const result = await res.json();
+                        if (!res.ok || !result.success) {
+                                throw new Error(result.error || result.message || 'Registration failed');
+                        }
 
-  alert("Registration Successful");
-    switchAuthMode('login');
-});
+                        alert("Registration Successful");
+                        switchAuthMode('login');
+                } catch (err) {
+                        console.error(err);
+                        alert(err.message || 'Registration Failed');
+                }
+        });
 
 document
 .getElementById("loginForm")
@@ -331,9 +358,7 @@ document
 
     e.preventDefault();
 
-    const apiBaseUrl = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1'
-        ? ''
-        : 'https://perfume-jam-jam-production.up.railway.app';
+    const apiBaseUrl = getApiBaseUrl();
 
     const data = {
         email: document.getElementById("loginEmail").value,
@@ -353,11 +378,11 @@ document
     }
         );
 
-        const result = await res.json();
+    const result = await parseApiResponse(res);
 
         console.log(result);
 
-       if(result.success){
+       if(res.ok && result.success){
 
     localStorage.setItem("role", result.role);
 
@@ -368,7 +393,7 @@ document
 
 }
 else{
-    alert(result.message);
+    alert(result.message || result.error || 'Login Failed');
 }
 
         

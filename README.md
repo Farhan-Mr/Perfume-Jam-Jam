@@ -124,6 +124,16 @@ Example: `ORACLE_CONNECT_STRING=your-host:1521/yourservice`
 
 The backend and `test-db.js` read these variables directly, so avoid leaving the connection string pointed at `localhost` or `127.0.0.1` in production.
 
+## Vercel Frontend Setup
+
+If you deploy the static site to Vercel, keep the frontend on Vercel and the API on Railway.
+
+- The auth page now calls `/api/login` and `/api/register` from the browser.
+- `vercel.json` rewrites `/api/*` to the Railway backend.
+- Make sure the Railway app is live before testing login from the Vercel link.
+
+This setup lets the site work on phone or desktop from the Vercel URL while login and purchase requests still reach the Oracle-backed server.
+
 ## Resources
 
 - [Bootstrap Documentation](https://getbootstrap.com/docs/)

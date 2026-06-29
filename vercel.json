@@ -1,0 +1,8 @@
+{
+  "rewrites": [
+    {
+      "source": "/api/:path*",
+      "destination": "https://perfume-jam-jam-production.up.railway.app/api/:path*"
+    }
+  ]
+}
