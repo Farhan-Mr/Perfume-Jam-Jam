@@ -5,9 +5,9 @@ async function testConnection() {
     {
         // Oracle DB Connection Config
         const connection = await oracledb.getConnection({
-            user: "system",          // Aapka Oracle username
-            password: "onelove",      // Aapka Oracle password
-            connectString: "localhost:1521/xe" // Aapka connection string
+            user: process.env.ORACLE_USER || "system",          
+            password: process.env.ORACLE_PASSWORD || "onelove",     
+            connectString: process.env.ORACLE_CONNECT_STRING || "localhost:1521/xe" // connection string
         });
 
         console.log("Success! Oracle Database se connect ho gaya.");

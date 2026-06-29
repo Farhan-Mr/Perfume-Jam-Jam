@@ -112,6 +112,18 @@ Extend JavaScript features in `js/script.js`
 5. Add user authentication
 6. Deploy to hosting service
 
+## Railway / Oracle Setup
+
+For Railway deployment, set these environment variables in `Settings -> Variables`:
+
+- `ORACLE_USER`
+- `ORACLE_PASSWORD`
+- `ORACLE_CONNECT_STRING`
+
+Example: `ORACLE_CONNECT_STRING=your-host:1521/yourservice`
+
+The backend and `test-db.js` read these variables directly, so avoid leaving the connection string pointed at `localhost` or `127.0.0.1` in production.
+
 ## Resources
 
 - [Bootstrap Documentation](https://getbootstrap.com/docs/)

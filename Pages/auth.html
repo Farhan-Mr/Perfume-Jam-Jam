@@ -297,6 +297,10 @@
 
   e.preventDefault();
 
+            const apiBaseUrl = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1'
+                        ? ''
+                        : 'https://perfume-jam-jam-production.up.railway.app';
+
   const data = {
     full_name: document.getElementById("regName").value,
     email: document.getElementById("regEmail").value,
@@ -305,7 +309,7 @@
 
 
  const res = await fetch(
-  "https://perfume-jam-jam-production.up.railway.app/api/register",
+            `${apiBaseUrl}/api/register`,
   {
     method: "POST",
     headers: {
@@ -327,6 +331,10 @@ document
 
     e.preventDefault();
 
+    const apiBaseUrl = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1'
+        ? ''
+        : 'https://perfume-jam-jam-production.up.railway.app';
+
     const data = {
         email: document.getElementById("loginEmail").value,
         password: document.getElementById("loginPassword").value
@@ -335,7 +343,7 @@ document
     try {
 
         const res = await fetch(
-    "https://perfume-jam-jam-production.up.railway.app/api/login",
+    `${apiBaseUrl}/api/login`,
     {
         method: "POST",
         headers: {

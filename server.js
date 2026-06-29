@@ -1,29 +1,87 @@
 const express = require('express');
 const oracledb = require('oracledb');
 const cors = require('cors');
+const path = require('path');
+require('dotenv').config({ path: path.join(__dirname, '..', '.env') });
+const nodemailer = require('nodemailer');
+const axios = require("axios");
+
+
+const transporter = nodemailer.createTransport({
+    host: 'smtp.gmail.com',
+    port: 465,
+    secure: true,
+    logger: true,
+    debug: true,
+    auth: {
+        user: process.env.EMAIL_USER,
+        pass: process.env.EMAIL_PASS
+    }
+});
+
+async function sendEmailNotification(userEmail, subject, message) {
+    return await transporter.sendMail({
+        from: `Perfume Jam Jam <${process.env.EMAIL_USER}>`,
+        to: userEmail,
+        subject,
+        replyTo: process.env.EMAIL_USER,
+        text: message,
+        envelope: {
+            from: process.env.EMAIL_USER,
+            to: userEmail
+        },
+        html: message.replace(/\n/g, '<br>'),
+        headers: {
+            'X-Priority': '1',
+            'Importance': 'high'
+        }
+    });
+}
+
+transporter.verify((error, success) => {
+    if (error) {
+        console.error('SMTP verification failed:', error.message);
+        return;
+    }
+
+    console.log('SMTP server is ready to send emails');
+});
 
 const app = express();
 
+const allowedOrigins = [
+    'https://perfume-aa.vercel.app',
+    'http://localhost:3000',
+    'http://127.0.0.1:3000',
+    'http://localhost:5500',
+    'http://127.0.0.1:5500'
+];
+
 app.use(cors({
-  origin: 'https://perfume-aa.vercel.app', 
-  credentials: true
+    origin(origin, callback) {
+        if (!origin || allowedOrigins.includes(origin)) {
+            return callback(null, true);
+        }
+
+        return callback(new Error('Not allowed by CORS'));
+    },
+    credentials: true
 }));
 
 // Database Config
 const dbConfig = {
-user: "system",
-password: "onelove",
-connectString: "localhost:1521/xe"
+    user: process.env.ORACLE_USER || "system",
+    password: process.env.ORACLE_PASSWORD || "xxxxx",
+    connectString: process.env.ORACLE_CONNECT_STRING || "localhost:1521/xe"
 };
 
 // Middleware
-app.use(cors());
 app.use(express.json());
 app.use(express.static(__dirname));
 
-// =========================
+// =====================
 // DATABASE CHECK
-// =========================
+// =====================
 app.get('/api/check-db', async (req, res) => {
 
 
@@ -65,6 +123,8 @@ try {
         password
     } = req.body;
 
+    const normalizedEmail = String(email || "").trim().toLowerCase();
+
     connection = await oracledb.getConnection(dbConfig);
 
     await connection.execute(
@@ -86,7 +146,7 @@ try {
         `,
         {
             full_name,
-            email,
+            email: normalizedEmail,
             password
         },
         {
@@ -131,6 +191,9 @@ try {
         password
     } = req.body;
 
+    const normalizedEmail = String(email || "").trim().toLowerCase();
+    const normalizedPassword = String(password || "");
+
     connection = await oracledb.getConnection(dbConfig);
 
     const result = await connection.execute(
@@ -139,7 +202,7 @@ try {
         FROM USERS
         WHERE EMAIL = :email
         `,
-        { email }
+        { email: normalizedEmail }
     );
 
     if (result.rows.length === 0) {
@@ -152,7 +215,7 @@ try {
 
     const user = result.rows[0];
 
-    if (user[1] !== password) {
+    if (String(user[1] ?? "") !== normalizedPassword) {
 
         return res.status(401).json({
             success: false,
@@ -289,9 +352,36 @@ try {
         }
     );
 
+    // =========================
+    // Send Order Confirmation Email
+    // =========================
+    console.log('Sending confirmation email to:', email);
+
+    const mailInfo = await sendEmailNotification(
+        email,
+        "Your Order is Confirmed ✅",
+        `Hello ${name},
+        Thank you for shopping with Perfume Jam Jam.
+        Your order has been successfully placed.
+
+        Product : ${productName}
+        Price : ₹${priceNum}
+        Delivery Address:
+        ${address}
+
+        We will contact you soon regarding delivery.
+
+        Thank you ❤️
+        Perfume Jam Jam`
+    );
+
+    console.log('Email sent:', mailInfo.messageId, mailInfo.response);
+    console.log('Order confirmation email completed for:', email);
+
     res.json({
         success: true,
-        message: "Order placed successfully"
+        message: "Order placed successfully",
+        emailSent: true
     });
 
 } catch (err) {

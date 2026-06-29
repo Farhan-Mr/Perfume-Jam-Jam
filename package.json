@@ -2,8 +2,9 @@
   "name": "perfume-jam-jam",
   "version": "1.0.0",
   "description": "A modern, responsive HTML + CSS website for a premium perfume e-commerce store, built with Bootstrap 5 framework.",
-  "main": "index.js",
+  "main": "server.js",
   "scripts": {
+    "start": "node server.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -14,14 +15,13 @@
   "author": "",
   "license": "ISC",
   "type": "commonjs",
-  "bugs": {
-    "url": "https://github.com/Farhan-Mr/Perfume-Jam-Jam/issues"
-  },
-  "homepage": "https://github.com/Farhan-Mr/Perfume-Jam-Jam#readme",
   "dependencies": {
+    "axios": "^1.18.1",
     "bcrypt": "^6.0.0",
     "cors": "^2.8.6",
+    "dotenv": "^17.4.2",
     "express": "^5.2.1",
+    "nodemailer": "^9.0.1",
     "oracledb": "^7.0.0"
   }
 }
