@@ -143,13 +143,16 @@ app.use(cors({
 }));
 
 // Database Config
+const isProduction = process.env.NODE_ENV === 'production';
+const oracleEnvMissing = !process.env.ORACLE_USER || !process.env.ORACLE_PASSWORD || !process.env.ORACLE_CONNECT_STRING;
+
 const dbConfig = {
     user: process.env.ORACLE_USER || "system",
     password: process.env.ORACLE_PASSWORD || "onelove",
-    connectString: process.env.ORACLE_CONNECT_STRING || (process.env.NODE_ENV === 'production' ? "" : "localhost:1521/xe")
+    connectString: process.env.ORACLE_CONNECT_STRING || (isProduction ? "" : "localhost:1521/xe")
 };
 
-if (!process.env.ORACLE_USER || !process.env.ORACLE_PASSWORD || !process.env.ORACLE_CONNECT_STRING) {
+if (oracleEnvMissing) {
     console.warn('Oracle env vars are missing. Set ORACLE_USER, ORACLE_PASSWORD, and ORACLE_CONNECT_STRING for a stable login flow.');
 }
 
@@ -163,8 +166,12 @@ function sendDbUnavailable(res, operation, err) {
     });
 }
 
-async function getConnectionWithTimeout(timeoutMs = 8000) {
+async function getConnectionWithTimeout(timeoutMs = 5000) {
     let timer;
+
+    if (isProduction && oracleEnvMissing) {
+        throw new Error('Oracle env vars are missing in production');
+    }
 
     const connectionPromise = oracledb.getConnection(dbConfig);
     const timeoutPromise = new Promise((_, reject) => {

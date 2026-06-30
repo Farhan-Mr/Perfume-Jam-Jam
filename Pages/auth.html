@@ -273,6 +273,8 @@
             switchAuthMode('login');
         }
 
+        const PRODUCTION_API_BASE_URL = 'https://perfume-jam-jam-production.up.railway.app';
+
         function getApiBaseUrl() {
             const isLocalhost = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
 
@@ -280,7 +282,13 @@
                 return 'http://localhost:3000';
             }
 
-            return '';
+            const overrideBaseUrl = window.__API_BASE_URL__;
+
+            if (typeof overrideBaseUrl === 'string' && overrideBaseUrl.trim()) {
+                return overrideBaseUrl.trim().replace(/\/$/, '');
+            }
+
+            return PRODUCTION_API_BASE_URL;
         }
 
         async function parseApiResponse(res) {
@@ -328,8 +336,8 @@
                         };
 
                         const res = await fetch(
-                                `${apiBaseUrl}/api/register`,
-                                {
+                            new URL('/api/register', apiBaseUrl).href,
+                            {
                                         method: "POST",
                                         headers: {
                                                 "Content-Type": "application/json"
@@ -368,7 +376,7 @@ document
     try {
 
         const res = await fetch(
-    `${apiBaseUrl}/api/login`,
+    new URL('/api/login', apiBaseUrl).href,
     {
         method: "POST",
         headers: {
