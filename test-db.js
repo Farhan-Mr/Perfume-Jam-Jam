@@ -1,4 +1,5 @@
 const oracledb = require('oracledb');
+require('dotenv').config({ path: require('path').join(__dirname, '.env') });
 
 async function testConnection() {
     try 

@@ -2,7 +2,7 @@ const express = require('express');
 const oracledb = require('oracledb');
 const cors = require('cors');
 const path = require('path');
-require('dotenv').config({ path: path.join(__dirname, '..', '.env') });
+require('dotenv').config({ path: path.join(__dirname, '.env') });
 const nodemailer = require('nodemailer');
 const axios = require("axios");
 
@@ -37,7 +37,6 @@ async function sendEmailNotification(userEmail, subject, message) {
         }
     });
 }
-
 
 async function sendWhatsAppMessage(order) {
     try {
@@ -102,16 +101,6 @@ Thank you for shopping with Perfume Jam Jam ❤️`;
     }
 }
 
-
-transporter.verify((error, success) => {
-    if (error) {
-        console.error('SMTP verification failed:', error.message);
-        return;
-    }
-
-    console.log('SMTP server is ready to send emails');
-});
-
 const app = express();
 
 const explicitAllowedOrigins = new Set([
@@ -156,12 +145,41 @@ app.use(cors({
 // Database Config
 const dbConfig = {
     user: process.env.ORACLE_USER || "system",
-    password: process.env.ORACLE_PASSWORD || "xxxxx",
+    password: process.env.ORACLE_PASSWORD || "onelove",
     connectString: process.env.ORACLE_CONNECT_STRING || (process.env.NODE_ENV === 'production' ? "" : "localhost:1521/xe")
 };
 
-if (process.env.NODE_ENV === 'production' && !process.env.ORACLE_CONNECT_STRING) {
-    console.warn('ORACLE_CONNECT_STRING is not set. Production login will fail until Railway environment variables are configured.');
+if (!process.env.ORACLE_USER || !process.env.ORACLE_PASSWORD || !process.env.ORACLE_CONNECT_STRING) {
+    console.warn('Oracle env vars are missing. Set ORACLE_USER, ORACLE_PASSWORD, and ORACLE_CONNECT_STRING for a stable login flow.');
+}
+
+function sendDbUnavailable(res, operation, err) {
+    console.error(`Database ${operation} failed:`, err.message);
+
+    return res.status(503).json({
+        success: false,
+        message: 'Database temporarily unavailable. Please try again later.',
+        error: err.message
+    });
+}
+
+async function getConnectionWithTimeout(timeoutMs = 8000) {
+    let timer;
+
+    const connectionPromise = oracledb.getConnection(dbConfig);
+    const timeoutPromise = new Promise((_, reject) => {
+        timer = setTimeout(() => {
+            reject(new Error(`Database connection timed out after ${timeoutMs}ms`));
+        }, timeoutMs);
+    });
+
+    try {
+        return await Promise.race([connectionPromise, timeoutPromise]);
+    } finally {
+        if (timer) {
+            clearTimeout(timer);
+        }
+    }
 }
 
 // Middleware
@@ -178,13 +196,13 @@ let connection;
 
 try {
 
-    connection = await oracledb.getConnection(dbConfig);
+    connection = await getConnectionWithTimeout();
 
     res.send("Database connected successfully!");
 
 } catch (err) {
 
-    res.status(500).send(err.message);
+    res.status(503).send(err.message);
 
 } finally {
 
@@ -214,7 +232,7 @@ try {
 
     const normalizedEmail = String(email || "").trim().toLowerCase();
 
-    connection = await oracledb.getConnection(dbConfig);
+    connection = await getConnectionWithTimeout();
 
     await connection.execute(
         `
@@ -250,10 +268,7 @@ try {
 
 } catch (err) {
 
-    res.status(500).json({
-        success: false,
-        error: err.message
-    });
+    return sendDbUnavailable(res, 'registration', err);
 
 } finally {
 
@@ -283,7 +298,7 @@ try {
     const normalizedEmail = String(email || "").trim().toLowerCase();
     const normalizedPassword = String(password || "");
 
-    connection = await oracledb.getConnection(dbConfig);
+    connection = await getConnectionWithTimeout();
 
     const result = await connection.execute(
         `
@@ -319,10 +334,7 @@ try {
 
 } catch (err) {
 
-    res.status(500).json({
-        success: false,
-        error: err.message
-    });
+    return sendDbUnavailable(res, 'login', err);
 
 } finally {
 
@@ -344,7 +356,7 @@ let connection;
 
 try {
 
-    connection = await oracledb.getConnection(dbConfig);
+    connection = await getConnectionWithTimeout();
 
     const result = await connection.execute(
         "SELECT * FROM ORDERS"
@@ -354,9 +366,7 @@ try {
 
 } catch (err) {
 
-    res.status(500).json({
-        error: err.message
-    });
+    return sendDbUnavailable(res, 'orders fetch', err);
 
 } finally {
 
@@ -403,7 +413,7 @@ try {
         });
     }
 
-    connection = await oracledb.getConnection(dbConfig);
+    connection = await getConnectionWithTimeout();
 
     await connection.execute(
         `
@@ -446,7 +456,7 @@ try {
     // =========================
     console.log('Sending confirmation email to:', email);
 
-    const mailInfo = await sendEmailNotification(
+    const mailInfo = sendEmailNotification(
         email,
         "Your Order is Confirmed ✅",
         `Hello ${name},
@@ -464,19 +474,24 @@ try {
         Perfume Jam Jam`
     );
 
+    void Promise.allSettled([
+        mailInfo.then((info) => {
+            console.log('Email sent:', info.messageId, info.response);
+            console.log('Order confirmation email completed for:', email);
+        }),
+        sendWhatsAppMessage({
+            name,
+            phone,
+            productName,
+            price: priceNum,
+            address
+        })
+    ]).then((results) => {
+        const failedTasks = results.filter((result) => result.status === 'rejected');
 
-
-
-    console.log('Email sent:', mailInfo.messageId, mailInfo.response);
-    console.log('Order confirmation email completed for:', email);
-
-
-    await sendWhatsAppMessage({
-    name,
-    phone,
-    productName,
-    price: priceNum,
-    address
+        if (failedTasks.length > 0) {
+            console.warn('Order notification tasks had failures:', failedTasks.length);
+        }
     });
 
 
@@ -489,10 +504,7 @@ try {
 
 } catch (err) {
 
-    res.status(500).json({
-        success: false,
-        error: err.message
-    });
+    return sendDbUnavailable(res, 'order placement', err);
 
 } finally {
 
