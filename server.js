@@ -148,7 +148,7 @@ const oracleEnvMissing = !process.env.ORACLE_USER || !process.env.ORACLE_PASSWOR
 
 const dbConfig = {
     user: process.env.ORACLE_USER || "system",
-    password: process.env.ORACLE_PASSWORD || "onelove",
+    password: process.env.ORACLE_PASSWORD || "chal nikl !!",
     connectString: process.env.ORACLE_CONNECT_STRING || (isProduction ? "" : "localhost:1521/xe")
 };
 
